@@ -29,14 +29,15 @@ public class BangDuyetThuMuc {
   private JScrollPane _scrollPane_HienThiBang;
   private JTable _bangHienThiThuMucHienHanh;
   private TableModel _modelBangHienThi;
+  private int _kichThuocIcon = 24;
 
   public  BangDuyetThuMuc(String myTenFile, JScrollPane myScrollPane ) {
-      _tenThuMucHienHanh = myTenFile;
-      _scrollPane_HienThiBang = myScrollPane;
+    _tenThuMucHienHanh = myTenFile;
+    _scrollPane_HienThiBang = myScrollPane;
 
 //Phần này tham khảo source từ nhiều nguồn trên mạng!!!
-      //http://www.java2s.com/Code/Java/Swing-JFC/ColumnSampleTableModel.htm
-      _modelBangHienThi = new AbstractTableModel() {
+    //http://www.java2s.com/Code/Java/Swing-JFC/ColumnSampleTableModel.htm
+    _modelBangHienThi = new AbstractTableModel() {
       Object Data[][] = _cacDongDuLieu;
 
       String columnNames[] = {"Icon", "Name", "Size"};
@@ -62,7 +63,66 @@ public class BangDuyetThuMuc {
         return (getValueAt(0, column).getClass());
       }
     };
+    _bangHienThiThuMucHienHanh = new JTable(_modelBangHienThi){
+          @Override
+          /**
+           * Them tooltip cho tung cell
+           */
+          public Component prepareRenderer(TableCellRenderer renderer,int row, int col) {
+              Component comp = super.prepareRenderer(renderer, row, col);
+              JComponent jcomp = (JComponent)comp;
+              if (comp == jcomp) {
+                File file = new File(getTenFile());
+                jcomp.setToolTipText(file.getPath() + "\\" + (String)getValueAt(row, 1));
+              }
+              return comp;
+           }
+        };
+    capNhatBangDuyetThuMuc(myTenFile, myScrollPane);
+    _bangHienThiThuMucHienHanh.addMouseListener(new MouseAdapter() {
+        //Xu ly su kien click vao _bangHienThiThuMucHienHanh
+        @Override
 
+         // Xử lý xử kiện người dùng click chuột vào bảng
+
+        public void mousePressed (MouseEvent evt){
+
+            _bangHienThiThuMucHienHanh = (JTable)evt.getComponent();
+            int selectedRow = _bangHienThiThuMucHienHanh.getSelectedRow();
+            String str_TenFileDuocChon = getTenFile();
+            if (!getTenFile().endsWith("\\"))
+                str_TenFileDuocChon += "\\";
+            str_TenFileDuocChon += _bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
+            phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
+            //Nếu là click đơn thì bỏ qua
+            if (evt.getButton() != 1 || evt.getClickCount() != 2){
+                return;
+            }
+            //Nếu chọn quay về thư mục cha
+            if (_bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString().equals("..")){
+                quayVeThuMucCha();
+                return;
+            }
+            //Xác định file đang được chọn
+            setTenFile(str_TenFileDuocChon);
+            File file = new File(getTenFile());
+
+            //Xử lý mở file hoặc duyệt vào thư mục con.
+            _scrollPane_HienThiBang.setToolTipText(_tenThuMucHienHanh);
+            if (file.isFile()){
+                try {
+                    Desktop.getDesktop().open(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else{
+                capNhatBangDuyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);//new BangDuyetThuMuc(getTenFile(),_scrollPane_HienThiBang);
+            }
+            //_bangHienThiThuMucHienHanh.requestFocus();
+        }
+    });
+/*
     int SoThuocTinh = 3;
     //Phải lấy giá trị đường dẫn tuyệt đối của file trước phòng trường hợp ổ đĩa hiện tại đang được truy cập sâu
     File fileHienTai = new File(getTenFile()).getAbsoluteFile();
@@ -98,8 +158,8 @@ public class BangDuyetThuMuc {
             try {
                 //Lấy icon và tên của file
                 sf1 = ShellFolder.getShellFolder(file);
-                icon = new ImageIcon(sf1.getIcon(true));
-
+                icon = BoCoGianImage.coGianImageIcon(new ImageIcon(sf1.getIcon(true))
+                        , _kichThuocIcon, _kichThuocIcon, Image.SCALE_SMOOTH);
                 _cacDongDuLieu[i][0] = icon;
                 _cacDongDuLieu[i][1] = file.getName();
             } catch (FileNotFoundException ex) {
@@ -152,23 +212,9 @@ public class BangDuyetThuMuc {
     for (int i = 0; i < rowFiles.length; i++)
             _cacDongDuLieu[index++] = rowFiles[i];
 
-    _bangHienThiThuMucHienHanh = new JTable(_modelBangHienThi){
-            @Override
-        /**
-         * Them tooltip cho tung cell
-         */
-        public Component prepareRenderer(TableCellRenderer renderer,int row, int col) {
-        Component comp = super.prepareRenderer(renderer, row, col);
-        JComponent jcomp = (JComponent)comp;
-        if (comp == jcomp) {
-          File file = new File(getTenFile());
-          jcomp.setToolTipText(file.getPath() + "\\" + (String)getValueAt(row, 1));
-        }
-        return comp;
-      }
-    };
+    
 
-    int Heigth = 32;//Chieu cao cua icon
+    int Heigth = _kichThuocIcon;//Chieu cao cua icon
     _bangHienThiThuMucHienHanh.setRowHeight(Heigth);
     _bangHienThiThuMucHienHanh.setShowHorizontalLines(false);
     _bangHienThiThuMucHienHanh.setShowVerticalLines(false);
@@ -178,52 +224,10 @@ public class BangDuyetThuMuc {
 
     _bangHienThiThuMucHienHanh.getColumnModel().getColumn(2).setMinWidth(70);
     _bangHienThiThuMucHienHanh.getColumnModel().getColumn(2).setMaxWidth(70);
-    
-    _bangHienThiThuMucHienHanh.addMouseListener(new MouseAdapter() {
-        //Xu ly su kien click vao _bangHienThiThuMucHienHanh
-        @Override
-        /**
-         * Xử lý xử kiện người dùng click chuột vào bảng
-         */
-        public void mousePressed (MouseEvent evt){
 
-            _bangHienThiThuMucHienHanh = (JTable)evt.getComponent();
-            int selectedRow = _bangHienThiThuMucHienHanh.getSelectedRow();
-            String str_TenFileDuocChon = getTenFile();
-            if (!getTenFile().endsWith("\\"))
-                str_TenFileDuocChon += "\\";
-            str_TenFileDuocChon += _bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
-            phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
-            //Nếu là click đơn thì bỏ qua
-            if (evt.getButton() != 1 || evt.getClickCount() != 2){
-                return;
-            }
-            //Nếu chọn quay về thư mục cha
-            if (_bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString().equals("..")){
-                quayVeThuMucCha();
-                return;
-            }
-            //Xác định file đang được chọn
-            setTenFile(str_TenFileDuocChon);
-            File file = new File(getTenFile());
-
-            //Xử lý mở file hoặc duyệt vào thư mục con.
-            _scrollPane_HienThiBang.setToolTipText(_tenThuMucHienHanh);
-            if (file.isFile()){
-                try {
-                    Desktop.getDesktop().open(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            else{
-                duyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);//new BangDuyetThuMuc(getTenFile(),_scrollPane_HienThiBang);
-            }
-            //_bangHienThiThuMucHienHanh.requestFocus();
-        }
-    });
     _bangHienThiThuMucHienHanh.addRowSelectionInterval(0, 0);
     _scrollPane_HienThiBang.setViewportView(_bangHienThiThuMucHienHanh);
+ */
   }
   /**
    * Rút gọn phần thập phân của một số
@@ -262,7 +266,7 @@ public class BangDuyetThuMuc {
       if (file.getParentFile() != null){
             setTenFile(file.getParent());
             _scrollPane_HienThiBang.setToolTipText(_tenThuMucHienHanh);
-          duyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);
+          capNhatBangDuyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);
       }
   }
 
@@ -336,7 +340,7 @@ public class BangDuyetThuMuc {
  * @param str_FileName  đường dẫn thư mục cần duyệt
  * @param myScrollPane  JScrollPane hiện thị bảng
  */
-    public void duyetThuMuc(String str_FileName, JScrollPane myScrollPane){
+    public void capNhatBangDuyetThuMuc(String str_FileName, JScrollPane myScrollPane){
         _tenThuMucHienHanh = str_FileName;
       _scrollPane_HienThiBang = myScrollPane;
 //Phần này tham khảo source từ nhiều nguồn trên mạng!!!
@@ -378,6 +382,9 @@ public class BangDuyetThuMuc {
                     sf1 = ShellFolder.getShellFolder(file);
                     icon = new ImageIcon(sf1.getIcon(true));
 
+                    icon = BoCoGianImage.coGianImageIcon(new ImageIcon(sf1.getIcon(true)),
+                    _kichThuocIcon, _kichThuocIcon, Image.SCALE_SMOOTH);
+
                     _cacDongDuLieu[i][0] = icon;
                     _cacDongDuLieu[i][1] = file.getName();
                 } catch (FileNotFoundException ex) {
@@ -415,7 +422,8 @@ public class BangDuyetThuMuc {
             _cacDongDuLieu = new Object[files.length + 1][SoThuocTinh];//thêm một dòng thư mục cha
             //Tạo dòng thư mục cha
 
-            icon = new ImageIcon(this.getClass().getResource("./resources/Back.png"));
+            icon = BoCoGianImage.coGianImageIcon(new ImageIcon(this.getClass().getResource("./resources/Back.png")),
+                    _kichThuocIcon, _kichThuocIcon, Image.SCALE_SMOOTH);
 
             _cacDongDuLieu[0][0] = icon;
             _cacDongDuLieu[0][1] = "..";
@@ -457,15 +465,17 @@ public class BangDuyetThuMuc {
         return (getValueAt(0, column).getClass());
       }
     };
+    if (_bangHienThiThuMucHienHanh == null)
+        return;
     _bangHienThiThuMucHienHanh.setModel(_modelBangHienThi);
 
-    int Heigth = 32;//Chieu cao cua icon
+    int Heigth = _kichThuocIcon;//Chieu cao cua icon
     _bangHienThiThuMucHienHanh.setRowHeight(Heigth);
     _bangHienThiThuMucHienHanh.setShowHorizontalLines(false);
     _bangHienThiThuMucHienHanh.setShowVerticalLines(false);
 
-    _bangHienThiThuMucHienHanh.getColumnModel().getColumn(0).setMinWidth(35);
-    _bangHienThiThuMucHienHanh.getColumnModel().getColumn(0).setMaxWidth(35);
+    _bangHienThiThuMucHienHanh.getColumnModel().getColumn(0).setMinWidth(_kichThuocIcon + 3);
+    _bangHienThiThuMucHienHanh.getColumnModel().getColumn(0).setMaxWidth(_kichThuocIcon + 3);
 
     _bangHienThiThuMucHienHanh.getColumnModel().getColumn(2).setMinWidth(70);
     _bangHienThiThuMucHienHanh.getColumnModel().getColumn(2).setMaxWidth(70);
@@ -500,7 +510,7 @@ public class BangDuyetThuMuc {
     public void duyetCacThuMucDatBiet(String str_TenThuMucDatBiet, JTabbedPane jTabbedPane) {
         // TODO add your handling code here:
         String str_DuongDan = System.getProperty("user.home") + "\\" + str_TenThuMucDatBiet;
-        duyetThuMuc(str_DuongDan, _scrollPane_HienThiBang);
+        capNhatBangDuyetThuMuc(str_DuongDan, _scrollPane_HienThiBang);
         jTabbedPane.setTitleAt(0, str_DuongDan);
     }
 }
