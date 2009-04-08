@@ -174,15 +174,15 @@ public class DoAn_TatalCommande_002View extends FrameView {
  */
     private void capNhatCacBang(File thuMucVuaCapNhat) {
         if (_bangHienTai.getTenFile().equals(_bangPhai.getTenFile())) {
-            _bangPhai.duyetThuMuc(_bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
+            _bangPhai.capNhatBangDuyetThuMuc(_bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
         } 
         if(_bangHienTai.getTenFile().equals(_bangTrai.getTenFile())) {
-            _bangTrai.duyetThuMuc(_bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
+            _bangTrai.capNhatBangDuyetThuMuc(_bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
         }
         if(_bangTrai.getTenFile().equalsIgnoreCase(thuMucVuaCapNhat.getPath()))
-            _bangTrai.duyetThuMuc(_bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
+            _bangTrai.capNhatBangDuyetThuMuc(_bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
         if(_bangPhai.getTenFile().equalsIgnoreCase(thuMucVuaCapNhat.getPath()))
-            _bangPhai.duyetThuMuc(_bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
+            _bangPhai.capNhatBangDuyetThuMuc(_bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
     }
 
 
@@ -202,24 +202,19 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jButton5 = new javax.swing.JButton();
         jPanel_PhanChan = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jToolBar2 = new javax.swing.JToolBar();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
-        jSeparator8 = new javax.swing.JToolBar.Separator();
         jButton3 = new javax.swing.JButton();
-        jSeparator7 = new javax.swing.JToolBar.Separator();
         jButton4 = new javax.swing.JButton();
-        jSeparator6 = new javax.swing.JToolBar.Separator();
         jButton6 = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JToolBar.Separator();
         jButton7 = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JToolBar.Separator();
         jButton8 = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JToolBar.Separator();
         jButton9 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
-        jButton10 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton11 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         jSplitPane1 = new javax.swing.JSplitPane();
         jSplitPane2 = new javax.swing.JSplitPane();
         jScrollPane_PhanChinh_Tree = new javax.swing.JScrollPane();
@@ -309,112 +304,128 @@ public class DoAn_TatalCommande_002View extends FrameView {
         mainPanel.add(jPanel_PhanDau, java.awt.BorderLayout.PAGE_START);
 
         jPanel_PhanChan.setName("jPanel_PhanChan"); // NOI18N
-        jPanel_PhanChan.setPreferredSize(new java.awt.Dimension(900, 50));
+        jPanel_PhanChan.setPreferredSize(new java.awt.Dimension(900, 70));
 
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel4.setName("jPanel4"); // NOI18N
 
-        jToolBar2.setRollover(true);
-        jToolBar2.setName("jToolBar2"); // NOI18N
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setName("jSeparator1"); // NOI18N
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setName("jSeparator2"); // NOI18N
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator3.setName("jSeparator3"); // NOI18N
+
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator6.setName("jSeparator6"); // NOI18N
+
+        jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator7.setName("jSeparator7"); // NOI18N
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton2.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton2.setName("jButton2"); // NOI18N
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton2);
-
-        jSeparator8.setName("jSeparator8"); // NOI18N
-        jToolBar2.add(jSeparator8);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton3.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton3.setName("jButton3"); // NOI18N
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton3);
-
-        jSeparator7.setName("jSeparator7"); // NOI18N
-        jToolBar2.add(jSeparator7);
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton4.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton4.setName("jButton4"); // NOI18N
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton4);
-
-        jSeparator6.setName("jSeparator6"); // NOI18N
-        jToolBar2.add(jSeparator6);
 
         jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton6.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton6.setName("jButton6"); // NOI18N
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton6);
-
-        jSeparator5.setName("jSeparator5"); // NOI18N
-        jToolBar2.add(jSeparator5);
 
         jButton7.setText(resourceMap.getString("jButton7.text")); // NOI18N
-        jButton7.setFocusable(false);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton7.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton7.setName("jButton7"); // NOI18N
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton7);
-
-        jSeparator4.setName("jSeparator4"); // NOI18N
-        jToolBar2.add(jSeparator4);
 
         jButton8.setText(resourceMap.getString("jButton8.text")); // NOI18N
-        jButton8.setFocusable(false);
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton8.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton8.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton8.setName("jButton8"); // NOI18N
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton8);
-
-        jSeparator3.setName("jSeparator3"); // NOI18N
-        jToolBar2.add(jSeparator3);
 
         jButton9.setText(resourceMap.getString("jButton9.text")); // NOI18N
-        jButton9.setFocusable(false);
-        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton9.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton9.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton9.setName("jButton9"); // NOI18N
-        jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton9);
 
-        jSeparator2.setName("jSeparator2"); // NOI18N
-        jToolBar2.add(jSeparator2);
-
-        jButton10.setText(resourceMap.getString("jButton10.text")); // NOI18N
-        jButton10.setFocusable(false);
-        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton10.setName("jButton10"); // NOI18N
-        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton10);
-
-        jSeparator1.setName("jSeparator1"); // NOI18N
-        jToolBar2.add(jSeparator1);
-
-        jButton11.setText(resourceMap.getString("jButton11.text")); // NOI18N
-        jButton11.setFocusable(false);
-        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton11.setName("jButton11"); // NOI18N
-        jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton11);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setName("jComboBox1"); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(404, 404, 404)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(201, 201, 201)))
+                        .addGap(2, 2, 2)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, 0, 528, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout jPanel_PhanChanLayout = new javax.swing.GroupLayout(jPanel_PhanChan);
@@ -425,7 +436,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         );
         jPanel_PhanChanLayout.setVerticalGroup(
             jPanel_PhanChanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         mainPanel.add(jPanel_PhanChan, java.awt.BorderLayout.PAGE_END);
@@ -488,12 +499,12 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(26, 26, 26)
-                    .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                     .addGap(25, 25, 25)))
         );
 
@@ -543,7 +554,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
                     .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -768,22 +779,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
         datTrangTraiHienThiTreeView(jCheckBoxMenuItem1.getState());
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
-    private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
-        // TODO add your handling code here:
-        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null){
-            _bangTrai.duyetThuMuc(jComboBox_PhanChinh_BangTrai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangTrai);
-            jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, _bangTrai.getTenFile());
-        }
-    }//GEN-LAST:event_jComboBox_PhanChinh_BangTraiActionPerformed
-
-    private void jComboBox_PhanChinh_BangPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
-        // TODO add your handling code here:
-        if (jComboBox_PhanChinh_BangPhai.getSelectedItem() != null){
-            _bangPhai.duyetThuMuc(jComboBox_PhanChinh_BangPhai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangPhai);
-            jTabbedPane_PhanChinh_BangPhai.setTitleAt(0, _bangPhai.getTenFile());
-        }
-    }//GEN-LAST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
-
     private void jMenuItem_File_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_XoaActionPerformed
         // TODO add your handling code here:
         ArrayList<String> str_CacDuongDan = _bangHienTai.layDuongDanDayDuFileDangDuocChon();
@@ -811,22 +806,39 @@ public class DoAn_TatalCommande_002View extends FrameView {
         //file.
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jComboBox_PhanChinh_BangPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
+        // TODO add your handling code here:
+        if (jComboBox_PhanChinh_BangPhai.getSelectedItem() != null){
+            _bangPhai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangPhai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangPhai);
+            jTabbedPane_PhanChinh_BangPhai.setTitleAt(0, _bangPhai.getTenFile());
+        }
+}//GEN-LAST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
+
+    private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
+        // TODO add your handling code here:
+        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null){
+            _bangTrai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangTrai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangTrai);
+            jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, _bangTrai.getTenFile());
+        }
+}//GEN-LAST:event_jComboBox_PhanChinh_BangTraiActionPerformed
+
     /**
      * Thực thi command line
      * @param str_Command   command cần thực thi
      */
-    public static void jThucThiCommandLine(String str_Command){
+    public static int thucThiCommandLine(String str_Command){
         try {
             Runtime.getRuntime().exec(str_Command);
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Có lỗi khi thực thi command: " + str_Command, "Lỗi!", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
         }
+        return 1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -836,6 +848,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox_PhanChinh_BangPhai;
     private javax.swing.JComboBox jComboBox_PhanChinh_BangTrai;
     private javax.swing.JLabel jLabel1;
@@ -857,14 +870,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JScrollPane jScrollPane_PhanChinh_BangPhai;
     private javax.swing.JScrollPane jScrollPane_PhanChinh_BangTrai;
     private javax.swing.JScrollPane jScrollPane_PhanChinh_Tree;
-    private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JToolBar.Separator jSeparator2;
-    private javax.swing.JToolBar.Separator jSeparator3;
-    private javax.swing.JToolBar.Separator jSeparator4;
-    private javax.swing.JToolBar.Separator jSeparator5;
-    private javax.swing.JToolBar.Separator jSeparator6;
-    private javax.swing.JToolBar.Separator jSeparator7;
-    private javax.swing.JToolBar.Separator jSeparator8;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane_PhanChinh_BangPhai;
@@ -872,7 +882,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JTree jTree1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
