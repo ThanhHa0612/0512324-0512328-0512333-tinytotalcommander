@@ -5,6 +5,7 @@
 package doan_tatalcommande_002;
 
 import com.sun.org.apache.xml.internal.utils.ObjectPool;
+import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class DoAn_TatalCommande_002View extends FrameView {
     private BangDuyetThuMuc _bangTrai;
     private BangDuyetThuMuc _bangPhai;
-    private jEnum_CacBang _enum_BangHienTai;
+//    private jEnum_CacBang _enum_BangHienTai;
     private BangDuyetThuMuc _bangHienTai;
     int dem = 1;
 
@@ -62,7 +64,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
 /*---------------------Khởi tạo các bảng duyệt thư mục-----------------------------------*/
         _bangTrai = new BangDuyetThuMuc("C:", jScrollPane_PhanChinh_BangTrai);
         _bangPhai = new BangDuyetThuMuc("D:", jScrollPane_PhanChinh_BangPhai);
-        _enum_BangHienTai = jEnum_CacBang.BangTrai;
+//        _enum_BangHienTai = jEnum_CacBang.BangTrai;
         _bangHienTai = _bangTrai;
         _bangPhai.getTable().clearSelection();
         //System.setProperty("user.dir", _bangHienTai.getTenFile());
@@ -71,8 +73,14 @@ public class DoAn_TatalCommande_002View extends FrameView {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
                 jLabel1.setText("Ban chon cua so trai");
                 _bangPhai.getTable().clearSelection();
-                _enum_BangHienTai = jEnum_CacBang.BangTrai;
+//                _enum_BangHienTai = jEnum_CacBang.BangTrai;
                 _bangHienTai = _bangTrai;
+                String str_PhanVung;
+                if (_bangTrai.getTenFile().contains("\\"))
+                    str_PhanVung = _bangTrai.getTenFile().substring(0, "C:\\".length());
+                else
+                    str_PhanVung = _bangTrai.getTenFile() + "\\";
+                jComboBox_PhanChinh_BangTrai.setSelectedItem(str_PhanVung);
                 //System.setProperty("user.dir", _bangHienTai.getTenFile());
                 //JOptionPane.showMessageDialog(null, System.getProperty("user.dir"));
             }
@@ -81,9 +89,15 @@ public class DoAn_TatalCommande_002View extends FrameView {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
                 jLabel1.setText("Ban chon cua so phai");
                 _bangTrai.getTable().clearSelection();
-                _enum_BangHienTai = jEnum_CacBang.BangPhai;
+                //_enum_BangHienTai = jEnum_CacBang.BangPhai;
                 _bangHienTai = _bangPhai;
-                //System.setProperty("user.dir", _bangHienTai.getTenFile());
+
+                String str_PhanVung;
+                if (_bangPhai.getTenFile().contains("\\"))
+                    str_PhanVung = _bangPhai.getTenFile().substring(0, "C:\\".length());
+                else
+                    str_PhanVung = _bangPhai.getTenFile() + "\\";
+                jComboBox_PhanChinh_BangPhai.setSelectedItem(str_PhanVung);
             }
         });
 /*---------------------------------------------------------------------------------------*/
@@ -214,7 +228,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox_ThucThiCommandLine = new javax.swing.JComboBox();
+        jButton_ThucThiCommandLine = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jSplitPane2 = new javax.swing.JSplitPane();
         jScrollPane_PhanChinh_Tree = new javax.swing.JScrollPane();
@@ -236,12 +251,16 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenuItem_File_NewFolder = new javax.swing.JMenuItem();
         jMenuItem_File_Xoa = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem_File_XemFile = new javax.swing.JMenuItem();
+        jMenuItem_File_SoSanh = new javax.swing.JMenuItem();
+        jMenuItem_File_ChinhSuaTapTin = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         jMenu_Edit = new javax.swing.JMenu();
         jMenuItem_Edit_Back = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jMenu_View_Tree = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
+        jMenuItem_HienThiJavaDoc = new javax.swing.JMenuItem();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
@@ -359,8 +378,22 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jButton9.setMinimumSize(new java.awt.Dimension(0, 23));
         jButton9.setName("jButton9"); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
+        jComboBox_ThucThiCommandLine.setEditable(true);
+        jComboBox_ThucThiCommandLine.setName("jComboBox_ThucThiCommandLine"); // NOI18N
+        jComboBox_ThucThiCommandLine.setNextFocusableComponent(jButton_ThucThiCommandLine);
+        jComboBox_ThucThiCommandLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_ThucThiCommandLineActionPerformed(evt);
+            }
+        });
+
+        jButton_ThucThiCommandLine.setText(resourceMap.getString("jButton_ThucThiCommandLine.text")); // NOI18N
+        jButton_ThucThiCommandLine.setName("jButton_ThucThiCommandLine"); // NOI18N
+        jButton_ThucThiCommandLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ThucThiCommandLineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -372,34 +405,35 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(97, 97, 97)
+                                .addGap(59, 59, 59)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(201, 201, 201)))
-                        .addGap(2, 2, 2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_ThucThiCommandLine)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, 528, Short.MAX_VALUE)
+                    .addComponent(jComboBox_ThucThiCommandLine, 0, 500, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))))
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,7 +446,9 @@ public class DoAn_TatalCommande_002View extends FrameView {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox_ThucThiCommandLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_ThucThiCommandLine))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,7 +472,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         );
         jPanel_PhanChanLayout.setVerticalGroup(
             jPanel_PhanChanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mainPanel.add(jPanel_PhanChan, java.awt.BorderLayout.PAGE_END);
@@ -598,6 +634,36 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         jMenu_File.add(jMenuItem1);
 
+        jMenuItem_File_XemFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem_File_XemFile.setText(resourceMap.getString("jMenuItem_File_XemFile.text")); // NOI18N
+        jMenuItem_File_XemFile.setName("jMenuItem_File_XemFile"); // NOI18N
+        jMenuItem_File_XemFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_XemFileActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_File_XemFile);
+
+        jMenuItem_File_SoSanh.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem_File_SoSanh.setText(resourceMap.getString("jMenuItem_File_SoSanh.text")); // NOI18N
+        jMenuItem_File_SoSanh.setName("jMenuItem_File_SoSanh"); // NOI18N
+        jMenuItem_File_SoSanh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_SoSanhActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_File_SoSanh);
+
+        jMenuItem_File_ChinhSuaTapTin.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem_File_ChinhSuaTapTin.setText(resourceMap.getString("jMenuItem_File_ChinhSuaTapTin.text")); // NOI18N
+        jMenuItem_File_ChinhSuaTapTin.setName("jMenuItem_File_ChinhSuaTapTin"); // NOI18N
+        jMenuItem_File_ChinhSuaTapTin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_ChinhSuaTapTinActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_File_ChinhSuaTapTin);
+
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(doan_tatalcommande_002.DoAn_TatalCommande_002App.class).getContext().getActionMap(DoAn_TatalCommande_002View.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
@@ -620,8 +686,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         menuBar.add(jMenu_Edit);
 
-        jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
-        jMenu1.setName("jMenu1"); // NOI18N
+        jMenu_View_Tree.setText(resourceMap.getString("jMenu_View_Tree.text")); // NOI18N
+        jMenu_View_Tree.setName("jMenu_View_Tree"); // NOI18N
 
         jCheckBoxMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.ALT_MASK));
         jCheckBoxMenuItem1.setSelected(true);
@@ -632,12 +698,22 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 jCheckBoxMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jCheckBoxMenuItem1);
+        jMenu_View_Tree.add(jCheckBoxMenuItem1);
 
-        menuBar.add(jMenu1);
+        menuBar.add(jMenu_View_Tree);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setName("helpMenu"); // NOI18N
+
+        jMenuItem_HienThiJavaDoc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem_HienThiJavaDoc.setText(resourceMap.getString("jMenuItem_HienThiJavaDoc.text")); // NOI18N
+        jMenuItem_HienThiJavaDoc.setName("jMenuItem_HienThiJavaDoc"); // NOI18N
+        jMenuItem_HienThiJavaDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_HienThiJavaDocActionPerformed(evt);
+            }
+        });
+        helpMenu.add(jMenuItem_HienThiJavaDoc);
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
@@ -774,6 +850,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 jSplitPane2.setDividerLocation(150);
             }
 }
+    //hiện thị tree view
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
         // TODO add your handling code here:
         datTrangTraiHienThiTreeView(jCheckBoxMenuItem1.getState());
@@ -808,7 +885,9 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jComboBox_PhanChinh_BangPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
         // TODO add your handling code here:
-        if (jComboBox_PhanChinh_BangPhai.getSelectedItem() != null){
+        if (jComboBox_PhanChinh_BangPhai.getSelectedItem() != null && _bangPhai.getTenFile() != null
+                && jComboBox_PhanChinh_BangPhai.getSelectedItem().toString().charAt(0) != _bangPhai.getTenFile().charAt(0)){
+            //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
             _bangPhai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangPhai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangPhai);
             jTabbedPane_PhanChinh_BangPhai.setTitleAt(0, _bangPhai.getTenFile());
         }
@@ -816,26 +895,152 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
         // TODO add your handling code here:
-        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null){
+        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null && _bangTrai.getTenFile() != null
+                && jComboBox_PhanChinh_BangTrai.getSelectedItem().toString().charAt(0) != _bangTrai.getTenFile().charAt(0)){
+            //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
             _bangTrai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangTrai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangTrai);
             jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, _bangTrai.getTenFile());
         }
 }//GEN-LAST:event_jComboBox_PhanChinh_BangTraiActionPerformed
 
+    private void jMenuItem_HienThiJavaDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_HienThiJavaDocActionPerformed
+        // TODO add your handling code here:
+        File file_JavaDoc = new File("javadoc\\index.html");
+        if (file_JavaDoc.exists())
+            try {
+            Desktop.getDesktop().open(file_JavaDoc);
+            } catch (IOException ex) {
+                Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        else
+            JOptionPane.showMessageDialog(null, "Không tìm thấy file \".\\javadoc\\index.html\" trong thư mục cài đặt!");
+}//GEN-LAST:event_jMenuItem_HienThiJavaDocActionPerformed
+
+    /**
+ *
+ * Khởi tạo vào hiện thị dialog cho phép xem hoặc chỉnh sửa tập tin
+ * @param str_DuongDan          đường dẫn file cần xem
+ * @param enumLoaiTruyXuat      xem hoặc chỉnh sửa ví dụ:jEnum_CacEnumTrongBai.XemFile
+ * @throws java.io.IOException
+ */
+    private void hienThiDialogXemFile(String str_DuongDan, jEnum_CacEnumTrongBai enumLoaiTruyXuat) throws IOException {
+        // TODO add your handling code here:
+        if (new File(str_DuongDan).isFile()) {
+            //Nếu là file thì khởi tạo dialog
+            Dialog_Xem_ChinhSuaFile dialog_Xem_ChinhSuaFile = new Dialog_Xem_ChinhSuaFile();
+            BoQuanLyFile.hienThiFile(str_DuongDan, dialog_Xem_ChinhSuaFile.getJTextPane_HienThiFile()
+                    , enumLoaiTruyXuat);
+            //Đặt title là đường dẫn file đang xem
+            dialog_Xem_ChinhSuaFile.setTitle(str_DuongDan);
+            //setEnable phù hợp cho button Save
+            dialog_Xem_ChinhSuaFile.getJButton_Luu().setEnabled(enumLoaiTruyXuat == jEnum_CacEnumTrongBai.SuaFile);
+            //hiện thị dialog
+            dialog_Xem_ChinhSuaFile.setVisible(true);
+        }
+    }
+    private void jMenuItem_File_XemFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_XemFileActionPerformed
+        try {
+            hienThiDialogXemFile(_bangHienTai.layDuongDanDayDuFileDangDuocChon().get(0),
+                    jEnum_CacEnumTrongBai.XemFile);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem_File_XemFileActionPerformed
+
+    private void jMenuItem_File_ChinhSuaTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_ChinhSuaTapTinActionPerformed
+        // TODO add your handling code here:
+        /*try {
+            hienThiDialogXemFile(_bangHienTai.layDuongDanDayDuFileDangDuocChon().get(0),
+                    jEnum_CacEnumTrongBai.SuaFile);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        File file = new File(_bangHienTai.layDuongDanDayDuFileDangDuocChon().get(0));
+        if (file.isFile())
+            thucThiCommandLine("notepad " + file.getPath());
+    }//GEN-LAST:event_jMenuItem_File_ChinhSuaTapTinActionPerformed
+
+    private void jComboBox_ThucThiCommandLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_ThucThiCommandLineActionPerformed
+        // TODO add your handling code here:
+        jButton_ThucThiCommandLineActionPerformed(evt);
+
+    }//GEN-LAST:event_jComboBox_ThucThiCommandLineActionPerformed
+
+    private void jButton_ThucThiCommandLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ThucThiCommandLineActionPerformed
+        // TODO add your handling code here:
+        String str_Command = jComboBox_ThucThiCommandLine.getSelectedItem().toString();
+        if (jComboBox_ThucThiCommandLine.getSelectedIndex() == -1)
+            jComboBox_ThucThiCommandLine.addItem(str_Command);
+        if(thucThiCommandLine(str_Command) == 1)
+            //Nếu không gọi được commandline
+            JOptionPane.showMessageDialog(null, "Không thể thực thi commandline");
+}//GEN-LAST:event_jButton_ThucThiCommandLineActionPerformed
+
     /**
      * Thực thi command line
      * @param str_Command   command cần thực thi
      */
-    public static int thucThiCommandLine(String str_Command){
+    private int thucThiCommandLine(String str_Command){
+        File file = new File(str_Command + "\\");//trường hợp người dùng đánh thiếu ký tự \
+        if (file.isDirectory()){//Nếu là thư mục khác
+            if(_bangHienTai == _bangPhai)
+                _bangPhai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangPhai);
+            else
+                _bangTrai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangTrai);
+            return 0;
+        }
+
+        file = new File(_bangHienTai.getTenFile() + "\\" + str_Command + "\\");
+        if (file.isDirectory()){//Nếu là thư mục con của bảng hiện tại
+            if(_bangHienTai == _bangPhai)
+                _bangPhai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangPhai);
+            else
+                _bangTrai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangTrai);
+            return 0;
+        }
+        file = new File(_bangHienTai.getTenFile() + "\\" + str_Command + "\\");
+        if(file.exists())
+            try {//Thử mở file trong thư mục hiện tại
+                Desktop.getDesktop().open(file);
+                return 0;
+            } catch (IOException ex) {
+                Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //tìm thư mục windows/system32.
+        String str_FileTrongThuMucSystem32DuDoan = System.getProperty("user.home").
+                substring(0, "C:\\".length()) + "Windows\\System32\\" + str_Command;
+        file = new File(str_FileTrongThuMucSystem32DuDoan);
+        if (!file.exists())
+            file = new File(str_FileTrongThuMucSystem32DuDoan + ".exe");//Đề phòng trường hợp đánh thiếu .exe
+        if (file.exists())
+            try {//thử tìm trong thư mục windows/system32.
+                Desktop.getDesktop().open(file);
+                return 0;
+            } catch (IOException ex1) {
+                Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+
+        //Chạy commandline
         try {
             Runtime.getRuntime().exec(str_Command);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Có lỗi khi thực thi command: " + str_Command, "Lỗi!", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
             return 0;
+        } catch (IOException ex2) {
+            //JOptionPane.showMessageDialog(null, "Có lỗi khi thực thi command: " + str_Command, "Lỗi!", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex2);
         }
         return 1;
     }
+    private void jMenuItem_File_SoSanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_SoSanhActionPerformed
+        // TODO add your handling code here:
+        try {
+            Dialog_SoSanhFile dialog_SoSanhFile = new Dialog_SoSanhFile("C:\\temp.txt","C:\\temp.txt");
+            dialog_SoSanhFile.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem_File_SoSanhActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -847,21 +1052,26 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButton_ThucThiCommandLine;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox_PhanChinh_BangPhai;
     private javax.swing.JComboBox jComboBox_PhanChinh_BangTrai;
+    private javax.swing.JComboBox jComboBox_ThucThiCommandLine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem_Edit_Back;
+    private javax.swing.JMenuItem jMenuItem_File_ChinhSuaTapTin;
     private javax.swing.JMenuItem jMenuItem_File_NewFolder;
+    private javax.swing.JMenuItem jMenuItem_File_SoSanh;
+    private javax.swing.JMenuItem jMenuItem_File_XemFile;
     private javax.swing.JMenuItem jMenuItem_File_Xoa;
+    private javax.swing.JMenuItem jMenuItem_HienThiJavaDoc;
     private javax.swing.JMenu jMenu_Edit;
+    private javax.swing.JMenu jMenu_View_Tree;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
