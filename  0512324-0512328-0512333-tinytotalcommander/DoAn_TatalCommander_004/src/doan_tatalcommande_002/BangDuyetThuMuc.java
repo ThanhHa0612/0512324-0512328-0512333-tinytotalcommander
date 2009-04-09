@@ -15,8 +15,12 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 import sun.awt.shell.ShellFolder;
 /**
@@ -104,19 +108,41 @@ public class BangDuyetThuMuc {
                 return;
             }
             //Xác định file đang được chọn
-            setTenFile(str_TenFileDuocChon);
-            File file = new File(getTenFile());
+            File file = new File(str_TenFileDuocChon);
 
             //Xử lý mở file hoặc duyệt vào thư mục con.
             _scrollPane_HienThiBang.setToolTipText(_tenThuMucHienHanh);
             if (file.isFile()){
-                try {
-                    Desktop.getDesktop().open(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                String str_PhanMoRong = str_TenFileDuocChon.substring(str_TenFileDuocChon.lastIndexOf(".")
+                        , str_TenFileDuocChon.length());
+                if (str_PhanMoRong.compareToIgnoreCase(".lnk") == 0){//nếu là file shortcut
+                        try {
+                            ShellFolder sh = ShellFolder.getShellFolder(file.getAbsoluteFile());
+                            //Lấy link và duyệt thư mục trong link
+                            file = new File(sh.getLinkLocation().getPath());
+                            if (file.isFile())//nếu shortcut dẫn tới 1 file
+                                try {
+                                    Desktop.getDesktop().open(file);
+                                } catch (IOException ex) {
+                                    Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            else{//nếu dẫn tới thư mục
+                                setTenFile(file.getPath());
+                                capNhatBangDuyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);
+                            }
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                 }
+                else //nếu là file
+                    try {
+                        Desktop.getDesktop().open(file);
+                    } catch (IOException ex) {
+                        Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                    }
             }
             else{
+                setTenFile(str_TenFileDuocChon);
                 capNhatBangDuyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);//new BangDuyetThuMuc(getTenFile(),_scrollPane_HienThiBang);
             }
             //_bangHienThiThuMucHienHanh.requestFocus();
@@ -347,6 +373,7 @@ public class BangDuyetThuMuc {
       //http://www.java2s.com/Code/Java/Swing-JFC/ColumnSampleTableModel.htm
    
     int SoThuocTinh = 3;
+    myScrollPane.setToolTipText(_tenThuMucHienHanh);
     File files[] = (new File(getTenFile())).listFiles();
     if (files == null){
         JOptionPane.showMessageDialog(null, "Không duyệt được thư mục " + _tenThuMucHienHanh);
@@ -379,6 +406,7 @@ public class BangDuyetThuMuc {
             ShellFolder sf1;
                 try {
                     //Lấy icon và tên của file
+                    _cacDongDuLieu[i][1] = file.getName();
                     sf1 = ShellFolder.getShellFolder(file);
                     icon = new ImageIcon(sf1.getIcon(true));
 
@@ -386,7 +414,6 @@ public class BangDuyetThuMuc {
                     _kichThuocIcon, _kichThuocIcon, Image.SCALE_SMOOTH);
 
                     _cacDongDuLieu[i][0] = icon;
-                    _cacDongDuLieu[i][1] = file.getName();
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -417,7 +444,8 @@ public class BangDuyetThuMuc {
 
         int index = 0;
         File file = new File(_tenThuMucHienHanh);
-        if (file.getParentFile() != null){
+        if (file.getParentFile() != null && !file.getPath().startsWith("\\")){
+            //Nếu có thư mục cha và không phải đang truy cập mạng
             index++;
             _cacDongDuLieu = new Object[files.length + 1][SoThuocTinh];//thêm một dòng thư mục cha
             //Tạo dòng thư mục cha
@@ -482,6 +510,7 @@ public class BangDuyetThuMuc {
 
     _bangHienThiThuMucHienHanh.addRowSelectionInterval(0, 0);
     _scrollPane_HienThiBang.setViewportView(_bangHienThiThuMucHienHanh);
+    phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_FileName);
     }
 
     /**

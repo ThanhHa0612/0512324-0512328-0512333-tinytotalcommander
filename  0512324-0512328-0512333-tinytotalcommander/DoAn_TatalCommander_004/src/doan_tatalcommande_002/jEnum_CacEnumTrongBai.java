@@ -9,13 +9,22 @@ package doan_tatalcommande_002;
  *
  * @author Administrator
  */
-public enum jEnum_CacBang {
+public enum jEnum_CacEnumTrongBai {
     BangTrai (1),
-    BangPhai (2);
+    BangPhai (2),
+
+
+    KB (1024),
+    MB (1024 * 1024),
+    GB (1024 & 1024 * 1024),
+
+    
+    SuaFile (2),
+    XemFile (3);
 
     private final int value;
 
-    jEnum_CacBang(int value) {
+    jEnum_CacEnumTrongBai(int value) {
         this.value = value;
     }
 
