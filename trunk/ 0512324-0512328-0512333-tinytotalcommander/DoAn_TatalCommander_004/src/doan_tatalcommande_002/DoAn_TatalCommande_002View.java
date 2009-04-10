@@ -216,6 +216,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jPanel_PhanChan = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -337,6 +339,30 @@ public class DoAn_TatalCommande_002View extends FrameView {
             }
         });
         jToolBar1.add(jButton10);
+
+        jButton11.setText(resourceMap.getString("jButtonMove.text")); // NOI18N
+        jButton11.setFocusable(false);
+        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton11.setName("jButtonMove"); // NOI18N
+        jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jToolBar1.add(jButton11);
+
+        jButton12.setText(resourceMap.getString("jButton_ReName.text")); // NOI18N
+        jButton12.setFocusable(false);
+        jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton12.setName("jButton_ReName"); // NOI18N
+        jButton12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_renameMouseClicked(evt);
+            }
+        });
+        jToolBar1.add(jButton12);
 
         javax.swing.GroupLayout jPanel_PhanDauLayout = new javax.swing.GroupLayout(jPanel_PhanDau);
         jPanel_PhanDau.setLayout(jPanel_PhanDauLayout);
@@ -1139,7 +1165,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem_File_SoSanhActionPerformed
-
+//copy click
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         try {
             // TODO add your handling code here:
@@ -1150,11 +1176,36 @@ public class DoAn_TatalCommande_002View extends FrameView {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton10MouseClicked
+//rename click
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        try {
+            // TODO add your handling code here:
+            BoQuanLyFile.movefile("F:\\2.txt", "F:\\a\\2.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton_renameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_renameMouseClicked
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            BoQuanLyFile.renamefile("F:\\a\\2.txt", "F:\\a\\5.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}//GEN-LAST:event_jButton_renameMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

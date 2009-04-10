@@ -80,10 +80,10 @@ public class BoQuanLyFile {
 
     /**
      *
-     * Hiện thị binary code của file vào jScrollPane
-     * @param str_DuongDanFile      đường dẫn file cần hiện thị
-     * @param jScrollPane           ScrollPane chứa textpane hiện thị
-     * @param enumLoaiTruyXuat      Loại hiện thị ví dụ: jEnum_CacEnumTrongBai.SuaFile
+     * copy nội dung của file nguồn sng9 file đích
+     * @param srFile    đường dẫn file nguồn
+     * @param dtFile    đường dẫn file đích
+     * 
      */
      public static void copyfile(String srFile, String dtFile) throws FileNotFoundException, IOException{
     try{
@@ -104,7 +104,6 @@ public class BoQuanLyFile {
       }
       in.close();
       out.close();
-      System.out.println("File copied.");
     }
     catch(FileNotFoundException ex){
       System.out.println(ex.getMessage() + " in the specified directory.");
@@ -114,4 +113,31 @@ public class BoQuanLyFile {
       System.out.println(e.getMessage());
     }
      }
+
+
+    public static boolean movefile(String oldFile, String newFile) throws FileNotFoundException, IOException{
+
+      File f1 = new File(oldFile);
+      File f2 = new File(newFile);
+      boolean result = f1.renameTo(f2);
+      if(result == false && JOptionPane.showConfirmDialog(null, "File bị trùng bạn có muốn chép đè lên ko") == 0)
+      {
+          copyfile(oldFile,newFile);
+          f1.delete();
+      }
+      return result;
+    }
+
+    public static boolean renamefile(String oldFile, String newFile) throws FileNotFoundException, IOException{
+
+      File f1 = new File(oldFile);
+      File f2 = new File(newFile);
+      boolean result = f1.renameTo(f2);
+      if(result == false)
+      {
+           JOptionPane.showMessageDialog(null, "File bị trùng tên");
+      }
+      return result;
+    }
 }
+
