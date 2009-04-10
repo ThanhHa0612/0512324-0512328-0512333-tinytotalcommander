@@ -27,7 +27,7 @@ import sun.awt.shell.ShellFolder;
  * Lớp đối tượng dùng để hiện thị các file trong một thư mục
  * @author Administrator
  */
-public class BangDuyetThuMuc {
+public class BangDuyetFile {
   private String _tenThuMucHienHanh;
   private Object[][] _cacDongDuLieu;
   private JScrollPane _scrollPane_HienThiBang;
@@ -35,7 +35,7 @@ public class BangDuyetThuMuc {
   private TableModel _modelBangHienThi;
   private int _kichThuocIcon = 24;
 
-  public  BangDuyetThuMuc(String myTenFile, JScrollPane myScrollPane ) {
+  public  BangDuyetFile(String myTenFile, JScrollPane myScrollPane ) {
     _tenThuMucHienHanh = myTenFile;
     _scrollPane_HienThiBang = myScrollPane;
 
@@ -124,26 +124,26 @@ public class BangDuyetThuMuc {
                                 try {
                                     Desktop.getDesktop().open(file);
                                 } catch (IOException ex) {
-                                    Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                                    Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             else{//nếu dẫn tới thư mục
                                 setTenFile(file.getPath());
                                 capNhatBangDuyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);
                             }
                         } catch (FileNotFoundException ex) {
-                            Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
                         }
                 }
                 else //nếu là file
                     try {
                         Desktop.getDesktop().open(file);
                     } catch (IOException ex) {
-                        Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
                     }
             }
             else{
                 setTenFile(str_TenFileDuocChon);
-                capNhatBangDuyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);//new BangDuyetThuMuc(getTenFile(),_scrollPane_HienThiBang);
+                capNhatBangDuyetThuMuc(_tenThuMucHienHanh, _scrollPane_HienThiBang);//new BangDuyetFile(getTenFile(),_scrollPane_HienThiBang);
             }
             //_bangHienThiThuMucHienHanh.requestFocus();
         }
@@ -189,7 +189,7 @@ public class BangDuyetThuMuc {
                 _cacDongDuLieu[i][0] = icon;
                 _cacDongDuLieu[i][1] = file.getName();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         //Tạo chuổi kích thước file thích hợp và đưa vào mảng tạm file nếu là file
@@ -417,7 +417,7 @@ public class BangDuyetThuMuc {
 
                     _cacDongDuLieu[i][0] = icon;
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(BangDuyetThuMuc.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             //Tạo chuổi kích thước file thích hợp và đưa vào mảng tạm file nếu là file
