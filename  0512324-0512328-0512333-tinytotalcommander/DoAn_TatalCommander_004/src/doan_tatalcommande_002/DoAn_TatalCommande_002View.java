@@ -250,17 +250,34 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jLabel2 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu jMenu_File = new javax.swing.JMenu();
+        jMenuItem_File_XemFile = new javax.swing.JMenuItem();
+        jMenuItem_File_ChinhSuaTapTin = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem_File_NewFolder = new javax.swing.JMenuItem();
         jMenuItem_File_Xoa = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem_File_XemFile = new javax.swing.JMenuItem();
         jMenuItem_File_SoSanh = new javax.swing.JMenuItem();
-        jMenuItem_File_ChinhSuaTapTin = new javax.swing.JMenuItem();
+        jMenuItem_File_DoiTen = new javax.swing.JMenuItem();
+        jMenuItem_File_DiChuyen = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JSeparator();
+        jMenuItem_File_TimKiem = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JSeparator();
+        jMenuItem_Zip = new javax.swing.JMenuItem();
+        jMenuItem_unZip = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JSeparator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         jMenu_Edit = new javax.swing.JMenu();
         jMenuItem_Edit_Back = new javax.swing.JMenuItem();
+        jMenu_Expect = new javax.swing.JMenu();
+        jMenuItem_CatTapTin = new javax.swing.JMenuItem();
+        jMenuItem_NoiTapTin = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JSeparator();
+        jMenuItem_KetNoiFTP = new javax.swing.JMenuItem();
+        jMenuItem_KetNoiLan = new javax.swing.JMenuItem();
         jMenu_View_Tree = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem_TreeView = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem_fullView = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem_Brief = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem_Thumbnail = new javax.swing.JCheckBoxMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         jMenuItem_HienThiJavaDoc = new javax.swing.JMenuItem();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -618,6 +635,36 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenu_File.setText(resourceMap.getString("jMenu_File.text")); // NOI18N
         jMenu_File.setName("jMenu_File"); // NOI18N
 
+        jMenuItem_File_XemFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem_File_XemFile.setText(resourceMap.getString("jMenuItem_File_XemFile.text")); // NOI18N
+        jMenuItem_File_XemFile.setName("jMenuItem_File_XemFile"); // NOI18N
+        jMenuItem_File_XemFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_XemFileActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_File_XemFile);
+
+        jMenuItem_File_ChinhSuaTapTin.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem_File_ChinhSuaTapTin.setText(resourceMap.getString("jMenuItem_File_ChinhSuaTapTin.text")); // NOI18N
+        jMenuItem_File_ChinhSuaTapTin.setName("jMenuItem_File_ChinhSuaTapTin"); // NOI18N
+        jMenuItem_File_ChinhSuaTapTin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_ChinhSuaTapTinActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_File_ChinhSuaTapTin);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem1);
+
         jMenuItem_File_NewFolder.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem_File_NewFolder.setText(resourceMap.getString("jMenuItem_File_NewFolder.text")); // NOI18N
         jMenuItem_File_NewFolder.setName("jMenuItem_File_NewFolder"); // NOI18N
@@ -638,26 +685,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         jMenu_File.add(jMenuItem_File_Xoa);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
-        jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu_File.add(jMenuItem1);
-
-        jMenuItem_File_XemFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jMenuItem_File_XemFile.setText(resourceMap.getString("jMenuItem_File_XemFile.text")); // NOI18N
-        jMenuItem_File_XemFile.setName("jMenuItem_File_XemFile"); // NOI18N
-        jMenuItem_File_XemFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_File_XemFileActionPerformed(evt);
-            }
-        });
-        jMenu_File.add(jMenuItem_File_XemFile);
-
         jMenuItem_File_SoSanh.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem_File_SoSanh.setText(resourceMap.getString("jMenuItem_File_SoSanh.text")); // NOI18N
         jMenuItem_File_SoSanh.setName("jMenuItem_File_SoSanh"); // NOI18N
@@ -668,15 +695,34 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         jMenu_File.add(jMenuItem_File_SoSanh);
 
-        jMenuItem_File_ChinhSuaTapTin.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        jMenuItem_File_ChinhSuaTapTin.setText(resourceMap.getString("jMenuItem_File_ChinhSuaTapTin.text")); // NOI18N
-        jMenuItem_File_ChinhSuaTapTin.setName("jMenuItem_File_ChinhSuaTapTin"); // NOI18N
-        jMenuItem_File_ChinhSuaTapTin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_File_ChinhSuaTapTinActionPerformed(evt);
-            }
-        });
-        jMenu_File.add(jMenuItem_File_ChinhSuaTapTin);
+        jMenuItem_File_DoiTen.setText(resourceMap.getString("jMenuItem_File_DoiTen.text")); // NOI18N
+        jMenuItem_File_DoiTen.setName("jMenuItem_File_DoiTen"); // NOI18N
+        jMenu_File.add(jMenuItem_File_DoiTen);
+
+        jMenuItem_File_DiChuyen.setText(resourceMap.getString("jMenuItem_File_DiChuyen.text")); // NOI18N
+        jMenuItem_File_DiChuyen.setName("jMenuItem_File_DiChuyen"); // NOI18N
+        jMenu_File.add(jMenuItem_File_DiChuyen);
+
+        jSeparator9.setName("jSeparator9"); // NOI18N
+        jMenu_File.add(jSeparator9);
+
+        jMenuItem_File_TimKiem.setText(resourceMap.getString("jMenuItem_File_TimKiem.text")); // NOI18N
+        jMenuItem_File_TimKiem.setName("jMenuItem_File_TimKiem"); // NOI18N
+        jMenu_File.add(jMenuItem_File_TimKiem);
+
+        jSeparator4.setName("jSeparator4"); // NOI18N
+        jMenu_File.add(jSeparator4);
+
+        jMenuItem_Zip.setText(resourceMap.getString("jMenuItem_Zip.text")); // NOI18N
+        jMenuItem_Zip.setName("jMenuItem_Zip"); // NOI18N
+        jMenu_File.add(jMenuItem_Zip);
+
+        jMenuItem_unZip.setText(resourceMap.getString("jMenuItem_unZip.text")); // NOI18N
+        jMenuItem_unZip.setName("jMenuItem_unZip"); // NOI18N
+        jMenu_File.add(jMenuItem_unZip);
+
+        jSeparator5.setName("jSeparator5"); // NOI18N
+        jMenu_File.add(jSeparator5);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(doan_tatalcommande_002.DoAn_TatalCommande_002App.class).getContext().getActionMap(DoAn_TatalCommande_002View.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
@@ -700,19 +746,58 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         menuBar.add(jMenu_Edit);
 
+        jMenu_Expect.setText(resourceMap.getString("jMenu_Expect.text")); // NOI18N
+        jMenu_Expect.setName("jMenu_Expect"); // NOI18N
+
+        jMenuItem_CatTapTin.setText(resourceMap.getString("jMenuItem_CatTapTin.text")); // NOI18N
+        jMenuItem_CatTapTin.setName("jMenuItem_CatTapTin"); // NOI18N
+        jMenu_Expect.add(jMenuItem_CatTapTin);
+
+        jMenuItem_NoiTapTin.setText(resourceMap.getString("jMenuItem_NoiTapTin.text")); // NOI18N
+        jMenuItem_NoiTapTin.setName("jMenuItem_NoiTapTin"); // NOI18N
+        jMenu_Expect.add(jMenuItem_NoiTapTin);
+
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        jMenu_Expect.add(jSeparator8);
+
+        jMenuItem_KetNoiFTP.setText(resourceMap.getString("jMenuItem_KetNoiFTP.text")); // NOI18N
+        jMenuItem_KetNoiFTP.setName("jMenuItem_KetNoiFTP"); // NOI18N
+        jMenu_Expect.add(jMenuItem_KetNoiFTP);
+
+        jMenuItem_KetNoiLan.setText(resourceMap.getString("jMenuItem_KetNoiLan.text")); // NOI18N
+        jMenuItem_KetNoiLan.setName("jMenuItem_KetNoiLan"); // NOI18N
+        jMenu_Expect.add(jMenuItem_KetNoiLan);
+
+        menuBar.add(jMenu_Expect);
+
         jMenu_View_Tree.setText(resourceMap.getString("jMenu_View_Tree.text")); // NOI18N
         jMenu_View_Tree.setName("jMenu_View_Tree"); // NOI18N
 
-        jCheckBoxMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.ALT_MASK));
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText(resourceMap.getString("jCheckBoxMenuItem1.text")); // NOI18N
-        jCheckBoxMenuItem1.setName("jCheckBoxMenuItem1"); // NOI18N
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxMenuItem_TreeView.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.ALT_MASK));
+        jCheckBoxMenuItem_TreeView.setSelected(true);
+        jCheckBoxMenuItem_TreeView.setText(resourceMap.getString("jCheckBoxMenuItem_TreeView.text")); // NOI18N
+        jCheckBoxMenuItem_TreeView.setName("jCheckBoxMenuItem_TreeView"); // NOI18N
+        jCheckBoxMenuItem_TreeView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
+                jCheckBoxMenuItem_TreeViewActionPerformed(evt);
             }
         });
-        jMenu_View_Tree.add(jCheckBoxMenuItem1);
+        jMenu_View_Tree.add(jCheckBoxMenuItem_TreeView);
+
+        jCheckBoxMenuItem_fullView.setSelected(true);
+        jCheckBoxMenuItem_fullView.setText(resourceMap.getString("jCheckBoxMenuItem_fullView.text")); // NOI18N
+        jCheckBoxMenuItem_fullView.setName("jCheckBoxMenuItem_fullView"); // NOI18N
+        jMenu_View_Tree.add(jCheckBoxMenuItem_fullView);
+
+        jCheckBoxMenuItem_Brief.setSelected(true);
+        jCheckBoxMenuItem_Brief.setText(resourceMap.getString("jCheckBoxMenuItem_Brief.text")); // NOI18N
+        jCheckBoxMenuItem_Brief.setName("jCheckBoxMenuItem_Brief"); // NOI18N
+        jMenu_View_Tree.add(jCheckBoxMenuItem_Brief);
+
+        jCheckBoxMenuItem_Thumbnail.setSelected(true);
+        jCheckBoxMenuItem_Thumbnail.setText(resourceMap.getString("jCheckBoxMenuItem_Thumbnail.text")); // NOI18N
+        jCheckBoxMenuItem_Thumbnail.setName("jCheckBoxMenuItem_Thumbnail"); // NOI18N
+        jMenu_View_Tree.add(jCheckBoxMenuItem_Thumbnail);
 
         menuBar.add(jMenu_View_Tree);
 
@@ -865,10 +950,10 @@ public class DoAn_TatalCommande_002View extends FrameView {
             }
 }
     //hiện thị tree view
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+    private void jCheckBoxMenuItem_TreeViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem_TreeViewActionPerformed
         // TODO add your handling code here:
-        datTrangTraiHienThiTreeView(jCheckBoxMenuItem1.getState());
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+        datTrangTraiHienThiTreeView(jCheckBoxMenuItem_TreeView.getState());
+}//GEN-LAST:event_jCheckBoxMenuItem_TreeViewActionPerformed
 
     private void jMenuItem_File_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_XoaActionPerformed
         // TODO add your handling code here:
@@ -1079,7 +1164,10 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton_ThucThiCommandLine;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_Brief;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_Thumbnail;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_TreeView;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_fullView;
     private javax.swing.JComboBox jComboBox_PhanChinh_BangPhai;
     private javax.swing.JComboBox jComboBox_PhanChinh_BangTrai;
     private javax.swing.JComboBox jComboBox_ThucThiCommandLine;
@@ -1089,14 +1177,24 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem_CatTapTin;
     private javax.swing.JMenuItem jMenuItem_Edit_Back;
     private javax.swing.JMenuItem jMenuItem_File_ChinhSuaTapTin;
+    private javax.swing.JMenuItem jMenuItem_File_DiChuyen;
+    private javax.swing.JMenuItem jMenuItem_File_DoiTen;
     private javax.swing.JMenuItem jMenuItem_File_NewFolder;
     private javax.swing.JMenuItem jMenuItem_File_SoSanh;
+    private javax.swing.JMenuItem jMenuItem_File_TimKiem;
     private javax.swing.JMenuItem jMenuItem_File_XemFile;
     private javax.swing.JMenuItem jMenuItem_File_Xoa;
     private javax.swing.JMenuItem jMenuItem_HienThiJavaDoc;
+    private javax.swing.JMenuItem jMenuItem_KetNoiFTP;
+    private javax.swing.JMenuItem jMenuItem_KetNoiLan;
+    private javax.swing.JMenuItem jMenuItem_NoiTapTin;
+    private javax.swing.JMenuItem jMenuItem_Zip;
+    private javax.swing.JMenuItem jMenuItem_unZip;
     private javax.swing.JMenu jMenu_Edit;
+    private javax.swing.JMenu jMenu_Expect;
     private javax.swing.JMenu jMenu_View_Tree;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1109,8 +1207,12 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane_PhanChinh_BangPhai;
