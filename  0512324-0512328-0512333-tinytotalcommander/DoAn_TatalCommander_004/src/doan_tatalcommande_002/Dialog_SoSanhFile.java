@@ -11,7 +11,24 @@
 
 package doan_tatalcommande_002;
 
+import java.awt.Color;
+import java.awt.HeadlessException;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JScrollBar;
+import javax.swing.border.Border;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  * hiện thị dialog so sánh 2 file
@@ -23,11 +40,22 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
     public Dialog_SoSanhFile() {
         initComponents();
     }
-     public Dialog_SoSanhFile(String str_DuongDanFileBenTrai, String str_DuongDanFileBenPhai) throws IOException {
+    public Dialog_SoSanhFile(String str_DuongDanFileBenTrai, String str_DuongDanFileBenPhai) throws IOException {
             initComponents();
             BoQuanLyFile.hienThiFile(str_DuongDanFileBenTrai, jTextPane_BenTrai, jEnum_CacEnumTrongBai.XemFile);
             BoQuanLyFile.hienThiFile(str_DuongDanFileBenPhai, jTextPane_BenPhai, jEnum_CacEnumTrongBai.XemFile);
+
+            themSuKienScrollBarDiChuyen(jScrollPane_BenTrai.getVerticalScrollBar()
+                    , jScrollPane_BenPhai.getVerticalScrollBar());
+            themSuKienScrollBarDiChuyen(jScrollPane_BenPhai.getVerticalScrollBar()
+                    , jScrollPane_BenTrai.getVerticalScrollBar());
+            themSuKienScrollBarDiChuyen(jScrollPane_BenTrai.getHorizontalScrollBar()
+                    , jScrollPane_BenPhai.getHorizontalScrollBar());
+            themSuKienScrollBarDiChuyen(jScrollPane_BenPhai.getHorizontalScrollBar()
+                    , jScrollPane_BenTrai.getHorizontalScrollBar());
+
         }
+     
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -40,21 +68,19 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField_BenTrai = new javax.swing.JTextField();
         jButton_DuyetFileBenPhai = new javax.swing.JButton();
         jButton_DuyetFileBenTrai = new javax.swing.JButton();
         jButton_SoSanh = new javax.swing.JButton();
+        jTextField_BenPhai = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane_BenTrai = new javax.swing.JScrollPane();
         jPanel_BenTrai = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane_BenPhai = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel_BenPhai = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
         jTextPane_BenTrai = new javax.swing.JTextPane();
+        jScrollPane_BenPhai = new javax.swing.JScrollPane();
+        jPanel_BenPhai = new javax.swing.JPanel();
+        jTextPane_BenPhai = new javax.swing.JTextPane();
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
@@ -69,11 +95,13 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(680, 50));
 
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
-
-        jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
-        jTextField2.setName("jTextField2"); // NOI18N
+        jTextField_BenTrai.setText(resourceMap.getString("jTextField_BenTrai.text")); // NOI18N
+        jTextField_BenTrai.setName("jTextField_BenTrai"); // NOI18N
+        jTextField_BenTrai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_BenTraiActionPerformed(evt);
+            }
+        });
 
         jButton_DuyetFileBenPhai.setText(resourceMap.getString("jButton_DuyetFileBenPhai.text")); // NOI18N
         jButton_DuyetFileBenPhai.setName("jButton_DuyetFileBenPhai"); // NOI18N
@@ -93,6 +121,18 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
 
         jButton_SoSanh.setText(resourceMap.getString("jButton_SoSanh.text")); // NOI18N
         jButton_SoSanh.setName("jButton_SoSanh"); // NOI18N
+        jButton_SoSanh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SoSanhActionPerformed(evt);
+            }
+        });
+
+        jTextField_BenPhai.setName("jTextField_BenPhai"); // NOI18N
+        jTextField_BenPhai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_BenPhaiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,15 +140,15 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addComponent(jTextField_BenTrai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_DuyetFileBenTrai)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(64, 64, 64)
                 .addComponent(jButton_SoSanh)
-                .addGap(5, 5, 5)
+                .addGap(52, 52, 52)
                 .addComponent(jButton_DuyetFileBenPhai, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addComponent(jTextField_BenPhai)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,9 +156,9 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_BenTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_DuyetFileBenTrai)
+                    .addComponent(jTextField_BenPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_DuyetFileBenPhai)
                     .addComponent(jButton_SoSanh))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -127,103 +167,233 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.setName("jPanel3"); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(544, 524));
 
-        jSplitPane1.setDividerLocation(400);
+        jSplitPane1.setDividerLocation(500);
         jSplitPane1.setName("jSplitPane1"); // NOI18N
+        jSplitPane1.setPreferredSize(getPreferredSize());
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        jScrollPane_BenTrai.setBorder(null);
+        jScrollPane_BenTrai.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane_BenTrai.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane_BenTrai.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jScrollPane_BenTrai.viewportBorder.title"))); // NOI18N
+        jScrollPane_BenTrai.setName("jScrollPane_BenTrai"); // NOI18N
 
-        jPanel_BenTrai.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel_BenTrai.border.title"))); // NOI18N
         jPanel_BenTrai.setName("jPanel_BenTrai"); // NOI18N
-        jPanel_BenTrai.setPreferredSize(new java.awt.Dimension(1000, 1000));
+        jPanel_BenTrai.setPreferredSize(new java.awt.Dimension(32767, 32767));
 
-        jScrollPane5.setName("jScrollPane5"); // NOI18N
-
-        jTextPane_BenPhai.setName("jTextPane_BenPhai"); // NOI18N
-        jTextPane_BenPhai.setPreferredSize(new java.awt.Dimension(1000, 500));
-        jScrollPane5.setViewportView(jTextPane_BenPhai);
+        jTextPane_BenTrai.setBorder(null);
+        jTextPane_BenTrai.setName("jTextPane_BenTrai"); // NOI18N
 
         javax.swing.GroupLayout jPanel_BenTraiLayout = new javax.swing.GroupLayout(jPanel_BenTrai);
         jPanel_BenTrai.setLayout(jPanel_BenTraiLayout);
         jPanel_BenTraiLayout.setHorizontalGroup(
             jPanel_BenTraiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1466, Short.MAX_VALUE)
             .addGroup(jPanel_BenTraiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel_BenTraiLayout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_BenTraiLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(356, Short.MAX_VALUE)))
+                    .addComponent(jTextPane_BenTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 1446, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel_BenTraiLayout.setVerticalGroup(
             jPanel_BenTraiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGap(0, 1017, Short.MAX_VALUE)
             .addGroup(jPanel_BenTraiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_BenTraiLayout.createSequentialGroup()
-                    .addGap(1, 1, 1)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(579, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(jTextPane_BenTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
-        jScrollPane1.setViewportView(jPanel_BenTrai);
+        jScrollPane_BenTrai.setViewportView(jPanel_BenTrai);
 
-        jSplitPane1.setLeftComponent(jScrollPane1);
+        jSplitPane1.setLeftComponent(jScrollPane_BenTrai);
 
-        jScrollPane3.setName("jScrollPane3"); // NOI18N
+        jScrollPane_BenPhai.setBorder(null);
+        jScrollPane_BenPhai.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane_BenPhai.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane_BenPhai.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jScrollPane_BenPhai.viewportBorder.title"))); // NOI18N
+        jScrollPane_BenPhai.setName("jScrollPane_BenPhai"); // NOI18N
 
-        jPanel_BenPhai.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel_BenPhai.border.title"))); // NOI18N
         jPanel_BenPhai.setName("jPanel_BenPhai"); // NOI18N
-        jPanel_BenPhai.setPreferredSize(new java.awt.Dimension(1000, 1000));
+        jPanel_BenPhai.setPreferredSize(new java.awt.Dimension(32767, 32767));
 
-        jScrollPane4.setName("jScrollPane4"); // NOI18N
-
-        jTextPane_BenTrai.setName("jTextPane_BenTrai"); // NOI18N
-        jTextPane_BenTrai.setPreferredSize(new java.awt.Dimension(1000, 500));
-        jScrollPane4.setViewportView(jTextPane_BenTrai);
+        jTextPane_BenPhai.setBorder(null);
+        jTextPane_BenPhai.setName("jTextPane_BenPhai"); // NOI18N
 
         javax.swing.GroupLayout jPanel_BenPhaiLayout = new javax.swing.GroupLayout(jPanel_BenPhai);
         jPanel_BenPhai.setLayout(jPanel_BenPhaiLayout);
         jPanel_BenPhaiLayout.setHorizontalGroup(
             jPanel_BenPhaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_BenPhaiLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTextPane_BenPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 1446, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel_BenPhaiLayout.setVerticalGroup(
             jPanel_BenPhaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_BenPhaiLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(580, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTextPane_BenPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jScrollPane3.setViewportView(jPanel_BenPhai);
+        jScrollPane_BenPhai.setViewportView(jPanel_BenPhai);
 
-        jSplitPane1.setRightComponent(jScrollPane3);
+        jSplitPane1.setRightComponent(jScrollPane_BenPhai);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Đã hoàn thành(themSuKienScroollBarDiChuyen, doiTitle)">
 
+    /**
+     * Đổi title cho border của JComponent
+     * @param jcomponent    component cần đổi title
+     * @param str_Title     title mới
+     */
+    /**
+      * Them sự kiện khi người dùng di chuyển scrollbar thì scrollbar ảnh hưởng cũng di chuyển theo
+      * Giúp cho việc so sánh các file bằng mắt dể dàng hơn
+      * @param scrollBarDiChuyen    scroll di chuyển
+      * @param scrollBarAnhHuong    scroll di chuyển theo
+      */
+    private void themSuKienScrollBarDiChuyen(JScrollBar scrollBarDiChuyen, final JScrollBar scrollBarAnhHuong) {
+        scrollBarDiChuyen.addAdjustmentListener(new AdjustmentListener() {
+
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                if (!scrollBarAnhHuong.getValueIsAdjusting()) {
+                    scrollBarAnhHuong.setValue(e.getValue());
+                }
+            }
+        });
+    }
+    /**
+     * đổi title của border của một component
+     * @param jcomponent    component cần đổi title
+     * @param str_Title     title mới
+     */
+    private void doiTitleCuaBorder(JComponent jcomponent, String str_Title) {
+        // TODO add your handling code here:
+        Border borderHienTai = jcomponent.getBorder();
+        borderHienTai = BorderFactory.createTitledBorder(borderHienTai, str_Title);
+        jcomponent.setBorder(borderHienTai);
+    }
+    //</editor-fold>
+    private void toMauKhacBiet(boolean b_phanBietHoaThuong){
+        //Tạo AttributeSet chữ màu đỏ.
+        MutableAttributeSet mA_KhacBiet = new SimpleAttributeSet();
+        StyleConstants.setForeground(mA_KhacBiet, Color.RED);
+
+        //Tạo AttributeSet chữ thường.
+        MutableAttributeSet mA_Giong = new SimpleAttributeSet();
+        StyleConstants.setForeground(mA_Giong, Color.BLACK);
+
+        //Lấy doc của 2 jtextpane
+        StyledDocument document_BenTrai = jTextPane_BenTrai.getStyledDocument();
+        StyledDocument document_BenPhai = jTextPane_BenPhai.getStyledDocument();
+
+        //Trả doc về kiểu thường
+        document_BenPhai.setCharacterAttributes(0, document_BenPhai.getLength(), mA_Giong, false);
+        document_BenTrai.setCharacterAttributes(0, document_BenTrai.getLength(), mA_Giong, false);
+
+        int i = 0;
+        int i_nganhon = Math.min(document_BenPhai.getLength(), document_BenTrai.getLength());
+        while (i < i_nganhon){//duyệt từng phần của của doc ngắn hơn
+            try {
+                //duyệt từng phần của của doc ngắn hơn
+                if (b_phanBietHoaThuong){//Nếu phân biệt hoa thường dùng hàm equals
+                    if (!document_BenTrai.getText(i, 1).equals(document_BenPhai.getText(i, 1))) {
+                        document_BenPhai.setCharacterAttributes(i, 1, mA_KhacBiet, false);
+                        document_BenTrai.setCharacterAttributes(i, 1, mA_KhacBiet, false);
+                    }
+                }
+                else//equalsIgnoreCase
+                    if (!document_BenTrai.getText(i, 1).equalsIgnoreCase(document_BenPhai.getText(i, 1))) {
+                        document_BenPhai.setCharacterAttributes(i, 1, mA_KhacBiet, false);
+                        document_BenTrai.setCharacterAttributes(i, 1, mA_KhacBiet, false);
+                    }
+                i++;
+            } catch (BadLocationException ex) {
+                Logger.getLogger(Dialog_SoSanhFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //Sau khi so sánh xong phần ngắn hơn, tất cả những phần còn lại của bên dài hơn đều tô màu
+        if(i_nganhon == document_BenTrai.getLength())
+            document_BenPhai.setCharacterAttributes(i, document_BenPhai.getLength() - i, mA_KhacBiet, false);
+        else
+            document_BenTrai.setCharacterAttributes(i, document_BenTrai.getLength() - i, mA_KhacBiet, false);
+
+        //Dat lại styled document cho jtextpane
+        jTextPane_BenTrai.setStyledDocument(document_BenTrai);
+        jTextPane_BenPhai.setStyledDocument(document_BenPhai);
+    }
     private void jButton_DuyetFileBenPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DuyetFileBenPhaiActionPerformed
         // TODO add your handling code here:
+        try {
+            String str_duongDanDuocChon = moDialogChonFile();
+            if (str_duongDanDuocChon.equals("")) {
+                return; //Nếu không chọn file nào cả
+            }
+            jTextField_BenPhai.setText(str_duongDanDuocChon);
+            BoQuanLyFile.hienThiFile(str_duongDanDuocChon, jTextPane_BenPhai, jEnum_CacEnumTrongBai.XemFile);
+        } catch (IOException ex) {
+            Logger.getLogger(Dialog_SoSanhFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }//GEN-LAST:event_jButton_DuyetFileBenPhaiActionPerformed
-
     private void jButton_DuyetFileBenTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DuyetFileBenTraiActionPerformed
-        // TODO add your handling code here:
-        
+        try {
+            String str_duongDanDuocChon = moDialogChonFile();
+            if (str_duongDanDuocChon.equals("")) {
+                return; //Nếu không chọn file nào cả
+            }
+            jTextField_BenTrai.setText(str_duongDanDuocChon);
+            BoQuanLyFile.hienThiFile(str_duongDanDuocChon, jTextPane_BenTrai, jEnum_CacEnumTrongBai.XemFile);
+        } catch (IOException ex) {
+            Logger.getLogger(Dialog_SoSanhFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton_DuyetFileBenTraiActionPerformed
+    private void jTextField_BenTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_BenTraiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_BenTraiActionPerformed
+    private void jTextField_BenPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_BenPhaiActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextField_BenPhaiActionPerformed
 
+    private void jButton_SoSanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SoSanhActionPerformed
+        // TODO add your handling code here:
+        toMauKhacBiet(true);
+    }//GEN-LAST:event_jButton_SoSanhActionPerformed
+
+    /**
+     * Mở dialog cho phép chọn file
+     * @return  đường dẫn file được chọn
+     * @throws java.awt.HeadlessException
+     */
+    private String moDialogChonFile() throws HeadlessException {
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        //Mở dialog
+        fc.showOpenDialog(this);
+        File fileDuocChon = fc.getSelectedFile();
+        if (fileDuocChon != null)
+        //if (fc.get)
+            return fileDuocChon.getPath();
+        return "";
+    }
     /**
     * @param args the command line arguments
     */
@@ -246,14 +416,16 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane_BenPhai;
+    private javax.swing.JScrollPane jScrollPane_BenTrai;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField_BenPhai;
+    private javax.swing.JTextField jTextField_BenTrai;
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane_BenPhai;
     private javax.swing.JTextPane jTextPane_BenTrai;
     // End of variables declaration//GEN-END:variables
+
+
 
 }
