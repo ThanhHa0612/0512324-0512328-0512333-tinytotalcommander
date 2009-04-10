@@ -2,7 +2,7 @@
  * DoAn_TatalCommande_002App.java
  */
 
-package doan_tatalcommande_002;
+package doan_totalcommander_002;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;

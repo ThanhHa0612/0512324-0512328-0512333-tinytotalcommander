@@ -1,4 +1,4 @@
-package doan_tatalcommande_002;
+package DuyetFile;
 
 /*
 Definitive Guide to Swing for Java 2, Second Edition
@@ -7,6 +7,7 @@ ISBN: 1-893115-78-X
 Publisher: APress
 */
 
+import doan_totalcommander_002.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -452,7 +453,7 @@ public class BangDuyetFile {
             _cacDongDuLieu = new Object[files.length + 1][SoThuocTinh];//thêm một dòng thư mục cha
             //Tạo dòng thư mục cha
 
-            icon = BoCoGianImage.coGianImageIcon(new ImageIcon(this.getClass().getResource("./resources/Back.png")),
+            icon = BoCoGianImage.coGianImageIcon(new ImageIcon(this.getClass().getResource("../doan_totalcommander_002/resources/Up.png")),
                     _kichThuocIcon, _kichThuocIcon, Image.SCALE_SMOOTH);
 
             _cacDongDuLieu[0][0] = icon;
