@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>DoAn_TatalCommander_004</name>
+            <name>DoAn_TotalCommander_004</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <source-roots>
                 <root id="src.dir"/>
@@ -13,7 +13,7 @@
             </test-roots>
         </data>
         <swingapp xmlns="http://www.netbeans.org/ns/form-swingapp/1">
-            <application-class name="doan_tatalcommande_002.DoAn_TatalCommande_002App"/>
+            <application-class name="doan_totalcommander_002.DoAn_TatalCommande_002App"/>
         </swingapp>
     </configuration>
 </project>
