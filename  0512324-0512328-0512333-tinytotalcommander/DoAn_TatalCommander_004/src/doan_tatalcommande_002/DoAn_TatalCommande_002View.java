@@ -36,10 +36,10 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 
 public class DoAn_TatalCommande_002View extends FrameView {
-    private BangDuyetThuMuc _bangTrai;
-    private BangDuyetThuMuc _bangPhai;
+    private BangDuyetFile _bangTrai;
+    private BangDuyetFile _bangPhai;
 //    private jEnum_CacBang _enum_BangHienTai;
-    private BangDuyetThuMuc _bangHienTai;
+    private BangDuyetFile _bangHienTai;
     int dem = 1;
 
     public DoAn_TatalCommande_002View(SingleFrameApplication app) {
@@ -63,8 +63,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
 /*---------------------------------------------------------------------------------------*/
         
 /*---------------------Khởi tạo các bảng duyệt thư mục-----------------------------------*/
-        _bangTrai = new BangDuyetThuMuc("C:", jScrollPane_PhanChinh_BangTrai);
-        _bangPhai = new BangDuyetThuMuc("D:", jScrollPane_PhanChinh_BangPhai);
+        _bangTrai = new BangDuyetFile("C:", jScrollPane_PhanChinh_BangTrai);
+        _bangPhai = new BangDuyetFile("D:", jScrollPane_PhanChinh_BangPhai);
 //        _enum_BangHienTai = jEnum_CacBang.BangTrai;
         _bangHienTai = _bangTrai;
         _bangPhai.getTable().clearSelection();

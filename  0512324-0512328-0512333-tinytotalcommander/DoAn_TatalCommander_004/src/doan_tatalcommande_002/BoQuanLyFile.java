@@ -114,7 +114,14 @@ public class BoQuanLyFile {
     }
      }
 
-
+/**
+ * di chuyển file đến thư vị trí khác
+ * @param oldFile       đường dẫn file nguồn
+ * @param newFile       đường dẫn file địch
+ * @return
+ * @throws java.io.FileNotFoundException
+ * @throws java.io.IOException
+ */
     public static boolean movefile(String oldFile, String newFile) throws FileNotFoundException, IOException{
 
       File f1 = new File(oldFile);
@@ -127,7 +134,14 @@ public class BoQuanLyFile {
       }
       return result;
     }
-
+/**
+ * đổi tên file
+ * @param oldFile       tên file nguồn
+ * @param newFile       tên file đích
+ * @return
+ * @throws java.io.FileNotFoundException
+ * @throws java.io.IOException
+ */
     public static boolean renamefile(String oldFile, String newFile) throws FileNotFoundException, IOException{
 
       File f1 = new File(oldFile);
