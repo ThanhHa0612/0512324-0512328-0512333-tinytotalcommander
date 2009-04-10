@@ -648,6 +648,42 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_XemFile">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F3"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_XemFile.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_File_XemFile" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_File_XemFileActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_ChinhSuaTapTin">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F4"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_ChinhSuaTapTin.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_File_ChinhSuaTapTin" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_File_ChinhSuaTapTinActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F5"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem1.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_NewFolder">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
@@ -672,30 +708,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_File_XoaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="F5"/>
-                </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem1.text"/>
-                <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_XemFile">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="F3"/>
-                </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_XemFile.text"/>
-                <Property name="name" type="java.lang.String" value="jMenuItem_File_XemFile" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_File_XemFileActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_SoSanh">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
@@ -708,17 +720,50 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_File_SoSanhActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_ChinhSuaTapTin">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_DoiTen">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="F4"/>
-                </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_ChinhSuaTapTin.text"/>
-                <Property name="name" type="java.lang.String" value="jMenuItem_File_ChinhSuaTapTin" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_DoiTen.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_File_DoiTen" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_File_ChinhSuaTapTinActionPerformed"/>
-              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_DiChuyen">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_DiChuyen.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_File_DiChuyen" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JSeparator" name="jSeparator9">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator9" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_TimKiem">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_TimKiem.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_File_TimKiem" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JSeparator" name="jSeparator4">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator4" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Zip">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_Zip.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_Zip" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_unZip">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_unZip.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_unZip" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JSeparator" name="jSeparator5">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator5" noResource="true"/>
+              </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
               <Properties>
@@ -754,24 +799,82 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu_Expect">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jMenu_Expect.text"/>
+            <Property name="name" type="java.lang.String" value="jMenu_Expect" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_CatTapTin">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_CatTapTin.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_CatTapTin" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_NoiTapTin">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_NoiTapTin.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_NoiTapTin" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JSeparator" name="jSeparator8">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator8" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_KetNoiFTP">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_KetNoiFTP.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_KetNoiFTP" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_KetNoiLan">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem_KetNoiLan.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem_KetNoiLan" noResource="true"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu_View_Tree">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jMenu_View_Tree.text"/>
             <Property name="name" type="java.lang.String" value="jMenu_View_Tree" noResource="true"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem1">
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem_TreeView">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+7"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" resourceKey="jCheckBoxMenuItem1.text"/>
-                <Property name="name" type="java.lang.String" value="jCheckBoxMenuItem1" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jCheckBoxMenuItem_TreeView.text"/>
+                <Property name="name" type="java.lang.String" value="jCheckBoxMenuItem_TreeView" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItem_TreeViewActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem_fullView">
+              <Properties>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jCheckBoxMenuItem_fullView.text"/>
+                <Property name="name" type="java.lang.String" value="jCheckBoxMenuItem_fullView" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem_Brief">
+              <Properties>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jCheckBoxMenuItem_Brief.text"/>
+                <Property name="name" type="java.lang.String" value="jCheckBoxMenuItem_Brief" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem_Thumbnail">
+              <Properties>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jCheckBoxMenuItem_Thumbnail.text"/>
+                <Property name="name" type="java.lang.String" value="jCheckBoxMenuItem_Thumbnail" noResource="true"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
