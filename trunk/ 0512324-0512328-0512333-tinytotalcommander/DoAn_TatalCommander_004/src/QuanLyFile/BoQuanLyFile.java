@@ -87,42 +87,42 @@ public class BoQuanLyFile {
      * 
      */
      public static void copyfile(String srFile, String dtFile) throws FileNotFoundException, IOException{
-    try{
-      File f1 = new File(srFile);
-      File f2 = new File(dtFile);
-      InputStream in = new FileInputStream(f1);
+        try{
+          File f1 = new File(srFile);
+          File f2 = new File(dtFile);
+          InputStream in = new FileInputStream(f1);
 
-      //For Append the file.
-//      OutputStream out = new FileOutputStream(f2,true);
+          //For Append the file.
+    //      OutputStream out = new FileOutputStream(f2,true);
 
-      //For Overwrite the file.
-      OutputStream out = new FileOutputStream(f2);
+          //For Overwrite the file.
+          OutputStream out = new FileOutputStream(f2);
 
-      byte[] buf = new byte[1024];
-      int len;
-      while ((len = in.read(buf)) > 0){
-        out.write(buf, 0, len);
-      }
-      in.close();
-      out.close();
-    }
-    catch(FileNotFoundException ex){
-      System.out.println(ex.getMessage() + " in the specified directory.");
-      System.exit(0);
-    }
-    catch(IOException e){
-      System.out.println(e.getMessage());
-    }
+          byte[] buf = new byte[1024];
+          int len;
+          while ((len = in.read(buf)) > 0){
+            out.write(buf, 0, len);
+          }
+          in.close();
+          out.close();
+        }
+        catch(FileNotFoundException ex){
+          System.out.println(ex.getMessage() + " in the specified directory.");
+          System.exit(0);
+        }
+        catch(IOException e){
+          System.out.println(e.getMessage());
+        }
      }
 
-/**
- * di chuyển file đến thư vị trí khác
- * @param oldFile       đường dẫn file nguồn
- * @param newFile       đường dẫn file địch
- * @return
- * @throws java.io.FileNotFoundException
- * @throws java.io.IOException
- */
+    /**
+     * di chuyển file đến thư vị trí khác
+     * @param oldFile       đường dẫn file nguồn
+     * @param newFile       đường dẫn file địch
+     * @return
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.IOException
+     */
     public static boolean movefile(String oldFile, String newFile) throws FileNotFoundException, IOException{
 
       File f1 = new File(oldFile);
@@ -135,7 +135,7 @@ public class BoQuanLyFile {
       }
       return result;
     }
-/**
+    /**
  * đổi tên file
  * @param oldFile       tên file nguồn
  * @param newFile       tên file đích
@@ -154,5 +154,75 @@ public class BoQuanLyFile {
       }
       return result;
     }
+    /**
+     * Cắt nhỏ 1 file thành nhiều file  
+     * @param str_DuongDanFileNguon     file cần cắt
+     * @param str_DuongDanThuMucDich    thư mục chứa các file sau khi cắt   
+     * @param l_KichThuoc               kích thước mỗi file sau khi cắt
+     * @return
+     */
+    public static boolean catFile (String str_DuongDanFileNguon, String str_DuongDanThuMucDich, long l_KichThuoc) throws IOException{
+        File fileNguon = new File(str_DuongDanFileNguon);
+        String str_DuongDanChungCuaFileDich = str_DuongDanThuMucDich + "\\" + fileNguon.getName() + ".";
+        int i_SttFileHienTai = 1001;
+
+        long l_KichThuocDaCopy = 0;
+        while (l_KichThuocDaCopy < fileNguon.length()){
+            //Tạo file có dạng filenguon.xxx
+            //do stt hiện tại có 1001 để khi chuyển thành chuổi có thể giữ được những số 0 đầu
+            //nên cần cắt chuổi từ vị trí 1 - 4
+            File fileDichHienTai = new File(str_DuongDanChungCuaFileDich +
+                    String.valueOf(i_SttFileHienTai).substring(1, 4));
+            fileDichHienTai.deleteOnExit();//xóa trước khi tạo file mới
+            copy1phanfile(str_DuongDanFileNguon, fileDichHienTai.getPath()
+                    , l_KichThuocDaCopy, l_KichThuoc);
+            //Copy phần file vào file đích hiện tại
+            //Tăng số stt file hiện tại và cập nhật kích thước đã copy
+            i_SttFileHienTai++;
+            l_KichThuocDaCopy += l_KichThuoc;
+        }
+        return true;
+    }
+
+    /**
+     * Copy 1 phần của file
+     * @param srFile                file nguồn
+     * @param dtFile                file đích
+     * @param l_ViTriBatDauCopy     bắt đầu từ vị trí này của file
+     * @param l_KichThuocCanCopy    kích thước phần cần copy
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.IOException
+     */
+    public static void copy1phanfile(String srFile, String dtFile, long l_ViTriBatDauCopy, long l_KichThuocCanCopy) throws FileNotFoundException, IOException{
+        try{
+          File f1 = new File(srFile);
+          File f2 = new File(dtFile);
+          InputStream in = new FileInputStream(f1);
+          in.skip(l_ViTriBatDauCopy);
+
+          //For Append the file.
+    //      OutputStream out = new FileOutputStream(f2,true);
+
+          //For Overwrite the file.
+          OutputStream out = new FileOutputStream(f2);
+
+          byte[] buf = new byte[1024];
+          int len;
+          long l_KichThuocDaCopy = 0;
+          while ((len = in.read(buf)) > 0 && l_KichThuocDaCopy < l_KichThuocCanCopy){
+            out.write(buf, 0, len);
+            l_KichThuocDaCopy += len;
+          }
+          in.close();
+          out.close();
+        }
+        catch(FileNotFoundException ex){
+          System.out.println(ex.getMessage() + " in the specified directory.");
+          System.exit(0);
+        }
+        catch(IOException e){
+          System.out.println(e.getMessage());
+        }
+     }
 }
 
