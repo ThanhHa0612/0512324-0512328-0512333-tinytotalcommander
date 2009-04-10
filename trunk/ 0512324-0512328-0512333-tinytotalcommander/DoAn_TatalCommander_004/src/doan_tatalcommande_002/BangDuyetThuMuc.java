@@ -374,6 +374,8 @@ public class BangDuyetThuMuc {
    
     int SoThuocTinh = 3;
     myScrollPane.setToolTipText(_tenThuMucHienHanh);
+    File file = new File(getTenFile()).getAbsoluteFile();
+    setTenFile(file.getPath());
     File files[] = (new File(getTenFile())).listFiles();
     if (files == null){
         JOptionPane.showMessageDialog(null, "Không duyệt được thư mục " + _tenThuMucHienHanh);
@@ -402,7 +404,7 @@ public class BangDuyetThuMuc {
 
         //Duyệt danh sách các file trong thư mục
         for (int i = 0; i < files.length; i++){
-            File file = files[i];
+            file = files[i];
             ShellFolder sf1;
                 try {
                     //Lấy icon và tên của file
@@ -443,7 +445,7 @@ public class BangDuyetThuMuc {
         }
 
         int index = 0;
-        File file = new File(_tenThuMucHienHanh);
+        file = new File(_tenThuMucHienHanh);
         if (file.getParentFile() != null && !file.getPath().startsWith("\\")){
             //Nếu có thư mục cha và không phải đang truy cập mạng
             index++;
