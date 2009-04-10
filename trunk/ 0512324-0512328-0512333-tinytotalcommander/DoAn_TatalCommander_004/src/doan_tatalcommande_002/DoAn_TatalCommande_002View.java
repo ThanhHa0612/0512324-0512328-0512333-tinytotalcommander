@@ -7,6 +7,7 @@ package doan_tatalcommande_002;
 import com.sun.org.apache.xml.internal.utils.ObjectPool;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -214,6 +215,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jPanel_PhanChan = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -306,6 +308,18 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jButton5.setName("jButton5"); // NOI18N
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton5);
+
+        jButton10.setText(resourceMap.getString("jButton10.text")); // NOI18N
+        jButton10.setFocusable(false);
+        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton10.setName("jButton10"); // NOI18N
+        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
+        jToolBar1.add(jButton10);
 
         javax.swing.GroupLayout jPanel_PhanDauLayout = new javax.swing.GroupLayout(jPanel_PhanDau);
         jPanel_PhanDau.setLayout(jPanel_PhanDauLayout);
@@ -1041,9 +1055,21 @@ public class DoAn_TatalCommande_002View extends FrameView {
         }
     }//GEN-LAST:event_jMenuItem_File_SoSanhActionPerformed
 
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        try {
+            // TODO add your handling code here:
+            BoQuanLyFile.copyfile("F:\\1.txt.txt","F:\\a\\2.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton10MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
