@@ -28,7 +28,7 @@ public enum jEnum_CacEnumTrongBai {
         this.value = value;
     }
 
-    int value(){
+    public int value(){
         return this.value;
     }
 }

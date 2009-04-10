@@ -9,6 +9,7 @@ import QuanLyFile.Dialog_Xem_ChinhSuaFile;
 import QuanLyFile.Dialog_SoSanhFile;
 import DuyetFile.EventListener_ClickChuotVaoBangDuyetFile;
 import DuyetFile.BangDuyetFile;
+import QuanLyFile.Dialog_CatNho;
 import com.sun.org.apache.xml.internal.utils.ObjectPool;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
@@ -782,6 +783,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         jMenuItem_CatTapTin.setText(resourceMap.getString("jMenuItem_CatTapTin.text")); // NOI18N
         jMenuItem_CatTapTin.setName("jMenuItem_CatTapTin"); // NOI18N
+        jMenuItem_CatTapTin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_CatTapTinActionPerformed(evt);
+            }
+        });
         jMenu_Expect.add(jMenuItem_CatTapTin);
 
         jMenuItem_NoiTapTin.setText(resourceMap.getString("jMenuItem_NoiTapTin.text")); // NOI18N
@@ -1204,6 +1210,24 @@ public class DoAn_TatalCommande_002View extends FrameView {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         }
 }//GEN-LAST:event_jButton_renameMouseClicked
+
+    private void jMenuItem_CatTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CatTapTinActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> astr_CacDuongDan = _bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0)
+            return;
+        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+        if (new File(str_DuongDanFileDangChon).isFile()){
+            String str_DuongDanThuMucDich = (_bangHienTai.getTenFile().equalsIgnoreCase(_bangPhai.getTenFile())) ?
+                _bangTrai.getTenFile() : _bangPhai.getTenFile();
+            Dialog_CatNho dialog = new Dialog_CatNho(null, true);
+
+            //cập nhật thông tin cho dialog
+            dialog.setTextOfJTextField_FileNguon(str_DuongDanFileDangChon);
+            dialog.setTextOfJTextField_ThuMucDich(str_DuongDanThuMucDich);
+            dialog.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem_CatTapTinActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
