@@ -9,19 +9,14 @@
  * Created on Apr 9, 2009, 10:14:10 PM
  */
 
-package doan_tatalcommande_002;
+package QuanLyFile;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 
 /**
  * hiện thị dialog cho phép xem dữ liệu bên trong file
@@ -62,7 +57,7 @@ public class Dialog_Xem_ChinhSuaFile extends javax.swing.JFrame {
         jTextPane_HienThiFile.setNextFocusableComponent(jButton_Luu);
         jScrollPane_HienThiFile.setViewportView(jTextPane_HienThiFile);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_tatalcommande_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(Dialog_Xem_ChinhSuaFile.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_totalcommander_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(Dialog_Xem_ChinhSuaFile.class);
         jButton_Luu.setText(resourceMap.getString("jButton_Luu.text")); // NOI18N
         jButton_Luu.setName("jButton_Luu"); // NOI18N
         jButton_Luu.setNextFocusableComponent(jButton_Thoat);
@@ -115,17 +110,17 @@ public class Dialog_Xem_ChinhSuaFile extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(249, Short.MAX_VALUE)
+                .addContainerGap(475, Short.MAX_VALUE)
                 .addComponent(jButton_Luu, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton_Thoat)
                 .addContainerGap())
-            .addComponent(jScrollPane_HienThiFile, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+            .addComponent(jScrollPane_HienThiFile, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane_HienThiFile, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addComponent(jScrollPane_HienThiFile, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Luu)

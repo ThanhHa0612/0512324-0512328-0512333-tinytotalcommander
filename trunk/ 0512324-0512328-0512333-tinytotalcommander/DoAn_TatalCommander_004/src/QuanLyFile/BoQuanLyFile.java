@@ -3,8 +3,9 @@
  * and open the template in the editor.
  */
 
-package doan_tatalcommande_002;
+package QuanLyFile;
 
+import doan_totalcommander_002.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

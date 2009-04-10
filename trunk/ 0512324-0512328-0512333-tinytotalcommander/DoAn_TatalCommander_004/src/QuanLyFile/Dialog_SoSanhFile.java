@@ -9,8 +9,9 @@
  * Created on Apr 10, 2009, 2:59:38 AM
  */
 
-package doan_tatalcommande_002;
+package QuanLyFile;
 
+import doan_totalcommander_002.*;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.AdjustmentEvent;
@@ -88,7 +89,7 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextPane2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_tatalcommande_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(Dialog_SoSanhFile.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_totalcommander_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(Dialog_SoSanhFile.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
@@ -413,9 +414,7 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel_BenPhai;
     private javax.swing.JPanel jPanel_BenTrai;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane_BenPhai;
     private javax.swing.JScrollPane jScrollPane_BenTrai;
     private javax.swing.JSplitPane jSplitPane1;

@@ -2,8 +2,13 @@
  * DoAn_TatalCommande_002View.java
  */
 
-package doan_tatalcommande_002;
+package doan_totalcommander_002;
 
+import QuanLyFile.BoQuanLyFile;
+import QuanLyFile.Dialog_Xem_ChinhSuaFile;
+import QuanLyFile.Dialog_SoSanhFile;
+import DuyetFile.EventListener_ClickChuotVaoBangDuyetFile;
+import DuyetFile.BangDuyetFile;
 import com.sun.org.apache.xml.internal.utils.ObjectPool;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
@@ -303,7 +308,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jToolBar1.setName("jToolBar1"); // NOI18N
         jToolBar1.setPreferredSize(new java.awt.Dimension(100, 38));
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_tatalcommande_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(DoAn_TatalCommande_002View.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_totalcommander_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(DoAn_TatalCommande_002View.class);
         jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setAlignmentY(0.0F);
@@ -750,7 +755,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jSeparator5.setName("jSeparator5"); // NOI18N
         jMenu_File.add(jSeparator5);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(doan_tatalcommande_002.DoAn_TatalCommande_002App.class).getContext().getActionMap(DoAn_TatalCommande_002View.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(doan_totalcommander_002.DoAn_TatalCommande_002App.class).getContext().getActionMap(DoAn_TatalCommande_002View.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         jMenu_File.add(exitMenuItem);
