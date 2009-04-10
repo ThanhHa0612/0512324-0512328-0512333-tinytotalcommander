@@ -53,7 +53,6 @@ public class Dialog_CatNho extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_totalcommander_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(Dialog_CatNho.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
-        setAlwaysOnTop(true);
         setName("Form"); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel1.border.title"))); // NOI18N
@@ -81,11 +80,11 @@ public class Dialog_CatNho extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(9, 9, 9)
-                        .addComponent(jTextField_FileNguon, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                        .addComponent(jTextField_FileNguon, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_ThuMucDich, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
+                        .addComponent(jTextField_ThuMucDich, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,7 +138,7 @@ public class Dialog_CatNho extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox_KichThuocFile, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_Cat, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,12 +183,14 @@ public class Dialog_CatNho extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_CatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CatActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Bạn muốn cắc file? Các file đích (nếu có) sẽ bị xóa!!!"
+                , "Xác nhận ghép", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
+                return;
         try {
             // TODO add your handling code here:
-            //  Lấy kích thước file sau khi cắt
-            long l_KichThuoc = Integer.valueOf(jComboBox_KichThuocFile.getSelectedItem().toString()) *
+            long i_KichThuoc = Integer.valueOf(jComboBox_KichThuocFile.getSelectedItem().toString()) *
                     jEnum_CacEnumTrongBai.MB.value();
-            BoQuanLyFile.catFile(jTextField_FileNguon.getText(), jTextField_ThuMucDich.getText(), l_KichThuoc);
+            BoQuanLyFile.catFile(jTextField_FileNguon.getText(), jTextField_ThuMucDich.getText(), i_KichThuoc);
             //Thông báo thành công và xác nhận thoát
             if (JOptionPane.showConfirmDialog(null, "Cắt file thành công! Bạn muốn thoát?"
                 , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
@@ -199,7 +200,7 @@ public class Dialog_CatNho extends javax.swing.JDialog {
             Logger.getLogger(Dialog_CatNho.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Cắt file thất bại! Lỗi: " + ex.getMessage());
         }
-    }//GEN-LAST:event_jButton_CatActionPerformed
+}//GEN-LAST:event_jButton_CatActionPerformed
 
     private void jButton_ThoátActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ThoátActionPerformed
         // TODO add your handling code here:

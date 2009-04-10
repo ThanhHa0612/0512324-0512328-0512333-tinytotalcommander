@@ -25,7 +25,7 @@ import javax.swing.JTextPane;
  * @author Administrator
  */
 public class BoQuanLyFile {
-    // <editor-fold defaultstate="collapsed" desc="Đã hoàn thành(doc, ghi, hienthi file)">
+    // <editor-fold defaultstate="collapsed" desc="Đã hoàn thành">
     /**
      *
      * Hiện thị binary code của file vào jScrollPane
@@ -77,8 +77,6 @@ public class BoQuanLyFile {
 
             buffWriter.close();
         }
-    //// </editor-fold>
-
     /**
      *
      * copy nội dung của file nguồn sng9 file đích
@@ -114,7 +112,6 @@ public class BoQuanLyFile {
           System.out.println(e.getMessage());
         }
      }
-
     /**
      * di chuyển file đến thư vị trí khác
      * @param oldFile       đường dẫn file nguồn
@@ -173,9 +170,10 @@ public class BoQuanLyFile {
             //nên cần cắt chuổi từ vị trí 1 - 4
             File fileDichHienTai = new File(str_DuongDanChungCuaFileDich +
                     String.valueOf(i_SttFileHienTai).substring(1, 4));
+
             fileDichHienTai.deleteOnExit();//xóa trước khi tạo file mới
             copy1phanfile(str_DuongDanFileNguon, fileDichHienTai.getPath()
-                    , l_KichThuocDaCopy, l_KichThuoc);
+                    , l_KichThuocDaCopy, false, l_KichThuoc);
             //Copy phần file vào file đích hiện tại
             //Tăng số stt file hiện tại và cập nhật kích thước đã copy
             i_SttFileHienTai++;
@@ -183,7 +181,6 @@ public class BoQuanLyFile {
         }
         return true;
     }
-
     /**
      * Copy 1 phần của file
      * @param srFile                file nguồn
@@ -193,7 +190,8 @@ public class BoQuanLyFile {
      * @throws java.io.FileNotFoundException
      * @throws java.io.IOException
      */
-    public static void copy1phanfile(String srFile, String dtFile, long l_ViTriBatDauCopy, long l_KichThuocCanCopy) throws FileNotFoundException, IOException{
+    public static void copy1phanfile(String srFile, String dtFile, long l_ViTriBatDauCopy
+            , boolean b_NoiThemVao, long l_KichThuocCanCopy) throws FileNotFoundException, IOException{
         try{
           File f1 = new File(srFile);
           File f2 = new File(dtFile);
@@ -204,8 +202,8 @@ public class BoQuanLyFile {
     //      OutputStream out = new FileOutputStream(f2,true);
 
           //For Overwrite the file.
-          OutputStream out = new FileOutputStream(f2);
-
+          OutputStream out = new FileOutputStream(f2, b_NoiThemVao);
+          
           byte[] buf = new byte[1024];
           int len;
           long l_KichThuocDaCopy = 0;
@@ -224,5 +222,23 @@ public class BoQuanLyFile {
           System.out.println(e.getMessage());
         }
      }
+    //// </editor-fold>
+    public static int ghepFile (String str_FileDauTien, String str_FileDich) throws FileNotFoundException, IOException{
+        File fileHienTai = new File (str_FileDauTien);
+        String str_FileHienTai = str_FileDauTien.substring(0, str_FileDauTien.lastIndexOf(".") + 1);
+        int i_SttFileHienTai = 1001;
+        
+        //Xóa nếu file hiện tại đã có
+        new File(str_FileDich).deleteOnExit();
+        while (fileHienTai.isFile()){
+            //copy thêm file hiện tại vào file đích
+            copy1phanfile(fileHienTai.getPath(), str_FileDich, 0, true, fileHienTai.length());
+            //Tăng số thứ tự file hiện tại
+            i_SttFileHienTai++;
+            //Cập nhât file hiện tại
+            fileHienTai = new File(str_FileHienTai + String.valueOf(i_SttFileHienTai).substring(1, 4));
+        }
+        return i_SttFileHienTai - 1000;
+    }
 }
 

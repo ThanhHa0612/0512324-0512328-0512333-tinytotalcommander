@@ -10,6 +10,7 @@ import QuanLyFile.Dialog_SoSanhFile;
 import DuyetFile.EventListener_ClickChuotVaoBangDuyetFile;
 import DuyetFile.BangDuyetFile;
 import QuanLyFile.Dialog_CatNho;
+import QuanLyFile.Dialog_GhepNoi;
 import com.sun.org.apache.xml.internal.utils.ObjectPool;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
@@ -792,6 +793,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         jMenuItem_NoiTapTin.setText(resourceMap.getString("jMenuItem_NoiTapTin.text")); // NOI18N
         jMenuItem_NoiTapTin.setName("jMenuItem_NoiTapTin"); // NOI18N
+        jMenuItem_NoiTapTin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_NoiTapTinActionPerformed(evt);
+            }
+        });
         jMenu_Expect.add(jMenuItem_NoiTapTin);
 
         jSeparator8.setName("jSeparator8"); // NOI18N
@@ -1213,21 +1219,49 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jMenuItem_CatTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CatTapTinActionPerformed
         // TODO add your handling code here:
+        //Lấy file đầu tiên được chọn
         ArrayList<String> astr_CacDuongDan = _bangHienTai.layDuongDanDayDuFileDangDuocChon();
         if (astr_CacDuongDan.size() == 0)
             return;
         String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
-        if (new File(str_DuongDanFileDangChon).isFile()){
+        
+        if (new File(str_DuongDanFileDangChon).isFile()){//nếu là file
+            //Lấy đường dẫn thư mục đích (là đường dẫn hiện tại của bảng ko được chọn)
             String str_DuongDanThuMucDich = (_bangHienTai.getTenFile().equalsIgnoreCase(_bangPhai.getTenFile())) ?
                 _bangTrai.getTenFile() : _bangPhai.getTenFile();
-            Dialog_CatNho dialog = new Dialog_CatNho(null, true);
 
-            //cập nhật thông tin cho dialog
+            //tạo và cập nhật thông tin cho dialog
+            Dialog_CatNho dialog = new Dialog_CatNho(null, false);
             dialog.setTextOfJTextField_FileNguon(str_DuongDanFileDangChon);
             dialog.setTextOfJTextField_ThuMucDich(str_DuongDanThuMucDich);
             dialog.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem_CatTapTinActionPerformed
+
+    private void jMenuItem_NoiTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NoiTapTinActionPerformed
+        // TODO add your handling code here:
+        //Lấy file đầu tiên được chọn
+        ArrayList<String> astr_CacDuongDan = _bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0)
+            return;
+        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+        File fileDauTien = new File(str_DuongDanFileDangChon);
+        if (fileDauTien.isFile()
+                && str_DuongDanFileDangChon.endsWith(".001")){//Nếu là file và có phần mở rộng là 001
+
+            //tạo đường dẫn file đích (là đường dẫn hiện tại của bảng ko được chọn và tên của file nguồn)
+            String str_DuongDanFileDich = (_bangHienTai.getTenFile().equalsIgnoreCase(_bangPhai.getTenFile())) ?
+                _bangTrai.getTenFile() : _bangPhai.getTenFile();
+            str_DuongDanFileDich += fileDauTien.getName().substring(0,
+                    fileDauTien.getName().lastIndexOf(".001"));
+
+            //tạo và cập nhật thông tin cho dialog
+            Dialog_GhepNoi dialog = new Dialog_GhepNoi(null, true);
+            dialog.setTextOfJTextField_FileNguon(str_DuongDanFileDangChon);
+            dialog.setTextOfJTextField_ThuMucDich(str_DuongDanFileDich);
+            dialog.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem_NoiTapTinActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
