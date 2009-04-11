@@ -149,7 +149,9 @@ public class BangDuyetFile {
             //_bangHienThiThuMucHienHanh.requestFocus();
         }
     });
-/*
+
+    
+    /*
     int SoThuocTinh = 3;
     //Phải lấy giá trị đường dẫn tuyệt đối của file trước phòng trường hợp ổ đĩa hiện tại đang được truy cập sâu
     File fileHienTai = new File(getTenFile()).getAbsoluteFile();

@@ -368,10 +368,27 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton_DuyetFileBenTraiActionPerformed
     private void jTextField_BenTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_BenTraiActionPerformed
-        // TODO add your handling code here:
+        if (!new File (jTextField_BenTrai.getText()).isFile())
+            return;
+        try {
+            // TODO add your handling code here:
+            BoQuanLyFile.hienThiFile(jTextField_BenTrai.getText(),
+                    jTextPane_BenTrai, jEnum_CacEnumTrongBai.XemFile);
+        } catch (IOException ex) {
+            Logger.getLogger(Dialog_SoSanhFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTextField_BenTraiActionPerformed
     private void jTextField_BenPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_BenPhaiActionPerformed
         // TODO add your handling code here:
+        if (!new File (jTextField_BenPhai.getText()).isFile())
+            return;
+        try {
+            // TODO add your handling code here:
+            BoQuanLyFile.hienThiFile(jTextField_BenPhai.getText(),
+                    jTextPane_BenPhai, jEnum_CacEnumTrongBai.XemFile);
+        } catch (IOException ex) {
+            Logger.getLogger(Dialog_SoSanhFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }//GEN-LAST:event_jTextField_BenPhaiActionPerformed
 
     private void jButton_SoSanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SoSanhActionPerformed
@@ -389,6 +406,7 @@ public class Dialog_SoSanhFile extends javax.swing.JFrame {
         JFileChooser fc = new JFileChooser();
         //Mở dialog
         fc.showOpenDialog(this);
+        
         File fileDuocChon = fc.getSelectedFile();
         if (fileDuocChon != null)
         //if (fc.get)
