@@ -1186,7 +1186,9 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         try {
             // TODO add your handling code here:
-            BoQuanLyFile.copyfile("F:\\1.txt.txt","F:\\a\\2.txt");
+            File f1 = new File("F:\\a");
+            File f2 = new File("F:\\b");
+            BoQuanLyFile.copyDirectory(f1,f2,false);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

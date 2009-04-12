@@ -112,6 +112,78 @@ public class BoQuanLyFile {
           System.out.println(e.getMessage());
         }
      }
+     /**
+     *
+     * copy folder,file sang đường dẫn khác
+     * @param srcPath    đường dẫn file,folder nguồn
+     * @param dstpath    đường dẫn file,folder đích
+     *
+     */
+     public static void copyDirectory(File srcPath, File dstPath,boolean xoatatca)
+                               throws IOException{
+
+        if (srcPath.isDirectory()){
+            if (!dstPath.exists()){
+                dstPath.mkdir();
+            }
+            //tao thu muc nguon trong thu muc dich
+            String namedir = srcPath.getName();
+            dstPath = new File (dstPath + "/" + namedir);
+
+            JOptionPane overwritePrompt = new JOptionPane();
+            Object[] options = {"Yes","Yes to all","No"};
+            if (dstPath.exists() && xoatatca == false){
+               int n = JOptionPane.showOptionDialog(overwritePrompt,
+                                "Already exists. Overwrite?",
+                                "Overwrite All File?",
+                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.WARNING_MESSAGE,
+                                null,
+                                options,
+                                options[2]);
+               if(n ==0 )
+                    dstPath.delete();
+               if(n ==1){
+                    dstPath.delete();
+                    xoatatca = true;
+               }
+               if(n==2){
+                   return;
+               }
+
+            }
+            dstPath.mkdir();
+            String files[] = srcPath.list();
+            //de quy
+            for(int i = 0; i < files.length; i++){
+                copyDirectory(new File(srcPath, files[i]),
+                         new File(dstPath, files[i]),xoatatca);
+
+            }
+
+        }
+        //neu la file
+        else{
+          if(!srcPath.exists()){//ko tồn tại
+                return;
+          }
+
+            else{
+                InputStream in = new FileInputStream(srcPath);
+                OutputStream out = new FileOutputStream(dstPath);
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+                out.close();
+            }
+        }
+    }
+
+
+
     /**
      * di chuyển file đến thư vị trí khác
      * @param oldFile       đường dẫn file nguồn
