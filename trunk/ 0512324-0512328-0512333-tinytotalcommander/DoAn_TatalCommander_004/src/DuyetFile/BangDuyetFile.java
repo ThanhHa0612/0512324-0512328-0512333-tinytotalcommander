@@ -6,6 +6,7 @@ By John Zukowski
 ISBN: 1-893115-78-X
 Publisher: APress
  */
+import QuanLyFile.BoQuanLyFile;
 import doan_totalcommander_002.*;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -89,7 +90,7 @@ public class BangDuyetFile {
                 return (getValueAt(0, column).getClass());
             }
         };
-        bangHienThiThuMucHienHanh = new DroppableTable(modelBangHienThi) {
+        bangHienThiThuMucHienHanh = new DroppableTable(getModelBangHienThi(),this) {
 
             @Override
             /**
@@ -135,7 +136,7 @@ public class BangDuyetFile {
                 File file = new File(str_TenFileDuocChon);
 
                 //Xử lý mở file hoặc duyệt vào thư mục con.
-                scrollPane_HienThiBang.setToolTipText(tenThuMucHienHanh);
+                getScrollPane_HienThiBang().setToolTipText(tenThuMucHienHanh);
                 if (file.isFile()) {
                     String str_PhanMoRong = str_TenFileDuocChon.substring(str_TenFileDuocChon.lastIndexOf("."), str_TenFileDuocChon.length());
                     if (str_PhanMoRong.compareToIgnoreCase(".lnk") == 0) {//nếu là file shortcut
@@ -152,7 +153,7 @@ public class BangDuyetFile {
                                 }
                             } else {//nếu dẫn tới thư mục
                                 setTenFile(file.getPath());
-                                capNhatBangDuyetThuMuc(tenThuMucHienHanh, scrollPane_HienThiBang);
+                                capNhatBangDuyetThuMuc(tenThuMucHienHanh,getScrollPane_HienThiBang());
                             }
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,7 +168,7 @@ public class BangDuyetFile {
                     }
                 } else {
                     setTenFile(str_TenFileDuocChon);
-                    capNhatBangDuyetThuMuc(tenThuMucHienHanh, scrollPane_HienThiBang);//new BangDuyetFile(getTenFile(),_scrollPane_HienThiBang);
+                    capNhatBangDuyetThuMuc(tenThuMucHienHanh,getScrollPane_HienThiBang());//new BangDuyetFile(getTenFile(),_scrollPane_HienThiBang);
                 }
             }
         });
@@ -233,11 +234,11 @@ public class BangDuyetFile {
      * Quay trở về thư mục cha của thư mục hiện hành (nếu có)
      */
     public void quayVeThuMucCha() {
-        File file = new File(scrollPane_HienThiBang.getToolTipText());
+        File file = new File(getScrollPane_HienThiBang().getToolTipText());
         if (file.getParentFile() != null) {
             setTenFile(file.getParent());
-            scrollPane_HienThiBang.setToolTipText(tenThuMucHienHanh);
-            capNhatBangDuyetThuMuc(tenThuMucHienHanh, scrollPane_HienThiBang);
+            getScrollPane_HienThiBang().setToolTipText(tenThuMucHienHanh);
+            capNhatBangDuyetThuMuc(tenThuMucHienHanh,getScrollPane_HienThiBang());
         }
     }
 
@@ -417,8 +418,9 @@ public class BangDuyetFile {
         }
 
 
-        bangHienThiThuMucHienHanh.setModel(modelBangHienThi);
+        bangHienThiThuMucHienHanh.setModel(getModelBangHienThi());
 
+        bangHienThiThuMucHienHanh.paintImmediately(bangHienThiThuMucHienHanh.getBounds());
         phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_FileName);
     }
 
@@ -434,7 +436,7 @@ public class BangDuyetFile {
         int[] i_DongDuocChon = bangHienThiThuMucHienHanh.getSelectedRows();
         ArrayList<String> als_CacFileDuocChon = new ArrayList<String>();
         for (int i : i_DongDuocChon) {
-            if (i != 0) {
+            if (cacDongDuLieu[i][1] != "..") {
                 als_CacFileDuocChon.add(str_ThuMucHienHanh +
                         bangHienThiThuMucHienHanh.getValueAt(i, 1).toString());
             }
@@ -451,8 +453,29 @@ public class BangDuyetFile {
     public void duyetCacThuMucDatBiet(String str_TenThuMucDatBiet, JTabbedPane jTabbedPane) {
         // TODO add your handling code here:
         String str_DuongDan = System.getProperty("user.home") + "\\" + str_TenThuMucDatBiet;
-        capNhatBangDuyetThuMuc(str_DuongDan, scrollPane_HienThiBang);
+        capNhatBangDuyetThuMuc(str_DuongDan,getScrollPane_HienThiBang());
         jTabbedPane.setTitleAt(0, str_DuongDan);
+    }
+
+    /**
+     * @return the scrollPane_HienThiBang
+     */
+    public JScrollPane getScrollPane_HienThiBang() {
+        return scrollPane_HienThiBang;
+    }
+
+    /**
+     * @return the modelBangHienThi
+     */
+    public TableModel getModelBangHienThi() {
+        return modelBangHienThi;
+    }
+
+    /**
+     * @param modelBangHienThi the modelBangHienThi to set
+     */
+    public void setModelBangHienThi(TableModel modelBangHienThi) {
+        this.modelBangHienThi = modelBangHienThi;
     }
 }//</editor-fold>
 // <editor-fold defaultstate="collapsed" desc="class DroppableTable">
@@ -467,8 +490,10 @@ class DroppableTable extends JTable
 
     DropTarget dropTarget = new DropTarget(this, this);
     DragSource dragSource = DragSource.getDefaultDragSource();
+    BangDuyetFile bangDuyetFile;
 
-    public DroppableTable(TableModel model) {
+    public DroppableTable(TableModel model, BangDuyetFile bangDuyet) {
+        bangDuyetFile = bangDuyet;
         dragSource.createDefaultDragGestureRecognizer(
                 this, DnDConstants.ACTION_COPY, this);
         setModel(model);
@@ -518,8 +543,12 @@ class DroppableTable extends JTable
                 Iterator iterator = fileList.iterator();
                 while (iterator.hasNext()) {
                     File file = (File) iterator.next();
-                    JOptionPane.showMessageDialog(null, file.getAbsolutePath());
+                    BoQuanLyFile.copyDirectory(file, 
+                            new File(bangDuyetFile.getTenFile() + "\\" + file.getName()), false);
+                 //   JOptionPane.showMessageDialog(null, file.getAbsolutePath());
                 //((DefaultListModel)getModel()).addElement(file.getPath());
+
+                    bangDuyetFile.capNhatBangDuyetThuMuc(bangDuyetFile.getTenFile(), bangDuyetFile.getScrollPane_HienThiBang());
                 }
                 dropTargetDropEvent.getDropTargetContext().dropComplete(true);
             } else {
