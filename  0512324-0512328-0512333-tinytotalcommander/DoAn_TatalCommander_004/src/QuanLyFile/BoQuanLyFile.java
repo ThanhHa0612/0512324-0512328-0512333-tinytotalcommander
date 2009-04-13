@@ -169,8 +169,8 @@ public class BoQuanLyFile {
           }
 
             else{
-                InputStream in = new FileInputStream(srcPath);
-                OutputStream out = new FileOutputStream(dstPath);
+                InputStream in = new FileInputStream(srcPath.getAbsoluteFile());
+                OutputStream out = new FileOutputStream(dstPath.getAbsoluteFile());
                 byte[] buf = new byte[1024];
                 int len;
                 while ((len = in.read(buf)) > 0) {
