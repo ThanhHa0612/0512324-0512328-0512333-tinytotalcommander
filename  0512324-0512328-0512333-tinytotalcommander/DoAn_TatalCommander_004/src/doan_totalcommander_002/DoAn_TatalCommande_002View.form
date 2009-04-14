@@ -199,7 +199,7 @@
                                           <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="8" max="32767" attributes="0"/>
                                   <Component id="jButton_ThucThiCommandLine" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -484,13 +484,13 @@
                                   <Component id="jComboBox_PhanChinh_BangTrai" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="294" max="32767" attributes="0"/>
+                              <EmptySpace pref="298" max="32767" attributes="0"/>
                               <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Component id="jTabbedPane_PhanChinh_BangTrai" pref="285" max="32767" attributes="0"/>
+                                  <Component id="jTabbedPane_PhanChinh_BangTrai" pref="287" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -593,7 +593,7 @@
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTabbedPane_PhanChinh_BangPhai" pref="284" max="32767" attributes="0"/>
+                          <Component id="jTabbedPane_PhanChinh_BangPhai" pref="288" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -973,7 +973,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="758" max="32767" attributes="0"/>
+                  <EmptySpace pref="762" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>

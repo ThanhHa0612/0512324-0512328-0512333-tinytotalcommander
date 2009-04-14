@@ -35,8 +35,6 @@ import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  * The application's main frame.
@@ -1255,8 +1253,10 @@ public class DoAn_TatalCommande_002View extends FrameView {
         // TODO add your handling code here:
         //Lấy file đầu tiên được chọn
         ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
-        if (astr_CacDuongDan.size() == 0)
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file để cắt!");
             return;
+        }
         String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
         
         if (new File(str_DuongDanFileDangChon).isFile()){//nếu là file
@@ -1266,7 +1266,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
             //tạo và cập nhật thông tin cho dialog
             Dialog_CatNho dialog = new Dialog_CatNho(null, false);
-            dialog.setTextOfJTextField_FileNguon(str_DuongDanFileDangChon);
+            dialog.getMyComp_OpenSaveFile_FileNguon().getJComboBox_DuongDanFile().setSelectedItem(str_DuongDanFileDangChon);
             dialog.setTextOfJTextField_ThuMucDich(str_DuongDanThuMucDich);
             dialog.setVisible(true);
         }
@@ -1274,27 +1274,29 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jMenuItem_NoiTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NoiTapTinActionPerformed
         // TODO add your handling code here:
+        //tạo dialog
+        Dialog_GhepNoi dialog = new Dialog_GhepNoi(null, true);
+
+        //Cập nhật thông tin mặc định
         //Lấy file đầu tiên được chọn
         ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
-        if (astr_CacDuongDan.size() == 0)
-            return;
-        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
-        File fileDauTien = new File(str_DuongDanFileDangChon);
-        if (fileDauTien.isFile()
-                && str_DuongDanFileDangChon.endsWith(".001")){//Nếu là file và có phần mở rộng là 001
+        if (astr_CacDuongDan.size() > 0){
+            String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+            File fileDauTien = new File(str_DuongDanFileDangChon);
+            if (fileDauTien.isFile()//Nếu file đầu tiên trong danh sách được chọn là file
+                    && str_DuongDanFileDangChon.endsWith(".001")){//Nếu là file và có phần mở rộng là 001
 
-            //tạo đường dẫn file đích (là đường dẫn hiện tại của bảng ko được chọn và tên của file nguồn)
-            String str_DuongDanFileDich = (bangHienTai.getTenFile().equalsIgnoreCase(bangPhai.getTenFile())) ?
-                bangTrai.getTenFile() : bangPhai.getTenFile();
-            str_DuongDanFileDich += fileDauTien.getName().substring(0,
-                    fileDauTien.getName().lastIndexOf(".001"));
+                //tạo đường dẫn file đích (là đường dẫn hiện tại của bảng ko được chọn và tên của file nguồn)
+                String str_DuongDanFileDich = (bangHienTai.getTenFile().equalsIgnoreCase(bangPhai.getTenFile())) ?
+                    bangTrai.getTenFile() : bangPhai.getTenFile();
+                str_DuongDanFileDich += fileDauTien.getName().substring(0,
+                        fileDauTien.getName().lastIndexOf(".001"));
 
-            //tạo và cập nhật thông tin cho dialog
-            Dialog_GhepNoi dialog = new Dialog_GhepNoi(null, true);
-            dialog.setTextOfJTextField_FileNguon(str_DuongDanFileDangChon);
-            dialog.setTextOfJTextField_ThuMucDich(str_DuongDanFileDich);
-            dialog.setVisible(true);
+                dialog.setTextOfJTextField_FileNguon(str_DuongDanFileDangChon);
+                dialog.setTextOfJTextField_ThuMucDich(str_DuongDanFileDich);
+            }
         }
+        dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem_NoiTapTinActionPerformed
 
     private void jMenuItem_File_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_TimKiemActionPerformed
