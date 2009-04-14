@@ -223,6 +223,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
         jPanel_PhanChan = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -368,6 +369,18 @@ public class DoAn_TatalCommande_002View extends FrameView {
             }
         });
         jToolBar1.add(jButton12);
+
+        jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
+        jButton13.setFocusable(false);
+        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton13.setName("jButton13"); // NOI18N
+        jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13jButton_removeMouseClicked(evt);
+            }
+        });
+        jToolBar1.add(jButton13);
 
         javax.swing.GroupLayout jPanel_PhanDauLayout = new javax.swing.GroupLayout(jPanel_PhanDau);
         jPanel_PhanDau.setLayout(jPanel_PhanDauLayout);
@@ -1281,12 +1294,27 @@ public class DoAn_TatalCommande_002View extends FrameView {
             dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem_File_TimKiemActionPerformed
 
+    private void jButton13jButton_removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13jButton_removeMouseClicked
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            File f = new File("F:\\b");
+            boolean f2 = false;
+            BoQuanLyFile.removeDirectory(f,f2);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}//GEN-LAST:event_jButton13jButton_removeMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

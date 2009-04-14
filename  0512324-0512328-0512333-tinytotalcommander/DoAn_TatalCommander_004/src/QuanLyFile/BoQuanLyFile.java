@@ -112,6 +112,7 @@ public class BoQuanLyFile {
           System.out.println(e.getMessage());
         }
      }
+
      /**
      *
      * copy folder,file sang đường dẫn khác
@@ -207,6 +208,56 @@ public class BoQuanLyFile {
     }
     
 
+     public static void removeDirectory(File srcPath,boolean xoatatca)
+                               throws IOException{
+      JOptionPane overwritePrompt = new JOptionPane();
+        Object[] options = {"Có","Xoá tất cả","Không"};
+
+
+        if(xoatatca==false)
+        {
+            int n = JOptionPane.showOptionDialog(overwritePrompt,
+                                    "Bạn Thật sự muốn xóa?",
+                                    "Xóa tất cả các File?",
+                                    JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.WARNING_MESSAGE,
+                                    null,
+                                    options,
+                                    options[2]);
+
+           if(n ==1){
+                xoatatca = true;
+           }
+           if(n==2){
+               return;
+           }
+        }
+
+
+
+        if (srcPath.isDirectory()){
+
+            String files[] = srcPath.list();
+            //de quy
+            for(int i = 0; i < files.length; i++){
+                removeDirectory(new File(srcPath, files[i]),xoatatca);
+
+            }
+            srcPath.delete();
+
+        }
+        //neu la file
+        else{
+          if(!srcPath.exists()){//ko tồn tại
+                return;
+          }
+
+            else{
+
+            srcPath.delete();
+            }
+        }
+    }
 
 
     /**
@@ -224,7 +275,7 @@ public class BoQuanLyFile {
       boolean result = f1.renameTo(f2);
       if(result == false && JOptionPane.showConfirmDialog(null, "File bị trùng bạn có muốn chép đè lên ko") == 0)
       {
-          copyfile(oldFile,newFile);
+          copyDirectory(f1,f2,false);
           f1.delete();
       }
       return result;
