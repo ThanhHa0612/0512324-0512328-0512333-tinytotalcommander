@@ -109,67 +109,10 @@ public class BangDuyetFile {
         capNhatBangDuyetThuMuc(myTenFile, myScrollPane);
         bangHienThiThuMucHienHanh.addMouseListener(new MouseAdapter() {
             //Xu ly su kien click vao _bangHienThiThuMucHienHanh
-
             @Override
-
             // Xử lý xử kiện người dùng click chuột vào bảng
             public void mousePressed(MouseEvent evt) {
-
-                bangHienThiThuMucHienHanh = (JTable) evt.getComponent();
-                int selectedRow = bangHienThiThuMucHienHanh.getSelectedRow();
-                String str_TenFileDuocChon = getTenFile();
-                if (!getTenFile().endsWith("\\")) {
-                    str_TenFileDuocChon += "\\";
-                }
-                str_TenFileDuocChon += bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
-                phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
-                //Nếu là click đơn thì bỏ qua
-                if (evt.getButton() != 1 || evt.getClickCount() != 2) {
-                    return;
-                }
-                //Nếu chọn quay về thư mục cha
-                if (bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString().equals("..")) {
-                    quayVeThuMucCha();
-                    return;
-                }
-                //Xác định file đang được chọn
-                File file = new File(str_TenFileDuocChon);
-
-                //Xử lý mở file hoặc duyệt vào thư mục con.
-                getScrollPane_HienThiBang().setToolTipText(tenThuMucHienHanh);
-                if (file.isFile()) {
-                    String str_PhanMoRong = str_TenFileDuocChon.substring(str_TenFileDuocChon.lastIndexOf("."), str_TenFileDuocChon.length());
-                    if (str_PhanMoRong.compareToIgnoreCase(".lnk") == 0) {//nếu là file shortcut
-                        try {
-                            ShellFolder sh = ShellFolder.getShellFolder(file.getAbsoluteFile());
-                            //Lấy link và duyệt thư mục trong link
-                            file = new File(sh.getLinkLocation().getPath());
-                            if (file.isFile())//nếu shortcut dẫn tới 1 file
-                            {
-                                try {
-                                    Desktop.getDesktop().open(file);
-                                } catch (IOException ex) {
-                                    Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            } else {//nếu dẫn tới thư mục
-                                setTenFile(file.getPath());
-                                capNhatBangDuyetThuMuc(tenThuMucHienHanh,getScrollPane_HienThiBang());
-                            }
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } else //nếu là file
-                    {
-                        try {
-                            Desktop.getDesktop().open(file);
-                        } catch (IOException ex) {
-                            Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                } else {
-                    setTenFile(str_TenFileDuocChon);
-                    capNhatBangDuyetThuMuc(tenThuMucHienHanh,getScrollPane_HienThiBang());//new BangDuyetFile(getTenFile(),_scrollPane_HienThiBang);
-                }
+                xuLyClickChuot(evt);
             }
         });
 
@@ -191,9 +134,67 @@ public class BangDuyetFile {
 //</Chỉnh các thuộc tính cho giao diên của table>
 
         bangHienThiThuMucHienHanh.addRowSelectionInterval(0, 0);
+        //bangHienThiThuMucHienHanh.setAutoCreateRowSorter(true);
         scrollPane_HienThiBang.setViewportView(bangHienThiThuMucHienHanh);
 
     }
+    public void xuLyClickChuot(MouseEvent evt) {
+        bangHienThiThuMucHienHanh = (JTable) evt.getComponent();
+        int selectedRow = bangHienThiThuMucHienHanh.getSelectedRow();
+        String str_TenFileDuocChon = getTenFile();
+        if (!getTenFile().endsWith("\\")) {
+            str_TenFileDuocChon += "\\";
+        }
+        str_TenFileDuocChon += bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
+        phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
+        if (evt.getButton() != 1 || evt.getClickCount() != 2) {
+            return;
+        }
+        if (bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString().equals("..")) {
+            //Nếu là click đơn thì bỏ qua
+            quayVeThuMucCha();
+            return;
+        }
+        //Xác định file đang được chọn
+        File file = new File(str_TenFileDuocChon);
+        //Xử lý mở file hoặc duyệt vào thư mục con.
+        getScrollPane_HienThiBang().setToolTipText(tenThuMucHienHanh);
+        if (file.isFile()) {
+            String str_PhanMoRong = str_TenFileDuocChon.substring(str_TenFileDuocChon.lastIndexOf("."), str_TenFileDuocChon.length());
+            if (str_PhanMoRong.compareToIgnoreCase(".lnk") == 0) {
+                //nếu là file shortcut
+                try {
+                    ShellFolder sh = ShellFolder.getShellFolder(file.getAbsoluteFile());
+                    //Lấy link và duyệt thư mục trong link
+                    file = new File(sh.getLinkLocation().getPath());
+                    if (file.isFile()) {
+                        try {
+                            Desktop.getDesktop().open(file);
+                        } catch (IOException ex) {
+                            Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        //nếu dẫn tới thư mục
+                        setTenFile(file.getPath());
+                        capNhatBangDuyetThuMuc(tenThuMucHienHanh, getScrollPane_HienThiBang());
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                try {
+                    Desktop.getDesktop().open(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(BangDuyetFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            setTenFile(str_TenFileDuocChon);
+            capNhatBangDuyetThuMuc(tenThuMucHienHanh, getScrollPane_HienThiBang()); //new BangDuyetFile(getTenFile(),_scrollPane_HienThiBang);
+        }
+        return;
+    }
+
 // <editor-fold defaultstate="collapsed" desc="Đã hoàn thành">
 
     /**

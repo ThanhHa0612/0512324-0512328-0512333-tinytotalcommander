@@ -20,8 +20,11 @@ public enum jEnum_CacEnumTrongBai {
 
     
     SuaFile (2),
-    XemFile (3);
+    XemFile (3),
 
+    SoSanhBang (0),
+    SoSanhLonHon (1),
+    SoSanhNhoHon (2);
     private final int value;
 
     jEnum_CacEnumTrongBai(int value) {

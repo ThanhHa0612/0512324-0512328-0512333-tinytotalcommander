@@ -11,7 +11,7 @@ import DuyetFile.EventListener_ClickChuotVaoBangDuyetFile;
 import DuyetFile.BangDuyetFile;
 import QuanLyFile.Dialog_CatNho;
 import QuanLyFile.Dialog_GhepNoi;
-import com.sun.org.apache.xml.internal.utils.ObjectPool;
+import QuanLyFile.Dialog_TimFile;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
 import java.io.FileNotFoundException;
@@ -25,7 +25,6 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.ArrayList;
@@ -35,7 +34,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
-import javax.swing.plaf.basic.BasicComboBoxUI.PropertyChangeHandler;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -741,6 +739,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         jMenuItem_File_TimKiem.setText(resourceMap.getString("jMenuItem_File_TimKiem.text")); // NOI18N
         jMenuItem_File_TimKiem.setName("jMenuItem_File_TimKiem"); // NOI18N
+        jMenuItem_File_TimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_TimKiemActionPerformed(evt);
+            }
+        });
         jMenu_File.add(jMenuItem_File_TimKiem);
 
         jSeparator4.setName("jSeparator4"); // NOI18N
@@ -1264,6 +1267,19 @@ public class DoAn_TatalCommande_002View extends FrameView {
             dialog.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem_NoiTapTinActionPerformed
+
+    private void jMenuItem_File_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_TimKiemActionPerformed
+        // TODO add your handling code here:
+
+        Dialog_TimFile dialog = new Dialog_TimFile(null, true);
+        dialog.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
+            public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
+                _bangTrai.capNhatBangDuyetThuMuc(str_TenFileDuocChon, jScrollPane_PhanChinh_BangTrai);
+                //jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, str_TenFileDuocChon);
+            }
+        });
+            dialog.setVisible(true);
+    }//GEN-LAST:event_jMenuItem_File_TimKiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
