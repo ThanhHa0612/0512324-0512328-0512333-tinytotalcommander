@@ -420,8 +420,9 @@ public class BangDuyetFile {
 
 
         bangHienThiThuMucHienHanh.setModel(getModelBangHienThi());
-
+        //JOptionPane.showMessageDialog(null, bangHienThiThuMucHienHanh.getRowCount());
         bangHienThiThuMucHienHanh.paintImmediately(bangHienThiThuMucHienHanh.getBounds());
+        myScrollPane.setViewportView(bangHienThiThuMucHienHanh);
         phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_FileName);
     }
 
