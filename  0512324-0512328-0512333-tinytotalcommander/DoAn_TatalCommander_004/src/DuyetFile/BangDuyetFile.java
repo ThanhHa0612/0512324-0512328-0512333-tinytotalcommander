@@ -53,7 +53,7 @@ public class BangDuyetFile {
     private String tenThuMucHienHanh;
     private Object[][] cacDongDuLieu;
     private JScrollPane scrollPane_HienThiBang;
-    private JTable bangHienThiThuMucHienHanh;
+    private DroppableTable bangHienThiThuMucHienHanh;
     private TableModel modelBangHienThi;
     private int kichThuocIcon = 24;
 
@@ -62,7 +62,7 @@ public class BangDuyetFile {
         scrollPane_HienThiBang = myScrollPane;
 
 //Phần này tham khảo source từ nhiều nguồn trên mạng!!!
-        //http://www.java2s.com/Code/Java/Swing-JFC/ColumnSampleTableModel.htm
+        //http://www.java2s.com/Code/Java/Swing-JFC/ColumnSampleTableModel.htm 08
         modelBangHienThi = new AbstractTableModel() {
 
             Object Data[][] = cacDongDuLieu;
@@ -139,7 +139,7 @@ public class BangDuyetFile {
 
     }
     public void xuLyClickChuot(MouseEvent evt) {
-        bangHienThiThuMucHienHanh = (JTable) evt.getComponent();
+        bangHienThiThuMucHienHanh = (DroppableTable) evt.getComponent();
         int selectedRow = bangHienThiThuMucHienHanh.getSelectedRow();
         String str_TenFileDuocChon = getTenFile();
         if (!getTenFile().endsWith("\\")) {
@@ -298,14 +298,14 @@ public class BangDuyetFile {
     /**
      * @return the _bangHienThiThuMucHienHanh
      */
-    public JTable getTable() {
+    public DroppableTable getTable() {
         return bangHienThiThuMucHienHanh;
     }
 
     /**
      * @param _bangHienThiThuMucHienHanh the _bangHienThiThuMucHienHanh to set
      */
-    public void setTable(JTable table) {
+    public void setTable(DroppableTable table) {
         this.bangHienThiThuMucHienHanh = table;
     }
 
@@ -480,164 +480,3 @@ public class BangDuyetFile {
         this.modelBangHienThi = modelBangHienThi;
     }
 }//</editor-fold>
-// <editor-fold defaultstate="collapsed" desc="class DroppableTable">
-
-/**
- * Lớp DroppableTable là một JTable có khả năng DnD
- * tham khảo http://www.codeproject.com/KB/list/dnd.aspx?display=Print
- * @author Administrator
- */
-class DroppableTable extends JTable
-        implements DropTargetListener, DragSourceListener, DragGestureListener {
-
-    DropTarget dropTarget = new DropTarget(this, this);
-    DragSource dragSource = DragSource.getDefaultDragSource();
-    BangDuyetFile bangDuyetFile;
-
-    public DroppableTable(TableModel model, BangDuyetFile bangDuyet) {
-        bangDuyetFile = bangDuyet;
-        dragSource.createDefaultDragGestureRecognizer(
-                this, DnDConstants.ACTION_COPY, this);
-        setModel(model);
-    }
-//Các hàm bắt buộc phải override
-    public void dragDropEnd(DragSourceDropEvent DragSourceDropEvent) {
-    }
-
-    public void dragEnter(DragSourceDragEvent DragSourceDragEvent) {
-    }
-
-    public void dragExit(DragSourceEvent DragSourceEvent) {
-    }
-
-    public void dragOver(DragSourceDragEvent DragSourceDragEvent) {
-    }
-
-    public void dropActionChanged(DragSourceDragEvent DragSourceDragEvent) {
-    }
-
-    public void dragEnter(DropTargetDragEvent dropTargetDragEvent) {
-        dropTargetDragEvent.acceptDrag(DnDConstants.ACTION_COPY_OR_MOVE);
-    }
-
-    public void dragExit(DropTargetEvent dropTargetEvent) {
-    }
-
-    public void dragOver(DropTargetDragEvent dropTargetDragEvent) {
-    }
-
-    public void dropActionChanged(DropTargetDragEvent dropTargetDragEvent) {
-    }
-
-    /**
-     * Xử lý xử kiện khi kéo thả file vào DTable
-     * @param dropTargetDropEvent   tham số của xử kiện
-     */
-    public synchronized void drop(DropTargetDropEvent dropTargetDropEvent) {
-        try {
-            Transferable tr = dropTargetDropEvent.getTransferable();
-            //Nếu đối tượng phù hợp được drop
-            if (tr.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-                //Đặt xử kiện là copy
-                dropTargetDropEvent.acceptDrop(DnDConstants.ACTION_COPY);
-                java.util.List fileList = (java.util.List) tr.getTransferData(DataFlavor.javaFileListFlavor);
-                //Tương đương foreach
-                Iterator iterator = fileList.iterator();
-                while (iterator.hasNext()) {
-                    File file = (File) iterator.next();
-                    BoQuanLyFile.copyDirectory(file, 
-                            new File(bangDuyetFile.getTenFile() + "\\" + file.getName()), false);
-                 //   JOptionPane.showMessageDialog(null, file.getAbsolutePath());
-                //((DefaultListModel)getModel()).addElement(file.getPath());
-
-                    bangDuyetFile.capNhatBangDuyetThuMuc(bangDuyetFile.getTenFile(), bangDuyetFile.getScrollPane_HienThiBang());
-                }
-                dropTargetDropEvent.getDropTargetContext().dropComplete(true);
-            } else {
-                System.err.println("Rejected");
-                dropTargetDropEvent.rejectDrop();
-            }
-        } catch (UnsupportedFlavorException ex) {
-            ex.printStackTrace();
-            dropTargetDropEvent.rejectDrop();
-            Logger.getLogger(DroppableTable.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException io) {
-            io.printStackTrace();
-            dropTargetDropEvent.rejectDrop();
-        }
-    }
-
-    public void dragGestureRecognized(DragGestureEvent dragGestureEvent) {
-        if (getSelectedRow() == -1) {
-            return;
-        }
-        int obj = getSelectedRow();
-        if (obj < 0) {
-            // Nothing selected, nothing to drag
-            System.out.println("Nothing selected - beep");
-            getToolkit().beep();
-        } else {
-
-            FileSelection transferable =
-                    new FileSelection(new File(getValueAt(obj, 3).toString()));
-            dragGestureEvent.startDrag(
-                    DragSource.DefaultCopyDrop,
-                    transferable,
-                    this);
-        }
-    }
-//</editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Class FileSelection">
-
-    /**
-     * Tạo lớp lấy thông tin file được chọn để đưa ra cho WindowsExplorer
-     * tham khảo http://www.codeproject.com/KB/list/dnd.aspx?display=Print
-     */
-    public class FileSelection extends Vector implements Transferable {
-
-        final static int FILE = 0;
-        final static int STRING = 1;
-        final static int PLAIN = 2;
-        DataFlavor flavors[] = {DataFlavor.javaFileListFlavor,
-            DataFlavor.stringFlavor,
-            DataFlavor.plainTextFlavor};
-
-        public FileSelection(File file) {
-            addElement(file);
-        }
-        /* Returns the array of flavors in which it can provide the data. */
-
-        public synchronized DataFlavor[] getTransferDataFlavors() {
-            return flavors;
-        }
-        /* Returns whether the requested flavor is supported by this object. */
-        /* Kiểm tra xem đối tượng được chọn có hợp lệ không */
-
-        public boolean isDataFlavorSupported(DataFlavor flavor) {
-            boolean b = false;
-            b |= flavor.equals(flavors[FILE]);
-            b |= flavor.equals(flavors[STRING]);
-            b |= flavor.equals(flavors[PLAIN]);
-            return (b);
-        }
-
-        /**
-         * If the data was requested in the "java.lang.String" flavor,
-         * return the String representing the selection.
-         * trả về đối tượng thích hợp nếu File, hay đường dẫn tuyệt đối của file
-         */
-        public synchronized Object getTransferData(DataFlavor flavor)
-                throws UnsupportedFlavorException, IOException {
-            if (flavor.equals(flavors[FILE])) {
-                return this;
-            } else if (flavor.equals(flavors[PLAIN])) {
-                return new StringReader(((File) elementAt(0)).getAbsolutePath());
-            } else if (flavor.equals(flavors[STRING])) {
-                return ((File) elementAt(0)).getAbsolutePath();
-            } else {
-                throw new UnsupportedFlavorException(flavor);
-            }
-        }
-    }
-}
-//</editor-fold>
