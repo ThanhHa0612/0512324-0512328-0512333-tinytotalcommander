@@ -121,7 +121,8 @@ public class BoQuanLyFile {
      */
      public static void copyDirectory(File srcPath, File dstPath,boolean xoatatca)
                                throws IOException{
-
+        JOptionPane overwritePrompt = new JOptionPane();
+            Object[] options = {"Yes","Yes to all","No"};
         if (srcPath.isDirectory()){
             if (!dstPath.exists()){
                 dstPath.mkdir();
@@ -130,8 +131,7 @@ public class BoQuanLyFile {
             String namedir = srcPath.getName();
             dstPath = new File (dstPath + "/" + namedir);
 
-            JOptionPane overwritePrompt = new JOptionPane();
-            Object[] options = {"Yes","Yes to all","No"};
+            
             if (dstPath.exists() && xoatatca == false){
                int n = JOptionPane.showOptionDialog(overwritePrompt,
                                 "Already exists. Overwrite?",
@@ -167,8 +167,32 @@ public class BoQuanLyFile {
           if(!srcPath.exists()){//ko tồn tại
                 return;
           }
+          //da co file o thu muc dich
+          
+            else{ //chua co
+              
 
-            else{
+                if (dstPath.exists() && xoatatca == false){
+               int n = JOptionPane.showOptionDialog(overwritePrompt,
+                                "Already exists. Overwrite?",
+                                "Overwrite All File?",
+                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.WARNING_MESSAGE,
+                                null,
+                                options,
+                                options[2]);
+               if(n ==0 )
+                    dstPath.delete();
+               if(n ==1){
+                    dstPath.delete();
+                    xoatatca = true;
+               }
+               if(n==2){
+                   return;
+               }
+
+            }
+                
                 InputStream in = new FileInputStream(srcPath.getAbsoluteFile());
                 OutputStream out = new FileOutputStream(dstPath.getAbsoluteFile());
                 byte[] buf = new byte[1024];
@@ -181,6 +205,7 @@ public class BoQuanLyFile {
             }
         }
     }
+    
 
 
 

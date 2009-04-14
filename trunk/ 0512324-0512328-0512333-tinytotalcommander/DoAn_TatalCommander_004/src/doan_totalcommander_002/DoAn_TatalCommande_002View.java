@@ -1189,8 +1189,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         try {
             // TODO add your handling code here:
-            File f1 = new File("F:\\a");
-            File f2 = new File("F:\\b");
+            File f1 = new File("F:\\2.txt");
+            File f2 = new File("F:\\b\\2.txt");
             BoQuanLyFile.copyDirectory(f1,f2,false);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
@@ -1202,7 +1202,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
         try {
             // TODO add your handling code here:
-            BoQuanLyFile.movefile("F:\\2.txt", "F:\\a\\2.txt");
+            BoQuanLyFile.movefile("F:\\a", "F:\\b\\a");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
