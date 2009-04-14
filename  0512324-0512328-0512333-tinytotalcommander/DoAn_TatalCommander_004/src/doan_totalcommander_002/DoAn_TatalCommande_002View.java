@@ -9,6 +9,8 @@ import QuanLyFile.Dialog_Xem_ChinhSuaFile;
 import QuanLyFile.Dialog_SoSanhFile;
 import DuyetFile.EventListener_ClickChuotVaoBangDuyetFile;
 import DuyetFile.BangDuyetFile;
+import DuyetFile.CayDuyetFile;
+import DuyetFile.EventListener_ClickChuotVaoCayDuyetFile;
 import QuanLyFile.Dialog_CatNho;
 import QuanLyFile.Dialog_GhepNoi;
 import QuanLyFile.Dialog_TimFile;
@@ -41,11 +43,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 
 public class DoAn_TatalCommande_002View extends FrameView {
-    private BangDuyetFile _bangTrai;
-    private BangDuyetFile _bangPhai;
+    private BangDuyetFile bangTrai;
+    private BangDuyetFile bangPhai;
 //    private jEnum_CacBang _enum_BangHienTai;
-    private BangDuyetFile _bangHienTai;
-    int dem = 1;
+    private BangDuyetFile bangHienTai;
+    private CayDuyetFile cayDuyetFile;
 
     public DoAn_TatalCommande_002View(SingleFrameApplication app) {
         super(app);
@@ -68,62 +70,76 @@ public class DoAn_TatalCommande_002View extends FrameView {
 /*---------------------------------------------------------------------------------------*/
         
 /*---------------------Khởi tạo các bảng duyệt thư mục-----------------------------------*/
-        _bangTrai = new BangDuyetFile("C:", jScrollPane_PhanChinh_BangTrai);
-        _bangPhai = new BangDuyetFile("D:", jScrollPane_PhanChinh_BangPhai);
+        bangTrai = new BangDuyetFile("C:", jScrollPane_PhanChinh_BangTrai);
+        bangPhai = new BangDuyetFile("D:", jScrollPane_PhanChinh_BangPhai);
 //        _enum_BangHienTai = jEnum_CacBang.BangTrai;
-        _bangHienTai = _bangTrai;
-        _bangPhai.getTable().clearSelection();
+        bangHienTai = bangTrai;
+        bangPhai.getTable().clearSelection();
         //System.setProperty("user.dir", _bangHienTai.getTenFile());
 
-        _bangTrai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
+        //Khi nguoi dung thay doi thu muc cua bang ben phai
+        bangTrai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
                 jLabel1.setText("Ban chon cua so trai");
-                _bangPhai.getTable().clearSelection();
+                bangPhai.getTable().clearSelection();
 //                _enum_BangHienTai = jEnum_CacBang.BangTrai;
-                _bangHienTai = _bangTrai;
+                bangHienTai = bangTrai;
                 String str_PhanVung;
-                if (_bangTrai.getTenFile().contains("\\"))
-                    str_PhanVung = _bangTrai.getTenFile().substring(0, "C:\\".length());
+                if (bangTrai.getTenFile().contains("\\"))
+                    str_PhanVung = bangTrai.getTenFile().substring(0, "C:\\".length());
                 else
-                    str_PhanVung = _bangTrai.getTenFile() + "\\";
+                    str_PhanVung = bangTrai.getTenFile() + "\\";
                 jComboBox_PhanChinh_BangTrai.setSelectedItem(str_PhanVung);
                 //System.setProperty("user.dir", _bangHienTai.getTenFile());
                 //JOptionPane.showMessageDialog(null, System.getProperty("user.dir"));
+                //Goi ham cap nhat cay
             }
         });
-        _bangPhai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
+        
+        //Khi nguoi dung thay doi thu muc cua bang ben phai
+        bangPhai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
                 jLabel1.setText("Ban chon cua so phai");
-                _bangTrai.getTable().clearSelection();
+                bangTrai.getTable().clearSelection();
                 //_enum_BangHienTai = jEnum_CacBang.BangPhai;
-                _bangHienTai = _bangPhai;
+                bangHienTai = bangPhai;
 
                 String str_PhanVung;
-                if (_bangPhai.getTenFile().contains("\\"))
-                    str_PhanVung = _bangPhai.getTenFile().substring(0, "C:\\".length());
+                if (bangPhai.getTenFile().contains("\\"))
+                    str_PhanVung = bangPhai.getTenFile().substring(0, "C:\\".length());
                 else
-                    str_PhanVung = _bangPhai.getTenFile() + "\\";
+                    str_PhanVung = bangPhai.getTenFile() + "\\";
                 jComboBox_PhanChinh_BangPhai.setSelectedItem(str_PhanVung);
+
+                //Goi ham cap nhat cay
             }
         });
 /*---------------------------------------------------------------------------------------*/
 
 /*---------Khởi tạo treeview và 2 combo box hiện thị các ổ đĩa----------------------------*/
+        /*---------Khởi tạo treeview và 2 combo box hiện thị các ổ đĩa----------------------------*/
+        cayDuyetFile = new CayDuyetFile(jScrollPane_PhanChinh_Tree);
+        cayDuyetFile.addEventListener_ClickChuotVaoCayDuyetFile(new EventListener_ClickChuotVaoCayDuyetFile() {
+
+            public void Event_ClickChuotVaoCayDuyetFile_Occurred(String str_fileduocchon) {
+               jLabel1.setText(str_fileduocchon);
+            }
+        }
+        )  ;
         jComboBox_PhanChinh_BangPhai.removeAllItems();
         jComboBox_PhanChinh_BangTrai.removeAllItems();
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("My Computer");
         for (File file : File.listRoots()){
-            DefaultMutableTreeNode child1 = new DefaultMutableTreeNode(file.getPath());
             jComboBox_PhanChinh_BangPhai.addItem(file.getPath());
             jComboBox_PhanChinh_BangTrai.addItem(file.getPath());
-            root.add(child1);
         }
-        jComboBox_PhanChinh_BangPhai.setSelectedItem(_bangTrai.getTenFile());
-        jComboBox_PhanChinh_BangTrai.setSelectedItem(_bangPhai.getTenFile());
-        jTree1 = new JTree(root);
-        jScrollPane_PhanChinh_Tree.setViewportView(jTree1);
+        jComboBox_PhanChinh_BangPhai.setSelectedItem(bangTrai.getTenFile());
+        jComboBox_PhanChinh_BangTrai.setSelectedItem(bangPhai.getTenFile());
+        //jTree1 = new JTree(root);
+        //jScrollPane_PhanChinh_Tree.setViewportView(jTree1);
 /*---------------------------------------------------------------------------------------*/
-
+        bangTrai.capNhatBangDuyetThuMuc("C:", jScrollPane_PhanChinh_BangTrai);
+        bangPhai.capNhatBangDuyetThuMuc("D:", jScrollPane_PhanChinh_BangPhai);
+//
         //jTabbedPane1.addTab("C:", jTabbedPane1.getTabComponentAt(0));
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -193,16 +209,16 @@ public class DoAn_TatalCommande_002View extends FrameView {
  * Cập nhật lại các bảng trái, phải sau khi có hành động như tạo, xóa thư mục/tập tin
  */
     private void capNhatCacBang(File thuMucVuaCapNhat) {
-        if (_bangHienTai.getTenFile().equals(_bangPhai.getTenFile())) {
-            _bangPhai.capNhatBangDuyetThuMuc(_bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
+        if (bangHienTai.getTenFile().equals(bangPhai.getTenFile())) {
+            bangPhai.capNhatBangDuyetThuMuc(bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
         } 
-        if(_bangHienTai.getTenFile().equals(_bangTrai.getTenFile())) {
-            _bangTrai.capNhatBangDuyetThuMuc(_bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
+        if(bangHienTai.getTenFile().equals(bangTrai.getTenFile())) {
+            bangTrai.capNhatBangDuyetThuMuc(bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
         }
-        if(_bangTrai.getTenFile().equalsIgnoreCase(thuMucVuaCapNhat.getPath()))
-            _bangTrai.capNhatBangDuyetThuMuc(_bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
-        if(_bangPhai.getTenFile().equalsIgnoreCase(thuMucVuaCapNhat.getPath()))
-            _bangPhai.capNhatBangDuyetThuMuc(_bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
+        if(bangTrai.getTenFile().equalsIgnoreCase(thuMucVuaCapNhat.getPath()))
+            bangTrai.capNhatBangDuyetThuMuc(bangTrai.getTenFile(), jScrollPane_PhanChinh_BangTrai);
+        if(bangPhai.getTenFile().equalsIgnoreCase(thuMucVuaCapNhat.getPath()))
+            bangPhai.capNhatBangDuyetThuMuc(bangPhai.getTenFile(), jScrollPane_PhanChinh_BangPhai);
     }
 
 
@@ -933,10 +949,10 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jMenuItem_Edit_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_Edit_BackActionPerformed
         // TODO add your handling code here:
-        if (_bangHienTai == _bangTrai)
-            _bangTrai.quayVeThuMucCha();
+        if (bangHienTai == bangTrai)
+            bangTrai.quayVeThuMucCha();
         else
-            _bangPhai.quayVeThuMucCha();
+            bangPhai.quayVeThuMucCha();
     }//GEN-LAST:event_jMenuItem_Edit_BackActionPerformed
     /**
      * Tạo tên mặc định cho thư mục mới có dạng NewFolderx với x từ 0 đến 2^20
@@ -987,7 +1003,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         file.mkdir();
         */
         String str_TenThuMucMoi = 
-                JOptionPane.showInputDialog("Nhập tên thư mục mới:", taoTenThuMucMoiMacDinh(_bangHienTai.getTenFile()));
+                JOptionPane.showInputDialog("Nhập tên thư mục mới:", taoTenThuMucMoiMacDinh(bangHienTai.getTenFile()));
         //File file = new File(str_TenThuMucMoi).
         //String str_DuongDanDayDuThuMucMoi = _bangHienTai.getTenFile() + "\\";
         //System.setProperty(str_TenThuMucMoi, str_TenThuMucMoi)
@@ -1016,7 +1032,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jMenuItem_File_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_XoaActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> str_CacDuongDan = _bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        ArrayList<String> str_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
         //Nếu không đang chọn thư mục nào hoặc không xác nhận xóa
         if (str_CacDuongDan.size() == 0 || JOptionPane.showConfirmDialog(null, "Bạn muốn xóa " +
                     str_CacDuongDan.size() + " tập tin/ thư mục?") != 0)
@@ -1032,7 +1048,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     }//GEN-LAST:event_jMenuItem_File_XoaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        _bangTrai.duyetCacThuMucDatBiet("My Documents", jTabbedPane_PhanChinh_BangTrai);
+        bangTrai.duyetCacThuMucDatBiet("My Documents", jTabbedPane_PhanChinh_BangTrai);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -1043,21 +1059,21 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jComboBox_PhanChinh_BangPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
         // TODO add your handling code here:
-        if (jComboBox_PhanChinh_BangPhai.getSelectedItem() != null && _bangPhai.getTenFile() != null
-                && jComboBox_PhanChinh_BangPhai.getSelectedItem().toString().charAt(0) != _bangPhai.getTenFile().charAt(0)){
+        if (jComboBox_PhanChinh_BangPhai.getSelectedItem() != null && bangPhai.getTenFile() != null
+                && jComboBox_PhanChinh_BangPhai.getSelectedItem().toString().charAt(0) != bangPhai.getTenFile().charAt(0)){
             //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
-            _bangPhai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangPhai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangPhai);
-            jTabbedPane_PhanChinh_BangPhai.setTitleAt(0, _bangPhai.getTenFile());
+            bangPhai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangPhai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangPhai);
+            jTabbedPane_PhanChinh_BangPhai.setTitleAt(0, bangPhai.getTenFile());
         }
 }//GEN-LAST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
 
     private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
         // TODO add your handling code here:
-        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null && _bangTrai.getTenFile() != null
-                && jComboBox_PhanChinh_BangTrai.getSelectedItem().toString().charAt(0) != _bangTrai.getTenFile().charAt(0)){
+        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null && bangTrai.getTenFile() != null
+                && jComboBox_PhanChinh_BangTrai.getSelectedItem().toString().charAt(0) != bangTrai.getTenFile().charAt(0)){
             //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
-            _bangTrai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangTrai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangTrai);
-            jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, _bangTrai.getTenFile());
+            bangTrai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangTrai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangTrai);
+            jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, bangTrai.getTenFile());
         }
 }//GEN-LAST:event_jComboBox_PhanChinh_BangTraiActionPerformed
 
@@ -1098,7 +1114,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     }
     private void jMenuItem_File_XemFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_XemFileActionPerformed
         try {
-            hienThiDialogXemFile(_bangHienTai.layDuongDanDayDuFileDangDuocChon().get(0),
+            hienThiDialogXemFile(bangHienTai.layDuongDanDayDuFileDangDuocChon().get(0),
                     jEnum_CacEnumTrongBai.XemFile);
         } catch (IOException ex) {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
@@ -1113,7 +1129,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         } catch (IOException ex) {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-        File file = new File(_bangHienTai.layDuongDanDayDuFileDangDuocChon().get(0));
+        File file = new File(bangHienTai.layDuongDanDayDuFileDangDuocChon().get(0));
         if (file.isFile())
             thucThiCommandLine("notepad " + file.getPath());
     }//GEN-LAST:event_jMenuItem_File_ChinhSuaTapTinActionPerformed
@@ -1141,22 +1157,22 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private int thucThiCommandLine(String str_Command){
         File file = new File(str_Command + "\\");//trường hợp người dùng đánh thiếu ký tự \
         if (file.isDirectory()){//Nếu là thư mục khác
-            if(_bangHienTai == _bangPhai)
-                _bangPhai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangPhai);
+            if(bangHienTai == bangPhai)
+                bangPhai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangPhai);
             else
-                _bangTrai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangTrai);
+                bangTrai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangTrai);
             return 0;
         }
 
-        file = new File(_bangHienTai.getTenFile() + "\\" + str_Command + "\\");
+        file = new File(bangHienTai.getTenFile() + "\\" + str_Command + "\\");
         if (file.isDirectory()){//Nếu là thư mục con của bảng hiện tại
-            if(_bangHienTai == _bangPhai)
-                _bangPhai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangPhai);
+            if(bangHienTai == bangPhai)
+                bangPhai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangPhai);
             else
-                _bangTrai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangTrai);
+                bangTrai.capNhatBangDuyetThuMuc(file.getPath(), jScrollPane_PhanChinh_BangTrai);
             return 0;
         }
-        file = new File(_bangHienTai.getTenFile() + "\\" + str_Command + "\\");
+        file = new File(bangHienTai.getTenFile() + "\\" + str_Command + "\\");
         if(file.exists())
             try {//Thử mở file trong thư mục hiện tại
                 Desktop.getDesktop().open(file);
@@ -1238,15 +1254,15 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private void jMenuItem_CatTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CatTapTinActionPerformed
         // TODO add your handling code here:
         //Lấy file đầu tiên được chọn
-        ArrayList<String> astr_CacDuongDan = _bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
         if (astr_CacDuongDan.size() == 0)
             return;
         String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
         
         if (new File(str_DuongDanFileDangChon).isFile()){//nếu là file
             //Lấy đường dẫn thư mục đích (là đường dẫn hiện tại của bảng ko được chọn)
-            String str_DuongDanThuMucDich = (_bangHienTai.getTenFile().equalsIgnoreCase(_bangPhai.getTenFile())) ?
-                _bangTrai.getTenFile() : _bangPhai.getTenFile();
+            String str_DuongDanThuMucDich = (bangHienTai.getTenFile().equalsIgnoreCase(bangPhai.getTenFile())) ?
+                bangTrai.getTenFile() : bangPhai.getTenFile();
 
             //tạo và cập nhật thông tin cho dialog
             Dialog_CatNho dialog = new Dialog_CatNho(null, false);
@@ -1259,7 +1275,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private void jMenuItem_NoiTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NoiTapTinActionPerformed
         // TODO add your handling code here:
         //Lấy file đầu tiên được chọn
-        ArrayList<String> astr_CacDuongDan = _bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
         if (astr_CacDuongDan.size() == 0)
             return;
         String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
@@ -1268,8 +1284,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 && str_DuongDanFileDangChon.endsWith(".001")){//Nếu là file và có phần mở rộng là 001
 
             //tạo đường dẫn file đích (là đường dẫn hiện tại của bảng ko được chọn và tên của file nguồn)
-            String str_DuongDanFileDich = (_bangHienTai.getTenFile().equalsIgnoreCase(_bangPhai.getTenFile())) ?
-                _bangTrai.getTenFile() : _bangPhai.getTenFile();
+            String str_DuongDanFileDich = (bangHienTai.getTenFile().equalsIgnoreCase(bangPhai.getTenFile())) ?
+                bangTrai.getTenFile() : bangPhai.getTenFile();
             str_DuongDanFileDich += fileDauTien.getName().substring(0,
                     fileDauTien.getName().lastIndexOf(".001"));
 
@@ -1287,7 +1303,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         Dialog_TimFile dialog = new Dialog_TimFile(null, true);
         dialog.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
-                _bangTrai.capNhatBangDuyetThuMuc(str_TenFileDuocChon, jScrollPane_PhanChinh_BangTrai);
+                bangTrai.capNhatBangDuyetThuMuc(str_TenFileDuocChon, jScrollPane_PhanChinh_BangTrai);
                 //jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, str_TenFileDuocChon);
             }
         });
