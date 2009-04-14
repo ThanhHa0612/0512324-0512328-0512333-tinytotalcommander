@@ -22,6 +22,7 @@ import javax.swing.plaf.FileChooserUI;
 public class MyComp_OpenSaveFile extends javax.swing.JPanel {
 
     private Boolean bTimFileLuu = false;
+    private JFileChooser fileChooser = new JFileChooser();
     /** Creates new form MyComp_OpenSaveFile */
     public MyComp_OpenSaveFile() {
         initComponents();
@@ -76,16 +77,15 @@ public class MyComp_OpenSaveFile extends javax.swing.JPanel {
 
     private void jButton_MoDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_MoDialogActionPerformed
         // TODO add your handling code here:
-        JFileChooser fc = new JFileChooser();
         int iLuaChonCuaNguoiDung;
-        iLuaChonCuaNguoiDung = getBTimFileLuu() ? fc.showSaveDialog(null) : fc.showSaveDialog(null);
+        iLuaChonCuaNguoiDung = getBTimFileLuu() ? getFileChooser().showSaveDialog(null) : getFileChooser().showSaveDialog(null);
         if (iLuaChonCuaNguoiDung == JFileChooser.APPROVE_OPTION){
-            String strDuongDanFile = fc.getSelectedFile().getAbsolutePath();
+            String strDuongDanFile = getFileChooser().getSelectedFile().getAbsolutePath();
             getJComboBox_DuongDanFile().setSelectedItem(strDuongDanFile);
             if(getJComboBox_DuongDanFile().getSelectedIndex() == -1)
                 getJComboBox_DuongDanFile().addItem(strDuongDanFile);
         }
-        phatSinhSuKien_DongFileChooser(fc);
+        phatSinhSuKien_DongFileChooser(getFileChooser());
     }//GEN-LAST:event_jButton_MoDialogActionPerformed
 
 //Các hàm sau phục vụ cho việc gởi sự kiện click chuột vào bảng ra ngoài (tham khảo từ nhiều nguồn trên mạng)
@@ -156,6 +156,13 @@ public class MyComp_OpenSaveFile extends javax.swing.JPanel {
      */
     public void setJComboBox_DuongDanFile(javax.swing.JComboBox jComboBox_DuongDanFile) {
         this.jComboBox_DuongDanFile = jComboBox_DuongDanFile;
+    }
+
+    /**
+     * @return the fileChooser
+     */
+    public JFileChooser getFileChooser() {
+        return fileChooser;
     }
 
 }

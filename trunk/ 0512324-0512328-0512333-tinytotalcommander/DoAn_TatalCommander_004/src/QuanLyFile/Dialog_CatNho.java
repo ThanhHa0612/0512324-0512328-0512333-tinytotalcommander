@@ -15,6 +15,7 @@ import doan_totalcommander_002.jEnum_CacEnumTrongBai;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +42,6 @@ public class Dialog_CatNho extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jTextField_ThuMucDich = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField_FileNguon = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         myComp_OpenSaveFile_FileNguon = new QuanLyFile.MyComp_OpenSaveFile();
         jPanel2 = new javax.swing.JPanel();
@@ -65,9 +65,6 @@ public class Dialog_CatNho extends javax.swing.JDialog {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jTextField_FileNguon.setText(resourceMap.getString("jTextField_FileNguon.text")); // NOI18N
-        jTextField_FileNguon.setName("jTextField_FileNguon"); // NOI18N
-
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
@@ -80,25 +77,19 @@ public class Dialog_CatNho extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(9, 9, 9)
-                        .addComponent(jTextField_FileNguon, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(myComp_OpenSaveFile_FileNguon, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_ThuMucDich, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(myComp_OpenSaveFile_FileNguon, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(jTextField_ThuMucDich, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField_FileNguon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
+                    .addComponent(jLabel3)
                     .addComponent(myComp_OpenSaveFile_FileNguon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -191,7 +182,7 @@ public class Dialog_CatNho extends javax.swing.JDialog {
             // TODO add your handling code here:
             long i_KichThuoc = Integer.valueOf(jComboBox_KichThuocFile.getSelectedItem().toString()) *
                     jEnum_CacEnumTrongBai.MB.value();
-            BoQuanLyFile.catFile(myComp_OpenSaveFile_FileNguon.getJComboBox_DuongDanFile().getSelectedItem().toString()
+            BoQuanLyFile.catFile(getMyComp_OpenSaveFile_FileNguon().getJComboBox_DuongDanFile().getSelectedItem().toString()
                     , jTextField_ThuMucDich.getText(), i_KichThuoc);
             //Thông báo thành công và xác nhận thoát
             if (JOptionPane.showConfirmDialog(null, "Cắt file thành công! Bạn muốn thoát?"
@@ -238,23 +229,22 @@ public class Dialog_CatNho extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField_FileNguon;
     private javax.swing.JTextField jTextField_ThuMucDich;
     private QuanLyFile.MyComp_OpenSaveFile myComp_OpenSaveFile_FileNguon;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @param jTextField_FileNguon the jTextField_FileNguon to set
-     */
-    public void setTextOfJTextField_FileNguon(String str_DuongDanFileNguon) {
-        this.jTextField_FileNguon.setText(str_DuongDanFileNguon);
-    }
 
     /**
      * @param jTextField_ThuMucDich the jTextField_ThuMucDich to set
      */
     public void setTextOfJTextField_ThuMucDich(String str_DuongDanThuMucDich) {
         this.jTextField_ThuMucDich.setText(str_DuongDanThuMucDich);
+    }
+
+    /**
+     * @return the myComp_OpenSaveFile_FileNguon
+     */
+    public QuanLyFile.MyComp_OpenSaveFile getMyComp_OpenSaveFile_FileNguon() {
+        return myComp_OpenSaveFile_FileNguon;
     }
 
 }
