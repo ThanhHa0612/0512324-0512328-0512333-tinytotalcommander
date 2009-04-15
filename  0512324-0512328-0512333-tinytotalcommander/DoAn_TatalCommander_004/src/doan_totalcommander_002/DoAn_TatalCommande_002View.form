@@ -484,7 +484,7 @@
                                   <Component id="jComboBox_PhanChinh_BangTrai" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="296" max="32767" attributes="0"/>
+                              <EmptySpace pref="298" max="32767" attributes="0"/>
                               <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -593,7 +593,7 @@
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTabbedPane_PhanChinh_BangPhai" pref="286" max="32767" attributes="0"/>
+                          <Component id="jTabbedPane_PhanChinh_BangPhai" pref="288" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -942,6 +942,15 @@
               <Properties>
                 <Property name="name" type="java.lang.String" value="jSeparator10" noResource="true"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="InfoNodeLAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="InfoNodeLAF.text"/>
+                <Property name="name" type="java.lang.String" value="InfoNodeLAF" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InfoNodeLAFActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
