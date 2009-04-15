@@ -34,8 +34,12 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
+import ch.randelshofer.quaqua.QuaquaManager;
 /**
  * The application's main frame.
  */
@@ -51,6 +55,24 @@ public class DoAn_TatalCommande_002View extends FrameView {
         super(app);
 
         initComponents();
+ /*---------------------Khởi tạo menu item cho LAF-------------------------------------------*/
+        UIManager.LookAndFeelInfo[] infos= UIManager.getInstalledLookAndFeels();
+        JMenuItem []items=new JMenuItem[infos.length];
+        for (int i=0; i<infos.length; i++){
+            items[i]=new JMenuItem(infos[i].getName());
+            items[i].setActionCommand(infos[i].getClassName());
+            items[i].addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    clickMenu(e);
+                }
+            });
+            this.LaF.add(items[i]);
+
+        }
+
+
+
 
 /*---------------------Khởi tạo các ScrollPane-------------------------------------------*/
         jScrollPane_PhanChinh_BangTrai.addPropertyChangeListener(new PropertyChangeListener() {
@@ -192,9 +214,21 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 }
             }
         });
-    }
+    }// dong view
 
     @Action
+
+   public void clickMenu(ActionEvent e){
+        String laf=e.getActionCommand();
+        try{
+            UIManager.setLookAndFeel(laf);
+            SwingUtilities.updateComponentTreeUI(DoAn_TatalCommande_002App.getApplication().getMainFrame());
+        }catch(Exception ex){
+
+        }
+    }
+
+
     public void showAboutBox() {
         if (aboutBox == null) {
             JFrame mainFrame = DoAn_TatalCommande_002App.getApplication().getMainFrame();
@@ -300,6 +334,9 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jCheckBoxMenuItem_fullView = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem_Brief = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem_Thumbnail = new javax.swing.JCheckBoxMenuItem();
+        LaF = new javax.swing.JMenu();
+        MacLAF = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JSeparator();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         jMenuItem_HienThiJavaDoc = new javax.swing.JMenuItem();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -496,7 +533,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -510,17 +547,17 @@ public class DoAn_TatalCommande_002View extends FrameView {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(201, 201, 201)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(jButton_ThucThiCommandLine)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox_ThucThiCommandLine, 0, 500, Short.MAX_VALUE)
+                    .addComponent(jComboBox_ThucThiCommandLine, 0, 498, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
         );
@@ -873,6 +910,23 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenu_View_Tree.add(jCheckBoxMenuItem_Thumbnail);
 
         menuBar.add(jMenu_View_Tree);
+
+        LaF.setText(resourceMap.getString("LaF.text")); // NOI18N
+        LaF.setName("LaF"); // NOI18N
+
+        MacLAF.setText(resourceMap.getString("MacLAF.text")); // NOI18N
+        MacLAF.setName("MacLAF"); // NOI18N
+        MacLAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MacLAFActionPerformed(evt);
+            }
+        });
+        LaF.add(MacLAF);
+
+        jSeparator10.setName("jSeparator10"); // NOI18N
+        LaF.add(jSeparator10);
+
+        menuBar.add(LaF);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setName("helpMenu"); // NOI18N
@@ -1326,8 +1380,20 @@ public class DoAn_TatalCommande_002View extends FrameView {
         }
 }//GEN-LAST:event_jButton13jButton_removeMouseClicked
 
+    private void MacLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MacLAFActionPerformed
+        // TODO add your handling code here:
+        try{
+         UIManager.setLookAndFeel(QuaquaManager.getLookAndFeelClassName());
+         SwingUtilities.updateComponentTreeUI(DoAn_TatalCommande_002App.getApplication().getMainFrame());
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
+}//GEN-LAST:event_MacLAFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu LaF;
+    private javax.swing.JMenuItem MacLAF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1383,6 +1449,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JScrollPane jScrollPane_PhanChinh_BangTrai;
     private javax.swing.JScrollPane jScrollPane_PhanChinh_Tree;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
