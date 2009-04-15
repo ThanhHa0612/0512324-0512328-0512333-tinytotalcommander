@@ -40,6 +40,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import ch.randelshofer.quaqua.QuaquaManager;
+
 /**
  * The application's main frame.
  */
