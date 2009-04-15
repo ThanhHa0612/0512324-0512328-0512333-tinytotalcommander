@@ -113,6 +113,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 //System.setProperty("user.dir", _bangHienTai.getTenFile());
                 //JOptionPane.showMessageDialog(null, System.getProperty("user.dir"));
                 //Goi ham cap nhat cay
+                int viTriThanhCuon = cayDuyetFile.capNhatCay(str_TenFileDuocChon);
+                jScrollPane_PhanChinh_Tree.getVerticalScrollBar().setValue(viTriThanhCuon);
             }
         });
         
@@ -132,6 +134,10 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 jComboBox_PhanChinh_BangPhai.setSelectedItem(str_PhanVung);
 
                 //Goi ham cap nhat cay
+                int viTriThanhCuon = cayDuyetFile.capNhatCay(str_TenFileDuocChon);
+                jScrollPane_PhanChinh_Tree.getVerticalScrollBar().setValue(viTriThanhCuon);
+
+
             }
         });
 /*---------------------------------------------------------------------------------------*/
