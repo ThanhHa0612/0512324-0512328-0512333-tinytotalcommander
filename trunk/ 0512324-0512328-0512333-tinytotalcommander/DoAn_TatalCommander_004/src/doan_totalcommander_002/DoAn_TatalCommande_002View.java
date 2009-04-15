@@ -40,6 +40,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import ch.randelshofer.quaqua.QuaquaManager;
+import net.infonode.gui.laf.InfoNodeLookAndFeel;
 
 /**
  * The application's main frame.
@@ -344,6 +345,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         LaF = new javax.swing.JMenu();
         MacLAF = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JSeparator();
+        InfoNodeLAF = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         jMenuItem_HienThiJavaDoc = new javax.swing.JMenuItem();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -933,6 +935,15 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jSeparator10.setName("jSeparator10"); // NOI18N
         LaF.add(jSeparator10);
 
+        InfoNodeLAF.setText(resourceMap.getString("InfoNodeLAF.text")); // NOI18N
+        InfoNodeLAF.setName("InfoNodeLAF"); // NOI18N
+        InfoNodeLAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InfoNodeLAFActionPerformed(evt);
+            }
+        });
+        LaF.add(InfoNodeLAF);
+
         menuBar.add(LaF);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
@@ -1397,8 +1408,19 @@ public class DoAn_TatalCommande_002View extends FrameView {
     }
 }//GEN-LAST:event_MacLAFActionPerformed
 
+    private void InfoNodeLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoNodeLAFActionPerformed
+        // TODO add your handling code here:
+        try{
+         UIManager.setLookAndFeel(new InfoNodeLookAndFeel());
+         SwingUtilities.updateComponentTreeUI(DoAn_TatalCommande_002App.getApplication().getMainFrame());
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
+    }//GEN-LAST:event_InfoNodeLAFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem InfoNodeLAF;
     private javax.swing.JMenu LaF;
     private javax.swing.JMenuItem MacLAF;
     private javax.swing.JButton jButton1;
