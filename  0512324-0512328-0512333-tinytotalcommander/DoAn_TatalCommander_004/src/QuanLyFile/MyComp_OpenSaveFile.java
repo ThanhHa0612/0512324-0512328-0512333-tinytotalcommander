@@ -122,7 +122,7 @@ public class MyComp_OpenSaveFile extends javax.swing.JPanel {
      * Gỡ bỏ sự kiện khỏi classes
      * @param listener  Sự kiện cần gỡ bỏ
      */
-    public void boEventListener_ClickChuotVaoBangDuyetFile(EventListener_HoanThanhCongViec listener) {
+    public void boEventListener_HoanThanhCongViec(EventListener_HoanThanhCongViec listener) {
         listenerList.remove(EventListener_HoanThanhCongViec.class, listener);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

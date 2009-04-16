@@ -10,8 +10,10 @@ import QuanLyFile.Dialog_SoSanhFile;
 import DuyetFile.EventListener_ClickChuotVaoBangDuyetFile;
 import DuyetFile.BangDuyetFile;
 import DuyetFile.CayDuyetFile;
+import DuyetFile.DroppableTable;
 import DuyetFile.EventListener_ClickChuotVaoCayDuyetFile;
 import QuanLyFile.Dialog_CatNho;
+import QuanLyFile.Dialog_Copy;
 import QuanLyFile.Dialog_GhepNoi;
 import QuanLyFile.Dialog_TimFile;
 import java.awt.Desktop;
@@ -40,6 +42,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import ch.randelshofer.quaqua.QuaquaManager;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 import net.infonode.gui.laf.InfoNodeLookAndFeel;
 
 
@@ -151,7 +156,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
         cayDuyetFile.addEventListener_ClickChuotVaoCayDuyetFile(new EventListener_ClickChuotVaoCayDuyetFile() {
 
             public void Event_ClickChuotVaoCayDuyetFile_Occurred(String str_fileduocchon) {
-               jLabel1.setText(str_fileduocchon);
+               if (bangHienTai == bangPhai){
+                   bangPhai.capNhatBangDuyetThuMuc(str_fileduocchon, jScrollPane_PhanChinh_BangPhai);
+               }
+               else
+                   bangTrai.capNhatBangDuyetThuMuc(str_fileduocchon, jScrollPane_PhanChinh_BangTrai);
             }
         }
         )  ;
@@ -168,6 +177,18 @@ public class DoAn_TatalCommande_002View extends FrameView {
 /*---------------------------------------------------------------------------------------*/
         bangTrai.capNhatBangDuyetThuMuc("C:", jScrollPane_PhanChinh_BangTrai);
         bangPhai.capNhatBangDuyetThuMuc("D:", jScrollPane_PhanChinh_BangPhai);
+
+        Timer timer = new Timer(10 * 1000, new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
+                        , jScrollPane_PhanChinh_BangTrai);
+
+                bangPhai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangPhai.getToolTipText()
+                        , jScrollPane_PhanChinh_BangPhai);
+            }
+        });
+        timer.start();
 //
         //jTabbedPane1.addTab("C:", jTabbedPane1.getTabComponentAt(0));
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -311,8 +332,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jTabbedPane_PhanChinh_BangPhai = new javax.swing.JTabbedPane();
         jScrollPane_PhanChinh_BangPhai = new javax.swing.JScrollPane();
         jTextField3 = new javax.swing.JTextField();
-        jComboBox_PhanChinh_BangPhai = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
+        jComboBox_PhanChinh_BangPhai = new javax.swing.JComboBox();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu jMenu_File = new javax.swing.JMenu();
         jMenuItem_File_XemFile = new javax.swing.JMenuItem();
@@ -661,13 +682,14 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,6 +722,10 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jTextField3.setEnabled(false);
         jTextField3.setName("jTextField3"); // NOI18N
 
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel2.setName("jLabel2"); // NOI18N
+
         jComboBox_PhanChinh_BangPhai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_PhanChinh_BangPhai.setName("jComboBox_PhanChinh_BangPhai"); // NOI18N
         jComboBox_PhanChinh_BangPhai.addActionListener(new java.awt.event.ActionListener() {
@@ -708,10 +734,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
             }
         });
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel2.setName("jLabel2"); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -719,16 +741,17 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
             .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
                 .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1164,8 +1187,25 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        //File file = new File("E:\\Temp E\\Test VS2k8\\");
-        //file.
+        //Kiểm tra xem người dùng có chọn file nào không?
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file để cắt!");
+            return;
+        }
+        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+
+        //tạo file các file nguồn và đích
+        File f1 = new File(str_DuongDanFileDangChon);
+        File f2 = bangHienTai != bangPhai ? new File(bangPhai.getTenFile()) : new File(bangPhai.getTenFile());
+
+        Dialog_Copy dialog = new Dialog_Copy(null, false);
+        
+        dialog.getJTextField_Dich().setText(f2.getAbsolutePath());
+        dialog.getJTextField_Nguon().setText(f1.getAbsolutePath());
+
+        dialog.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jComboBox_PhanChinh_BangPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
@@ -1327,27 +1367,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
     }//GEN-LAST:event_jMenuItem_File_SoSanhActionPerformed
 //copy click
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
-        try {
-            // TODO add your handling code here:
-            File f1 = new File("F:\\2.txt");
-            File f2 = new File("F:\\b\\2.txt");
-            BoQuanLyFile.copyDirectory(f1,f2,false);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_jButton10MouseClicked
 //rename click
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        try {
-            // TODO add your handling code here:
-            BoQuanLyFile.movefile("F:\\a", "F:\\b\\a");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_jButton11MouseClicked
 
     private void jButton_renameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_renameMouseClicked

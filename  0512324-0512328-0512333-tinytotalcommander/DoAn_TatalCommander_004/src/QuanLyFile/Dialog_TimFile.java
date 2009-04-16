@@ -40,7 +40,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener,
                                         PropertyChangeListener{
-
     Task task = new Task();
     private BangDuyetFile bangDuyetFile;
     /** Creates new form Dialog_TimFile */

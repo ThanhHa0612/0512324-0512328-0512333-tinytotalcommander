@@ -17,6 +17,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 
@@ -24,7 +26,7 @@ import javax.swing.JTextPane;
  * gồm các hàm hộ trở xử lý file như hiện thị file, doc file...
  * @author Administrator
  */
-public class BoQuanLyFile {
+public class BoQuanLyFile extends JComponent{
     // <editor-fold defaultstate="collapsed" desc="Đã hoàn thành">
     /**
      *
@@ -120,7 +122,7 @@ public class BoQuanLyFile {
      * @param dstpath    đường dẫn file,folder đích
      *
      */
-     public static void copyDirectory(File srcPath, File dstPath,boolean xoatatca)
+     public void copyDirectory(File srcPath, File dstPath,boolean xoatatca)
                                throws IOException{
         JOptionPane overwritePrompt = new JOptionPane();
             Object[] options = {"Yes","Yes to all","No"};
@@ -193,7 +195,8 @@ public class BoQuanLyFile {
                }
 
             }
-                
+
+                this.firePropertyChange("DangCopy", "", srcPath.getCanonicalPath());
                 InputStream in = new FileInputStream(srcPath.getAbsoluteFile());
                 OutputStream out = new FileOutputStream(dstPath.getAbsoluteFile());
                 byte[] buf = new byte[1024];
@@ -268,7 +271,7 @@ public class BoQuanLyFile {
      * @throws java.io.FileNotFoundException
      * @throws java.io.IOException
      */
-    public static boolean movefile(String oldFile, String newFile) throws FileNotFoundException, IOException{
+    public boolean movefile(String oldFile, String newFile) throws FileNotFoundException, IOException{
 
       File f1 = new File(oldFile);
       File f2 = new File(newFile);
@@ -306,13 +309,18 @@ public class BoQuanLyFile {
      * @param l_KichThuoc               kích thước mỗi file sau khi cắt
      * @return
      */
-    public static boolean catFile (String str_DuongDanFileNguon, String str_DuongDanThuMucDich, long l_KichThuoc) throws IOException{
+    public boolean catFile (String str_DuongDanFileNguon, String str_DuongDanThuMucDich, long l_KichThuoc) throws IOException{
         File fileNguon = new File(str_DuongDanFileNguon);
         String str_DuongDanChungCuaFileDich = str_DuongDanThuMucDich + "\\" + fileNguon.getName() + ".";
         int i_SttFileHienTai = 1001;
 
         long l_KichThuocDaCopy = 0;
+        int oldValue = (int)(fileNguon.length() / jEnum_CacEnumTrongBai.MB.value());
+
         while (l_KichThuocDaCopy < fileNguon.length()){
+            int newValue = (int)(l_KichThuocDaCopy / jEnum_CacEnumTrongBai.MB.value());
+            if (newValue % 5 == 0)
+                this.firePropertyChange("KichThuocDaCat", oldValue, newValue);
             //Tạo file có dạng filenguon.xxx
             //do stt hiện tại có 1001 để khi chuyển thành chuổi có thể giữ được những số 0 đầu
             //nên cần cắt chuổi từ vị trí 1 - 4

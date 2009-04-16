@@ -48,6 +48,7 @@ import javax.swing.table.TableModel;
 public class DroppableTable extends JTable
         implements DropTargetListener, DragSourceListener, DragGestureListener {
 
+    BoQuanLyFile boQuanLyFile = new BoQuanLyFile();
     DropTarget dropTarget = new DropTarget(this, this);
     DragSource dragSource = DragSource.getDefaultDragSource();
     BangDuyetFile bangDuyetFile;
@@ -108,7 +109,7 @@ public class DroppableTable extends JTable
                 Iterator iterator = fileList.iterator();
                 while (iterator.hasNext()) {
                     File file = (File) iterator.next();
-                    BoQuanLyFile.copyDirectory(file,
+                    boQuanLyFile.copyDirectory(file,
                             new File(bangDuyetFile.getTenFile() + "\\" + file.getName()), false);
                  //   JOptionPane.showMessageDialog(null, file.getAbsolutePath());
                 //((DefaultListModel)getModel()).addElement(file.getPath());
