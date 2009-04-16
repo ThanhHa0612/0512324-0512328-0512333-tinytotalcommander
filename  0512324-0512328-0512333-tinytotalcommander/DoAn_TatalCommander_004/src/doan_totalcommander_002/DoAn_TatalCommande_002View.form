@@ -938,11 +938,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MacLAFActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JSeparator" name="jSeparator10">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="jSeparator10" noResource="true"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="InfoNodeLAF">
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="InfoNodeLAF.text"/>
@@ -951,6 +946,20 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InfoNodeLAFActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="TinyLAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="TinyLAF.text"/>
+                <Property name="name" type="java.lang.String" value="TinyLAF" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TinyLAFActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JSeparator" name="jSeparator10">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator10" noResource="true"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
