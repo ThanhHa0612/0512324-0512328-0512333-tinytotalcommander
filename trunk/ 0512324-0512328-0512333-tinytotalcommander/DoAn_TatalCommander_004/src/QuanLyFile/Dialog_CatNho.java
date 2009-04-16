@@ -12,22 +12,46 @@
 package QuanLyFile;
 
 import doan_totalcommander_002.jEnum_CacEnumTrongBai;
+import java.awt.Cursor;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 /**
  * hiện thị dialog cắt nhỏ file
  * @author Administrator
  */
-public class Dialog_CatNho extends javax.swing.JDialog {
+public class Dialog_CatNho extends javax.swing.JDialog implements ActionListener,
+                                        PropertyChangeListener{
 
+    BoQuanLyFile boQuanLyFile = new BoQuanLyFile();
+    Task task = new Task();
     /** Creates new form Dialog_CatNho */
     public Dialog_CatNho(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        boQuanLyFile.addPropertyChangeListener(new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
+                if ("KichThuocDaCat" == evt.getPropertyName()) {
+                    int oldValue = Integer.parseInt(evt.getOldValue().toString());
+                    int newValue = Integer.parseInt(evt.getNewValue().toString());
+                    int i_PhanTramHoanThanh = newValue * 100 / oldValue;
+                    jProgressBar_Progress.setValue(i_PhanTramHoanThanh);
+                    jLabel_PhanTramHoanThanh.setText(String.valueOf(i_PhanTramHoanThanh) + "%");
+                }
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -50,6 +74,8 @@ public class Dialog_CatNho extends javax.swing.JDialog {
         jButton_Cat = new javax.swing.JButton();
         jButton_Thoát = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jProgressBar_Progress = new javax.swing.JProgressBar();
+        jLabel_PhanTramHoanThanh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_totalcommander_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(Dialog_CatNho.class);
@@ -126,21 +152,32 @@ public class Dialog_CatNho extends javax.swing.JDialog {
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
+        jProgressBar_Progress.setName("jProgressBar_Progress"); // NOI18N
+
+        jLabel_PhanTramHoanThanh.setText(resourceMap.getString("jLabel_PhanTramHoanThanh.text")); // NOI18N
+        jLabel_PhanTramHoanThanh.setName("jLabel_PhanTramHoanThanh"); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox_KichThuocFile, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_Cat, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_Thoát)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox_KichThuocFile, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Cat, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Thoát))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jProgressBar_Progress, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_PhanTramHoanThanh)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -153,7 +190,11 @@ public class Dialog_CatNho extends javax.swing.JDialog {
                     .addComponent(jButton_Thoát)
                     .addComponent(jButton_Cat)
                     .addComponent(jLabel4))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel_PhanTramHoanThanh)
+                    .addComponent(jProgressBar_Progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,27 +217,15 @@ public class Dialog_CatNho extends javax.swing.JDialog {
 
     private void jButton_CatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CatActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Bạn muốn cắc file? Các file đích (nếu có) sẽ bị xóa!!!"
-                , "Xác nhận ghép", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
+            , "Xác nhận ghép", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
                 return;
-        try {
-            // TODO add your handling code here:
-            long i_KichThuoc = Integer.valueOf(jComboBox_KichThuocFile.getSelectedItem().toString()) *
-                    jEnum_CacEnumTrongBai.MB.value();
-            BoQuanLyFile.catFile(getMyComp_OpenSaveFile_FileNguon().getJComboBox_DuongDanFile().getSelectedItem().toString()
-                    , jTextField_ThuMucDich.getText(), i_KichThuoc);
-            //Thông báo thành công và xác nhận thoát
-            if (JOptionPane.showConfirmDialog(null, "Cắt file thành công! Bạn muốn thoát?"
-                , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-                dispose();
-
-        } catch (IOException ex) {
-            Logger.getLogger(Dialog_CatNho.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Cắt file thất bại! Lỗi: " + ex.getMessage());
-        }
+        
+        actionPerformed(evt);
 }//GEN-LAST:event_jButton_CatActionPerformed
 
     private void jButton_ThoátActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ThoátActionPerformed
         // TODO add your handling code here:
+
         if (JOptionPane.showConfirmDialog(null, "Bạn muốn thoát?"
                 , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
         dispose();
@@ -227,8 +256,10 @@ public class Dialog_CatNho extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel_PhanTramHoanThanh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JProgressBar jProgressBar_Progress;
     private javax.swing.JTextField jTextField_ThuMucDich;
     private QuanLyFile.MyComp_OpenSaveFile myComp_OpenSaveFile_FileNguon;
     // End of variables declaration//GEN-END:variables
@@ -247,4 +278,95 @@ public class Dialog_CatNho extends javax.swing.JDialog {
         return myComp_OpenSaveFile_FileNguon;
     }
 
+    public void actionPerformed(ActionEvent e) {
+        jButton_Cat.setEnabled(false);
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        //Instances of javax.swing.SwingWorker are not reusuable, so
+        //we create new instances as needed.
+        task = new Task();
+        task.addPropertyChangeListener(this);
+        task.execute();
+    }
+
+    public void propertyChange(PropertyChangeEvent evt) {
+        
+    }
+    class Task extends SwingWorker<Void, Void> {
+        public void catFile(){
+           try {
+                // TODO add your handling code here:
+                long i_KichThuoc = Integer.valueOf(jComboBox_KichThuocFile.getSelectedItem().toString()) *
+                        jEnum_CacEnumTrongBai.MB.value();
+                String str_FileNguon = getMyComp_OpenSaveFile_FileNguon().getJComboBox_DuongDanFile().getSelectedItem().toString();
+                boQuanLyFile.catFile(str_FileNguon,jTextField_ThuMucDich.getText(), i_KichThuoc);
+                
+            } catch (IOException ex) {
+                Logger.getLogger(Dialog_CatNho.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Cắt file thất bại! Lỗi: " + ex.getMessage());
+            }
+        }
+        /*
+         * Main task. Executed in background thread.
+         */
+        @Override
+        public Void doInBackground() {
+            catFile();
+            return null;
+        }
+
+        /*
+         * Executed in event dispatching thread
+         */
+        @Override
+        public void done() {
+            Toolkit.getDefaultToolkit().beep();
+            jButton_Cat.setEnabled(true);
+            setCursor(null); //turn off the wait cursor
+            //jLabel_DuongDanDangTim.setText("Số file tìm được: " + jTable_TimDuoc.getRowCount());
+            jProgressBar_Progress.setValue(100);
+            jLabel_PhanTramHoanThanh.setText(100 + "%");
+            //Thông báo thành công và xác nhận thoát
+                if (JOptionPane.showConfirmDialog(null, "Cắt file thành công! Bạn muốn thoát?"
+                    , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                    dispose();
+
+        }
+    }
+//Các hàm sau phục vụ cho việc gởi sự kiện click chuột vào bảng ra ngoài (tham khảo từ nhiều nguồn trên mạng)
+    //http://www.exampledepot.com/egs/java.util/CustEvent.html
+    // Tạo một listener list
+    protected javax.swing.event.EventListenerList listenerList =
+            new javax.swing.event.EventListenerList();
+
+    /**
+     * Phát sinh sử kiện đóng file chooser
+     * @param evt tham số cho sự kiện
+     */
+    // This private class is used to fire MyEvents
+    void phatSinhSuKien_DongFileChooser(JFileChooser evt) {
+        Object[] listeners = listenerList.getListenerList();
+        // Each listener occupies two elements - the first is the listener class
+        // and the second is the listener instance
+        for (int i = 0; i < listeners.length; i += 2) {
+            if (listeners[i] == EventListener_HoanThanhCongViec.class) {
+                ((EventListener_HoanThanhCongViec) listeners[i + 1]).Event_DongFileChooser_Occurred(evt);
+            }
+        }
+    }
+
+    /**
+     * Đăng ký sự kiện cho classes
+     * @param listener  Sự kiện cần đăng ký
+     */
+    public void themEventListener_HoanThanhCongViec(EventListener_HoanThanhCongViec listener) {
+        listenerList.add(EventListener_HoanThanhCongViec.class, listener);
+    }
+
+    /**
+     * Gỡ bỏ sự kiện khỏi classes
+     * @param listener  Sự kiện cần gỡ bỏ
+     */
+    public void boEventListener_HoanThanhCongViec(EventListener_HoanThanhCongViec listener) {
+        listenerList.remove(EventListener_HoanThanhCongViec.class, listener);
+    }
 }
