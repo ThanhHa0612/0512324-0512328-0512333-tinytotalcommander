@@ -344,8 +344,9 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jCheckBoxMenuItem_Thumbnail = new javax.swing.JCheckBoxMenuItem();
         LaF = new javax.swing.JMenu();
         MacLAF = new javax.swing.JMenuItem();
-        jSeparator10 = new javax.swing.JSeparator();
         InfoNodeLAF = new javax.swing.JMenuItem();
+        TinyLAF = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JSeparator();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         jMenuItem_HienThiJavaDoc = new javax.swing.JMenuItem();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -932,9 +933,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         LaF.add(MacLAF);
 
-        jSeparator10.setName("jSeparator10"); // NOI18N
-        LaF.add(jSeparator10);
-
         InfoNodeLAF.setText(resourceMap.getString("InfoNodeLAF.text")); // NOI18N
         InfoNodeLAF.setName("InfoNodeLAF"); // NOI18N
         InfoNodeLAF.addActionListener(new java.awt.event.ActionListener() {
@@ -943,6 +941,18 @@ public class DoAn_TatalCommande_002View extends FrameView {
             }
         });
         LaF.add(InfoNodeLAF);
+
+        TinyLAF.setText(resourceMap.getString("TinyLAF.text")); // NOI18N
+        TinyLAF.setName("TinyLAF"); // NOI18N
+        TinyLAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TinyLAFActionPerformed(evt);
+            }
+        });
+        LaF.add(TinyLAF);
+
+        jSeparator10.setName("jSeparator10"); // NOI18N
+        LaF.add(jSeparator10);
 
         menuBar.add(LaF);
 
@@ -1418,11 +1428,22 @@ public class DoAn_TatalCommande_002View extends FrameView {
     }
     }//GEN-LAST:event_InfoNodeLAFActionPerformed
 
+    private void TinyLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TinyLAFActionPerformed
+        // TODO add your handling code here:
+        try{
+         UIManager.setLookAndFeel("de.muntjak.tinylookandfeel.TinyLookAndFeel");
+         SwingUtilities.updateComponentTreeUI(DoAn_TatalCommande_002App.getApplication().getMainFrame());
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
+    }//GEN-LAST:event_TinyLAFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem InfoNodeLAF;
     private javax.swing.JMenu LaF;
     private javax.swing.JMenuItem MacLAF;
+    private javax.swing.JMenuItem TinyLAF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
