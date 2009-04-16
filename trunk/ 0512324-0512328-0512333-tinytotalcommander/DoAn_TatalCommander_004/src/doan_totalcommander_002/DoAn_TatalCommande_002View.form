@@ -956,6 +956,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TinyLAFActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="SquarenessLAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="SquarenessLAF.text"/>
+                <Property name="name" type="java.lang.String" value="SquarenessLAF" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SquarenessLAFActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator10">
               <Properties>
                 <Property name="name" type="java.lang.String" value="jSeparator10" noResource="true"/>

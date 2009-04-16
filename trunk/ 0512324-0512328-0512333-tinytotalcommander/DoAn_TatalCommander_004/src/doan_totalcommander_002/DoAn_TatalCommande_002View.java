@@ -346,6 +346,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         MacLAF = new javax.swing.JMenuItem();
         InfoNodeLAF = new javax.swing.JMenuItem();
         TinyLAF = new javax.swing.JMenuItem();
+        SquarenessLAF = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JSeparator();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         jMenuItem_HienThiJavaDoc = new javax.swing.JMenuItem();
@@ -951,6 +952,15 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         LaF.add(TinyLAF);
 
+        SquarenessLAF.setText(resourceMap.getString("SquarenessLAF.text")); // NOI18N
+        SquarenessLAF.setName("SquarenessLAF"); // NOI18N
+        SquarenessLAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SquarenessLAFActionPerformed(evt);
+            }
+        });
+        LaF.add(SquarenessLAF);
+
         jSeparator10.setName("jSeparator10"); // NOI18N
         LaF.add(jSeparator10);
 
@@ -1438,11 +1448,22 @@ public class DoAn_TatalCommande_002View extends FrameView {
     }
     }//GEN-LAST:event_TinyLAFActionPerformed
 
+    private void SquarenessLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SquarenessLAFActionPerformed
+        // TODO add your handling code here:
+        try{
+             UIManager.setLookAndFeel("net.beeger.squareness.SquarenessLookAndFeel");
+             SwingUtilities.updateComponentTreeUI(DoAn_TatalCommande_002App.getApplication().getMainFrame());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_SquarenessLAFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem InfoNodeLAF;
     private javax.swing.JMenu LaF;
     private javax.swing.JMenuItem MacLAF;
+    private javax.swing.JMenuItem SquarenessLAF;
     private javax.swing.JMenuItem TinyLAF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
