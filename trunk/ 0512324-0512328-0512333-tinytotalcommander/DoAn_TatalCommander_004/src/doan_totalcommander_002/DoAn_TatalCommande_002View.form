@@ -965,6 +965,24 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SquarenessLAFActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="smoothLAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="smoothLAF.text"/>
+                <Property name="name" type="java.lang.String" value="smoothLAF" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smoothLAFActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="EaSynthLAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="EaSynthLAF.text"/>
+                <Property name="name" type="java.lang.String" value="EaSynthLAF" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EaSynthLAFActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JSeparator" name="jSeparator10">
               <Properties>
                 <Property name="name" type="java.lang.String" value="jSeparator10" noResource="true"/>
