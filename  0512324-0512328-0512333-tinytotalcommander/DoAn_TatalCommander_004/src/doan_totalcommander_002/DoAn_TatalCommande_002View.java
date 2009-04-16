@@ -42,6 +42,7 @@ import javax.swing.UIManager;
 import ch.randelshofer.quaqua.QuaquaManager;
 import net.infonode.gui.laf.InfoNodeLookAndFeel;
 
+
 /**
  * The application's main frame.
  */
@@ -347,6 +348,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
         InfoNodeLAF = new javax.swing.JMenuItem();
         TinyLAF = new javax.swing.JMenuItem();
         SquarenessLAF = new javax.swing.JMenuItem();
+        smoothLAF = new javax.swing.JMenuItem();
+        EaSynthLAF = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JSeparator();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         jMenuItem_HienThiJavaDoc = new javax.swing.JMenuItem();
@@ -961,6 +964,24 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         LaF.add(SquarenessLAF);
 
+        smoothLAF.setText(resourceMap.getString("smoothLAF.text")); // NOI18N
+        smoothLAF.setName("smoothLAF"); // NOI18N
+        smoothLAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smoothLAFActionPerformed(evt);
+            }
+        });
+        LaF.add(smoothLAF);
+
+        EaSynthLAF.setText(resourceMap.getString("EaSynthLAF.text")); // NOI18N
+        EaSynthLAF.setName("EaSynthLAF"); // NOI18N
+        EaSynthLAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EaSynthLAFActionPerformed(evt);
+            }
+        });
+        LaF.add(EaSynthLAF);
+
         jSeparator10.setName("jSeparator10"); // NOI18N
         LaF.add(jSeparator10);
 
@@ -1458,8 +1479,29 @@ public class DoAn_TatalCommande_002View extends FrameView {
         }
     }//GEN-LAST:event_SquarenessLAFActionPerformed
 
+    private void smoothLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothLAFActionPerformed
+        // TODO add your handling code here:
+        try{
+             UIManager.setLookAndFeel("smooth.metal.SmoothLookAndFeel");
+             SwingUtilities.updateComponentTreeUI(DoAn_TatalCommande_002App.getApplication().getMainFrame());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_smoothLAFActionPerformed
+
+    private void EaSynthLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EaSynthLAFActionPerformed
+        // TODO add your handling code here:
+        try{
+             UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel");
+             SwingUtilities.updateComponentTreeUI(DoAn_TatalCommande_002App.getApplication().getMainFrame());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_EaSynthLAFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem EaSynthLAF;
     private javax.swing.JMenuItem InfoNodeLAF;
     private javax.swing.JMenu LaF;
     private javax.swing.JMenuItem MacLAF;
@@ -1540,6 +1582,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JMenuItem smoothLAF;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
