@@ -145,11 +145,11 @@ public class BangDuyetFile {
         if (!getTenFile().endsWith("\\")) {
             str_TenFileDuocChon += "\\";
         }
-        str_TenFileDuocChon += bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
         phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
         if (evt.getButton() != 1 || evt.getClickCount() != 2) {
             return;
         }
+        str_TenFileDuocChon += bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
         if (bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString().equals("..")) {
             //Nếu là click đơn thì bỏ qua
             quayVeThuMucCha();
