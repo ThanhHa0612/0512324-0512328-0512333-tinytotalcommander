@@ -50,7 +50,6 @@ public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener
         
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
         jTextField_NgayCuoi.setText(dateFormat.format(new Date()).toString());
-        jComboBox_ViTriDuyet.addItem("Tất cả:");
         for (File phanVung : File.listRoots()){
             jComboBox_ViTriDuyet.addItem(phanVung.getPath());
         }
@@ -463,7 +462,17 @@ public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener
             //jTable_TimDuoc.getModel()
         }
         if ("Folder" == evt.getPropertyName()) {
-            jLabel_DuongDanDangTim.setText("Looking in:" + evt.getNewValue().toString() + "\n");
+            jLabel_DuongDanDangTim.setText("Đang tìm trong: " + evt.getNewValue().toString() + "\n");
+
+            String regex = evt.getOldValue().toString().replace(".", "\\.");
+            regex = regex.replace("*", ".*");
+            regex = regex.replace("?", ".?");
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(new File(evt.getNewValue().toString()).getName());
+            if (!matcher.find())
+            //if(!pathname.getName().contains(tenFile))
+                return;
+
             Object[] dongDuLieu = {evt.getNewValue(), "Folder", "", (long)0};
             DefaultTableModel model = (DefaultTableModel) jTable_TimDuoc.getModel();
             model.addRow(dongDuLieu);
@@ -515,10 +524,10 @@ public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener
         listenerList.remove(EventListener_ClickChuotVaoBangDuyetFile.class, listener);
     }
     class Task extends SwingWorker<Void, Void> {
-        public void DuyetFile(String duongDan, FileFilter filter){
+        public void DuyetFile(String duongDan, BoLocFile filter){
             
             File files = new File(duongDan);
-            firePropertyChange("Folder", "", files.getAbsolutePath());
+            firePropertyChange("Folder", filter.getTenFile(), files.getAbsolutePath());
             for (File file : files.listFiles(filter)){
                 try {
                     Thread.sleep(1L);
@@ -593,11 +602,7 @@ public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener
                     l_KichThuocBatDau, l_KichThuocKetThuc,
                     jTextField_TenFile.getText(), jCheckBox_TrungKhopTatCa.isSelected());
 
-            if ("Tất cả:" == jComboBox_ViTriDuyet.getSelectedItem().toString().toString())
-                for (File file : File.listRoots())
-                    DuyetFile(file.getPath(), boLocFile);
-            else
-                DuyetFile(jComboBox_ViTriDuyet.getSelectedItem().toString(), boLocFile);
+            DuyetFile(jComboBox_ViTriDuyet.getSelectedItem().toString(), boLocFile);
             return null;
         }
 
@@ -619,7 +624,7 @@ class BoLocFile implements FileFilter{
     long ngayKetThuc;
     long kichThuocBatDau;
     long kichThuocKetThuc;
-    String tenFile;
+    private String tenFile;
     boolean khopTatCa;
     
     public boolean accept(File pathname) {
@@ -636,7 +641,8 @@ class BoLocFile implements FileFilter{
                 || (pathname.length() > kichThuocKetThuc && 0 != kichThuocKetThuc) && khopTatCa)
             return false;
         //Nếu đã đạt được cả hai
-        String regex = tenFile.replace("*", ".*");
+        String regex = getTenFile().replace(".", "\\.");
+        regex = regex.replace("*", ".*");
         regex = regex.replace("?", ".?");
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(pathname.getName());
@@ -654,5 +660,12 @@ class BoLocFile implements FileFilter{
         kichThuocKetThuc = l_KichThuocKetThuc;
         tenFile = str_TenFile;
         khopTatCa = b_KhopTatCa;
+    }
+
+    /**
+     * @return the tenFile
+     */
+    public String getTenFile() {
+        return tenFile;
     }
 }

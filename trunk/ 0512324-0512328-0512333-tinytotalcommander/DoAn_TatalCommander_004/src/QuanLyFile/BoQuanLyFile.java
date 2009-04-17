@@ -211,7 +211,7 @@ public class BoQuanLyFile extends JComponent{
     }
     
 
-     public static void removeDirectory(File srcPath,boolean xoatatca)
+     public void removeDirectory(File srcPath,boolean xoatatca)
                                throws IOException{
       JOptionPane overwritePrompt = new JOptionPane();
         Object[] options = {"Có","Xoá tất cả","Không"};
@@ -246,6 +246,7 @@ public class BoQuanLyFile extends JComponent{
                 removeDirectory(new File(srcPath, files[i]),xoatatca);
 
             }
+            this.firePropertyChange("DangRemove", "", srcPath.getCanonicalPath());
             srcPath.delete();
 
         }
@@ -256,8 +257,8 @@ public class BoQuanLyFile extends JComponent{
           }
 
             else{
-
-            srcPath.delete();
+                this.firePropertyChange("DangRemove", "", srcPath.getCanonicalPath());
+                srcPath.delete();
             }
         }
     }
@@ -276,7 +277,7 @@ public class BoQuanLyFile extends JComponent{
       File f1 = new File(oldFile);
       File f2 = new File(newFile);
       boolean result = f1.renameTo(f2);
-      if(result == false && JOptionPane.showConfirmDialog(null, "File bị trùng bạn có muốn chép đè lên ko") == 0)
+      if(result == false)// && JOptionPane.showConfirmDialog(null, "File bị trùng bạn có muốn chép đè lên ko") == 0)
       {
           copyDirectory(f1,f2,false);
           f1.delete();

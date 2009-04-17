@@ -15,6 +15,8 @@ import DuyetFile.EventListener_ClickChuotVaoCayDuyetFile;
 import QuanLyFile.Dialog_CatNho;
 import QuanLyFile.Dialog_Copy;
 import QuanLyFile.Dialog_GhepNoi;
+import QuanLyFile.Dialog_Move;
+import QuanLyFile.Dialog_ReMove;
 import QuanLyFile.Dialog_TimFile;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
@@ -108,7 +110,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         //Khi nguoi dung thay doi thu muc cua bang ben phai
         bangTrai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
-                jLabel1.setText("Ban chon cua so trai");
+                //jLabel1.setText("Ban chon cua so trai");
                 bangPhai.getTable().clearSelection();
 //                _enum_BangHienTai = jEnum_CacBang.BangTrai;
                 bangHienTai = bangTrai;
@@ -129,7 +131,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         //Khi nguoi dung thay doi thu muc cua bang ben phai
         bangPhai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
-                jLabel1.setText("Ban chon cua so phai");
+                //jLabel1.setText("Ban chon cua so phai");
                 bangTrai.getTable().clearSelection();
                 //_enum_BangHienTai = jEnum_CacBang.BangPhai;
                 bangHienTai = bangPhai;
@@ -181,11 +183,20 @@ public class DoAn_TatalCommande_002View extends FrameView {
         Timer timer = new Timer(10 * 1000, new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
-                        , jScrollPane_PhanChinh_BangTrai);
-
-                bangPhai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangPhai.getToolTipText()
-                        , jScrollPane_PhanChinh_BangPhai);
+                if (bangHienTai == bangTrai){
+                    bangPhai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangPhai.getToolTipText()
+                            , jScrollPane_PhanChinh_BangPhai);
+                    bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
+                            , jScrollPane_PhanChinh_BangTrai);
+                bangTrai.getTable().requestFocus();
+                }
+                if (bangHienTai == bangPhai){
+                    bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
+                            , jScrollPane_PhanChinh_BangTrai);
+                    bangPhai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangPhai.getToolTipText()
+                            , jScrollPane_PhanChinh_BangPhai);
+                    bangPhai.getTable().requestFocus();
+                }
             }
         });
         timer.start();
@@ -323,16 +334,12 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jScrollPane_PhanChinh_Tree = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jPanel1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
         jComboBox_PhanChinh_BangTrai = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
         jTabbedPane_PhanChinh_BangTrai = new javax.swing.JTabbedPane();
         jScrollPane_PhanChinh_BangTrai = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane_PhanChinh_BangPhai = new javax.swing.JTabbedPane();
         jScrollPane_PhanChinh_BangPhai = new javax.swing.JScrollPane();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jComboBox_PhanChinh_BangPhai = new javax.swing.JComboBox();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu jMenu_File = new javax.swing.JMenu();
@@ -655,23 +662,13 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         jPanel1.setName("jPanel1"); // NOI18N
 
-        jTextField2.setEditable(false);
-        jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
-        jTextField2.setEnabled(false);
-        jTextField2.setName("jTextField2"); // NOI18N
-
         jComboBox_PhanChinh_BangTrai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox_PhanChinh_BangTrai.setKeySelectionManager(null);
         jComboBox_PhanChinh_BangTrai.setName("jComboBox_PhanChinh_BangTrai"); // NOI18N
         jComboBox_PhanChinh_BangTrai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_PhanChinh_BangTraiActionPerformed(evt);
             }
         });
-
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel1.setName("jLabel1"); // NOI18N
 
         jTabbedPane_PhanChinh_BangTrai.setName("jTabbedPane_PhanChinh_BangTrai"); // NOI18N
 
@@ -682,28 +679,17 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+            .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE))
+                .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(387, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                    .addGap(25, 25, 25)))
+                .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel1);
@@ -717,15 +703,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jScrollPane_PhanChinh_BangPhai.setName("jScrollPane_PhanChinh_BangPhai"); // NOI18N
         jTabbedPane_PhanChinh_BangPhai.addTab(resourceMap.getString("jScrollPane_PhanChinh_BangPhai.TabConstraints.tabTitle"), jScrollPane_PhanChinh_BangPhai); // NOI18N
 
-        jTextField3.setEditable(false);
-        jTextField3.setText(resourceMap.getString("jTextField3.text")); // NOI18N
-        jTextField3.setEnabled(false);
-        jTextField3.setName("jTextField3"); // NOI18N
-
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel2.setName("jLabel2"); // NOI18N
-
         jComboBox_PhanChinh_BangPhai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox_PhanChinh_BangPhai.setName("jComboBox_PhanChinh_BangPhai"); // NOI18N
         jComboBox_PhanChinh_BangPhai.addActionListener(new java.awt.event.ActionListener() {
@@ -738,24 +715,18 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
             .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -833,6 +804,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         jMenuItem_File_DiChuyen.setText(resourceMap.getString("jMenuItem_File_DiChuyen.text")); // NOI18N
         jMenuItem_File_DiChuyen.setName("jMenuItem_File_DiChuyen"); // NOI18N
+        jMenuItem_File_DiChuyen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_DiChuyenActionPerformed(evt);
+            }
+        });
         jMenu_File.add(jMenuItem_File_DiChuyen);
 
         jSeparator9.setName("jSeparator9"); // NOI18N
@@ -1168,17 +1144,14 @@ public class DoAn_TatalCommande_002View extends FrameView {
         // TODO add your handling code here:
         ArrayList<String> str_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
         //Nếu không đang chọn thư mục nào hoặc không xác nhận xóa
-        if (str_CacDuongDan.size() == 0 || JOptionPane.showConfirmDialog(null, "Bạn muốn xóa " +
-                    str_CacDuongDan.size() + " tập tin/ thư mục?") != 0)
+        if (str_CacDuongDan.size() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Chọn file để xóa");
             return;
-        for (String str_DuongDan : str_CacDuongDan){
-            File file = new File(str_DuongDan);
-            if(!file.delete()){
-                JOptionPane.showMessageDialog(null, "Không thể xóa " +
-                        str_DuongDan, "Không thể xóa tập tin/thư mục", 2);
-            }
         }
-        capNhatCacBang(new File(str_CacDuongDan.get(0)).getParentFile());
+        Dialog_ReMove dialog = new Dialog_ReMove(null, false);
+        dialog.getJTextField_Nguon().setText(str_CacDuongDan.get(0));
+        dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem_File_XoaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1190,7 +1163,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         //Kiểm tra xem người dùng có chọn file nào không?
         ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
         if (astr_CacDuongDan.size() == 0){
-            JOptionPane.showMessageDialog(null, "Xin chọn file để cắt!");
+            JOptionPane.showMessageDialog(null, "Xin chọn file để copy!");
             return;
         }
         String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
@@ -1217,16 +1190,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
             jTabbedPane_PhanChinh_BangPhai.setTitleAt(0, bangPhai.getTenFile());
         }
 }//GEN-LAST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
-
-    private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
-        // TODO add your handling code here:
-        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null && bangTrai.getTenFile() != null
-                && jComboBox_PhanChinh_BangTrai.getSelectedItem().toString().charAt(0) != bangTrai.getTenFile().charAt(0)){
-            //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
-            bangTrai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangTrai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangTrai);
-            jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, bangTrai.getTenFile());
-        }
-}//GEN-LAST:event_jComboBox_PhanChinh_BangTraiActionPerformed
 
     private void jMenuItem_HienThiJavaDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_HienThiJavaDocActionPerformed
         // TODO add your handling code here:
@@ -1451,16 +1414,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jButton13jButton_removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13jButton_removeMouseClicked
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            File f = new File("F:\\b");
-            boolean f2 = false;
-            BoQuanLyFile.removeDirectory(f,f2);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        }
 }//GEN-LAST:event_jButton13jButton_removeMouseClicked
 
     private void MacLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MacLAFActionPerformed
@@ -1523,6 +1476,32 @@ public class DoAn_TatalCommande_002View extends FrameView {
         }
     }//GEN-LAST:event_EaSynthLAFActionPerformed
 
+    private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jComboBox_PhanChinh_BangTraiActionPerformed
+
+    private void jMenuItem_File_DiChuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_DiChuyenActionPerformed
+        // TODO add your handling code here:
+        //Kiểm tra xem người dùng có chọn file nào không?
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file để move!");
+            return;
+        }
+        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+
+        //tạo file các file nguồn và đích
+        File f1 = new File(str_DuongDanFileDangChon);
+        File f2 = bangHienTai != bangPhai ? new File(bangPhai.getTenFile()) : new File(bangPhai.getTenFile());
+
+        Dialog_Move dialog = new Dialog_Move(null, false);
+
+        dialog.getJTextField_Dich().setText(f2.getAbsolutePath());
+        dialog.getJTextField_Nguon().setText(f1.getAbsolutePath());
+
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jMenuItem_File_DiChuyenActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EaSynthLAF;
@@ -1552,8 +1531,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JComboBox jComboBox_PhanChinh_BangPhai;
     private javax.swing.JComboBox jComboBox_PhanChinh_BangTrai;
     private javax.swing.JComboBox jComboBox_ThucThiCommandLine;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1599,8 +1576,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane_PhanChinh_BangPhai;
     private javax.swing.JTabbedPane jTabbedPane_PhanChinh_BangTrai;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTree jTree1;
     private javax.swing.JPanel mainPanel;
