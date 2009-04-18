@@ -315,6 +315,9 @@ public class BangDuyetFile {
      * @param myScrollPane  JScrollPane hiện thị bảng
      */
     public void capNhatBangDuyetThuMuc(String str_FileName, JScrollPane myScrollPane) {
+        if (!new File(str_FileName).exists())
+            return;
+        String fileTrucoc = tenThuMucHienHanh;
         tenThuMucHienHanh = str_FileName;
         scrollPane_HienThiBang = myScrollPane;
 //Phần này tham khảo source từ nhiều nguồn trên mạng!!!
@@ -424,7 +427,8 @@ public class BangDuyetFile {
         bangHienThiThuMucHienHanh.paintImmediately(bangHienThiThuMucHienHanh.getBounds());
         myScrollPane.setViewportView(bangHienThiThuMucHienHanh);
         //System.setProperty("user.dir", getTenFile());
-        //phatSinhSuKien_ClickChuotVaoBangDuyetFile(getTenFile(), 2);
+        if (!fileTrucoc.equalsIgnoreCase(tenThuMucHienHanh))
+            phatSinhSuKien_ClickChuotVaoBangDuyetFile(getTenFile(), 2);
     }
 
     /**

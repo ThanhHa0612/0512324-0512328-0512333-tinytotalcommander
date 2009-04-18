@@ -19,6 +19,7 @@ import QuanLyFile.Dialog_Move;
 import QuanLyFile.Dialog_ReMove;
 import QuanLyFile.Dialog_TimFile;
 import QuanLyFileNen.BoQuanLyFileZip;
+import QuanLyFileNen.Dialog_AppendZip;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
 import java.io.FileNotFoundException;
@@ -1610,27 +1611,42 @@ public class DoAn_TatalCommande_002View extends FrameView {
     }//GEN-LAST:event_jMenuItem_unZipActionPerformed
 
     private void jMenuItem_File_AppendZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_AppendZipActionPerformed
-        try {
-            // TODO add your handling code here:
-            String fileZip = "E:\\HK2_08_09\\Anh Van\\1.zip";
-            String directory = "E:\\HK2_08_09\\Anh Van\\Listenning\\";
-            BoQuanLyFileZip.appendFileToFileZip("E:\\HK2_08_09\\Anh Van\\bookaroom.mp3", fileZip);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file để đổi append vào file zip!");
+            return;
         }
+        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+
+        Dialog_AppendZip dialog = new Dialog_AppendZip(null, false);
+        dialog.getJTextField_Append().setText(str_DuongDanFileDangChon);
+        dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem_File_AppendZipActionPerformed
 
     private void jMenuItem_File_ViewZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_ViewZipActionPerformed
         // TODO add your handling code here:
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file *.zip để unzip!");
+            return;
+        }
+        String str_DuongDanFileDangChon = null;
+        for (String temp : astr_CacDuongDan)
+            if (temp.endsWith(".zip"))
+                str_DuongDanFileDangChon = temp;
+        if (str_DuongDanFileDangChon == null){
+            JOptionPane.showMessageDialog(null, "Xin chọn file *.zip để unzip!");
+            return;
+        }
         String tempfolder = "";
         try {
-            tempfolder = BoQuanLyFileZip.outPutTemp("E:\\HK2_08_09\\Anh Van\\1.zip");
+            tempfolder = BoQuanLyFileZip.outPutTemp(str_DuongDanFileDangChon);
         } catch (IOException ex) {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "loi: " + ex.getMessage());
             return;
         }
-        if (bangHienTai == bangTrai)
+        if (bangHienTai != bangTrai)
             bangTrai.capNhatBangDuyetThuMuc(tempfolder, jScrollPane_PhanChinh_BangTrai);
         else
             bangPhai.capNhatBangDuyetThuMuc(tempfolder, jScrollPane_PhanChinh_BangPhai);
