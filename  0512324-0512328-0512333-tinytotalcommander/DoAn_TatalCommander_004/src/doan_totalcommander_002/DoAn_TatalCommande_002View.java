@@ -374,6 +374,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenuItem_File_TimKiem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JSeparator();
         jMenuItem_Zip = new javax.swing.JMenuItem();
+        jMenuItem_File_AppendZip = new javax.swing.JMenuItem();
+        jMenuItem_File_ViewZip = new javax.swing.JMenuItem();
         jMenuItem_unZip = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JSeparator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -863,6 +865,24 @@ public class DoAn_TatalCommande_002View extends FrameView {
             }
         });
         jMenu_File.add(jMenuItem_Zip);
+
+        jMenuItem_File_AppendZip.setText(resourceMap.getString("jMenuItem_File_AppendZip.text")); // NOI18N
+        jMenuItem_File_AppendZip.setName("jMenuItem_File_AppendZip"); // NOI18N
+        jMenuItem_File_AppendZip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_AppendZipActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_File_AppendZip);
+
+        jMenuItem_File_ViewZip.setText(resourceMap.getString("jMenuItem_File_ViewZip.text")); // NOI18N
+        jMenuItem_File_ViewZip.setName("jMenuItem_File_ViewZip"); // NOI18N
+        jMenuItem_File_ViewZip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_ViewZipActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_File_ViewZip);
 
         jMenuItem_unZip.setText(resourceMap.getString("jMenuItem_unZip.text")); // NOI18N
         jMenuItem_unZip.setName("jMenuItem_unZip"); // NOI18N
@@ -1551,14 +1571,41 @@ public class DoAn_TatalCommande_002View extends FrameView {
 // unzip file va folder
     private void jMenuItem_unZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_unZipActionPerformed
         // TODO add your handling code here:
-        String fileZip = "E:\\HK2_08_09\\Anh Van\\Listenning.zip";
-        String directory = "E:\\HK2_08_09\\Anh Van\\Listenning\\";
+        String fileZip = "E:\\HK2_08_09\\Anh Van\\1.zip";
+        String directory = "E:\\HK2_08_09\\Anh Van\\3";
         try {
             BoQuanLyFileZip.UnZip(fileZip, directory);
         } catch (IOException ex) {
            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jMenuItem_unZipActionPerformed
+
+    private void jMenuItem_File_AppendZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_AppendZipActionPerformed
+        try {
+            // TODO add your handling code here:
+            String fileZip = "E:\\HK2_08_09\\Anh Van\\1.zip";
+            String directory = "E:\\HK2_08_09\\Anh Van\\Listenning\\";
+            BoQuanLyFileZip.appendFileToFileZip("E:\\HK2_08_09\\Anh Van\\bookaroom.mp3", fileZip);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem_File_AppendZipActionPerformed
+
+    private void jMenuItem_File_ViewZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_ViewZipActionPerformed
+        // TODO add your handling code here:
+        String tempfolder = "";
+        try {
+            tempfolder = BoQuanLyFileZip.outPutTemp("E:\\HK2_08_09\\Anh Van\\1.zip");
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "loi: " + ex.getMessage());
+            return;
+        }
+        if (bangHienTai == bangTrai)
+            bangTrai.capNhatBangDuyetThuMuc(tempfolder, jScrollPane_PhanChinh_BangTrai);
+        else
+            bangPhai.capNhatBangDuyetThuMuc(tempfolder, jScrollPane_PhanChinh_BangPhai);
+    }//GEN-LAST:event_jMenuItem_File_ViewZipActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1595,12 +1642,14 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem_CatTapTin;
     private javax.swing.JMenuItem jMenuItem_Edit_Back;
+    private javax.swing.JMenuItem jMenuItem_File_AppendZip;
     private javax.swing.JMenuItem jMenuItem_File_ChinhSuaTapTin;
     private javax.swing.JMenuItem jMenuItem_File_DiChuyen;
     private javax.swing.JMenuItem jMenuItem_File_DoiTen;
     private javax.swing.JMenuItem jMenuItem_File_NewFolder;
     private javax.swing.JMenuItem jMenuItem_File_SoSanh;
     private javax.swing.JMenuItem jMenuItem_File_TimKiem;
+    private javax.swing.JMenuItem jMenuItem_File_ViewZip;
     private javax.swing.JMenuItem jMenuItem_File_XemFile;
     private javax.swing.JMenuItem jMenuItem_File_Xoa;
     private javax.swing.JMenuItem jMenuItem_HienThiJavaDoc;
