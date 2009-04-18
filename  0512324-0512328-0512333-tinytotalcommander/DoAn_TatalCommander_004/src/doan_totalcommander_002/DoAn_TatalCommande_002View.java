@@ -831,6 +831,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         jMenuItem_File_DoiTen.setText(resourceMap.getString("jMenuItem_File_DoiTen.text")); // NOI18N
         jMenuItem_File_DoiTen.setName("jMenuItem_File_DoiTen"); // NOI18N
+        jMenuItem_File_DoiTen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_File_DoiTenActionPerformed(evt);
+            }
+        });
         jMenu_File.add(jMenuItem_File_DoiTen);
 
         jMenuItem_File_DiChuyen.setText(resourceMap.getString("jMenuItem_File_DiChuyen.text")); // NOI18N
@@ -1142,6 +1147,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
         */
         String str_TenThuMucMoi = 
                 JOptionPane.showInputDialog("Nhập tên thư mục mới:", BoQuanLyFile.taoTenThuMucMoiMacDinh(bangHienTai.getTenFile()));
+        if (!str_TenThuMucMoi.contains("\\"))
+            str_TenThuMucMoi = bangHienTai.getTenFile() + str_TenThuMucMoi;
         //File file = new File(str_TenThuMucMoi).
         //String str_DuongDanDayDuThuMucMoi = _bangHienTai.getTenFile() + "\\";
         //System.setProperty(str_TenThuMucMoi, str_TenThuMucMoi)
@@ -1556,27 +1563,49 @@ public class DoAn_TatalCommande_002View extends FrameView {
 // nen file va nen folder
     private void jMenuItem_ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ZipActionPerformed
         // TODO add your handling code here:
-        String [] fileNames = {"E:\\HK2_08_09\\Anh Van\\Listenning\\bookaroom.mp3"};
-        String fileZip = "E:\\HK2_08_09\\Anh Van\\test.zip";
-        File file = new File(fileNames[0]);
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file để zip!");
+            return;
+        }
+        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+
+        String Str_TenMoi = JOptionPane.showInputDialog("Zip file " + str_DuongDanFileDangChon + " thành: ", str_DuongDanFileDangChon + ".zip");
+        if (!Str_TenMoi.contains("\\"))
+                    Str_TenMoi = bangHienTai.getTenFile() + Str_TenMoi;
         try {
-                if(file.isFile())
-             BoQuanLyFileZip.ZipFile(fileNames, fileZip);
-        if(file.isDirectory())
-            BoQuanLyFileZip.zipFolder(fileNames[0], fileZip);
+            BoQuanLyFileZip.zipFolder(str_DuongDanFileDangChon, Str_TenMoi);
         } catch (Exception ex) {
-           JOptionPane.showMessageDialog(null, ex.getMessage());
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jMenuItem_ZipActionPerformed
 // unzip file va folder
     private void jMenuItem_unZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_unZipActionPerformed
         // TODO add your handling code here:
-        String fileZip = "E:\\HK2_08_09\\Anh Van\\1.zip";
-        String directory = "E:\\HK2_08_09\\Anh Van\\3";
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file *.zip để unzip!");
+            return;
+        }
+        String str_DuongDanFileDangChon = null;
+        for (String temp : astr_CacDuongDan)
+            if (temp.endsWith(".zip"))
+                str_DuongDanFileDangChon = temp;
+        if (str_DuongDanFileDangChon == null){
+            JOptionPane.showMessageDialog(null, "Xin chọn file *.zip để unzip!");
+            return;
+        }
+        String Str_TenMoi = JOptionPane.showInputDialog("Unzip file " + str_DuongDanFileDangChon + " vào thư mục: ", str_DuongDanFileDangChon.substring(0, str_DuongDanFileDangChon.indexOf(".")) + "\\");
+        if (!Str_TenMoi.contains("\\"))
+                    Str_TenMoi = bangHienTai.getTenFile() + Str_TenMoi;
+        if (!Str_TenMoi.endsWith("\\"))
+            Str_TenMoi += "\\";
         try {
-            BoQuanLyFileZip.UnZip(fileZip, directory);
-        } catch (IOException ex) {
-           JOptionPane.showMessageDialog(null, ex.getMessage());
+            BoQuanLyFileZip.UnZip(str_DuongDanFileDangChon, Str_TenMoi);
+        } catch (Exception ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jMenuItem_unZipActionPerformed
 
@@ -1606,6 +1635,28 @@ public class DoAn_TatalCommande_002View extends FrameView {
         else
             bangPhai.capNhatBangDuyetThuMuc(tempfolder, jScrollPane_PhanChinh_BangPhai);
     }//GEN-LAST:event_jMenuItem_File_ViewZipActionPerformed
+
+    private void jMenuItem_File_DoiTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_DoiTenActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> astr_CacDuongDan = bangHienTai.layDuongDanDayDuFileDangDuocChon();
+        if (astr_CacDuongDan.size() == 0){
+            JOptionPane.showMessageDialog(null, "Xin chọn file để đổi tên!");
+            return;
+        }
+        String str_DuongDanFileDangChon = astr_CacDuongDan.get(0);
+
+        String Str_TenMoi = JOptionPane.showInputDialog("Đổi tên " + str_DuongDanFileDangChon + " thành: ", str_DuongDanFileDangChon);
+        if (!Str_TenMoi.contains("\\"))
+                    Str_TenMoi = bangHienTai.getTenFile() + Str_TenMoi;
+        try {
+            BoQuanLyFile.renamefile(str_DuongDanFileDangChon, Str_TenMoi);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem_File_DoiTenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
