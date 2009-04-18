@@ -18,6 +18,7 @@ import QuanLyFile.Dialog_GhepNoi;
 import QuanLyFile.Dialog_Move;
 import QuanLyFile.Dialog_ReMove;
 import QuanLyFile.Dialog_TimFile;
+import QuanLyFileNen.BoQuanLyFileZip;
 import java.awt.Desktop;
 import java.beans.PropertyChangeEvent;
 import java.io.FileNotFoundException;
@@ -690,7 +691,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel1);
@@ -727,7 +728,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -839,10 +840,20 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         jMenuItem_Zip.setText(resourceMap.getString("jMenuItem_Zip.text")); // NOI18N
         jMenuItem_Zip.setName("jMenuItem_Zip"); // NOI18N
+        jMenuItem_Zip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ZipActionPerformed(evt);
+            }
+        });
         jMenu_File.add(jMenuItem_Zip);
 
         jMenuItem_unZip.setText(resourceMap.getString("jMenuItem_unZip.text")); // NOI18N
         jMenuItem_unZip.setName("jMenuItem_unZip"); // NOI18N
+        jMenuItem_unZip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_unZipActionPerformed(evt);
+            }
+        });
         jMenu_File.add(jMenuItem_unZip);
 
         jSeparator5.setName("jSeparator5"); // NOI18N
@@ -1501,6 +1512,32 @@ public class DoAn_TatalCommande_002View extends FrameView {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         }
 }//GEN-LAST:event_jMenuItem_TaoFileMoiActionPerformed
+// nen file va nen folder
+    private void jMenuItem_ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ZipActionPerformed
+        // TODO add your handling code here:
+        String [] fileNames = {"E:\\HK2_08_09\\Anh Van\\Listenning\\bookaroom.mp3"};
+        String fileZip = "E:\\HK2_08_09\\Anh Van\\test.zip";
+        File file = new File(fileNames[0]);
+        try {
+                if(file.isFile())
+             BoQuanLyFileZip.ZipFile(fileNames, fileZip);
+        if(file.isDirectory())
+            BoQuanLyFileZip.zipFolder(fileNames[0], fileZip);
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem_ZipActionPerformed
+// unzip file va folder
+    private void jMenuItem_unZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_unZipActionPerformed
+        // TODO add your handling code here:
+        String fileZip = "E:\\HK2_08_09\\Anh Van\\Listenning.zip";
+        String directory = "E:\\HK2_08_09\\Anh Van\\Listenning\\";
+        try {
+            BoQuanLyFileZip.UnZip(fileZip, directory);
+        } catch (IOException ex) {
+           JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem_unZipActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
