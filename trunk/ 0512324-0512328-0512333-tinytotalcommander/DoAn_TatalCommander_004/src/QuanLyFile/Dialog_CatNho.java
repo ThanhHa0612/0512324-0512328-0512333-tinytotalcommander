@@ -40,6 +40,7 @@ public class Dialog_CatNho extends javax.swing.JDialog implements ActionListener
     public Dialog_CatNho(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        myComp_OpenSaveFile_FileNguon.setBTimFileLuu(false);
 
         boQuanLyFile.addPropertyChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {

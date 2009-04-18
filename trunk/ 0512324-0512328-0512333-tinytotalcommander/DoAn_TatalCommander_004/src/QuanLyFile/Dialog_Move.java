@@ -260,8 +260,8 @@ public class Dialog_Move extends javax.swing.JDialog {
             //jLabel_DuongDanDangTim.setText("Số file tìm được: " + jTable_TimDuoc.getRowCount());
             //Thông báo thành công và xác nhận thoát
             jLabel_DangMove.setText("Đã hoàn thành!");
-            if (JOptionPane.showConfirmDialog(null, "Move file thành công! Bạn muốn thoát?"
-                , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            /*if (JOptionPane.showConfirmDialog(null, "Move file thành công! Bạn muốn thoát?"
+                , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)*/
                 dispose();
 
         }

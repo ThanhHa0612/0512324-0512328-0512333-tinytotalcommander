@@ -47,7 +47,7 @@ public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener
         super();
         initComponents();
         jTable_TimDuoc.setAutoCreateRowSorter(true);
-        
+        //this.setAlwaysOnTop(true);
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
         jTextField_NgayCuoi.setText(dateFormat.format(new Date()).toString());
         for (File phanVung : File.listRoots()){

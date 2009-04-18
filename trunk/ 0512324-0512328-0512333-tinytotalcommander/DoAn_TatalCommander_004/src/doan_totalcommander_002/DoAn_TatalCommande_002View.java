@@ -111,7 +111,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         bangTrai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
                 //jLabel1.setText("Ban chon cua so trai");
-                bangPhai.getTable().clearSelection();
+                //bangPhai.getTable().clearSelection();
 //                _enum_BangHienTai = jEnum_CacBang.BangTrai;
                 bangHienTai = bangTrai;
                 String str_PhanVung;
@@ -132,7 +132,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         bangPhai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
                 //jLabel1.setText("Ban chon cua so phai");
-                bangTrai.getTable().clearSelection();
+                //bangTrai.getTable().clearSelection();
                 //_enum_BangHienTai = jEnum_CacBang.BangPhai;
                 bangHienTai = bangPhai;
 
@@ -188,7 +188,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
                             , jScrollPane_PhanChinh_BangPhai);
                     bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
                             , jScrollPane_PhanChinh_BangTrai);
-                bangTrai.getTable().requestFocus();
+                    bangTrai.getTable().requestFocus();
                 }
                 if (bangHienTai == bangPhai){
                     bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
@@ -347,6 +347,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenuItem_File_ChinhSuaTapTin = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem_File_NewFolder = new javax.swing.JMenuItem();
+        jMenuItem_TaoFileMoi = new javax.swing.JMenuItem();
         jMenuItem_File_Xoa = new javax.swing.JMenuItem();
         jMenuItem_File_SoSanh = new javax.swing.JMenuItem();
         jMenuItem_File_DoiTen = new javax.swing.JMenuItem();
@@ -778,6 +779,16 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         jMenu_File.add(jMenuItem_File_NewFolder);
 
+        jMenuItem_TaoFileMoi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem_TaoFileMoi.setText(resourceMap.getString("jMenuItem_TaoFileMoi.text")); // NOI18N
+        jMenuItem_TaoFileMoi.setName("jMenuItem_TaoFileMoi"); // NOI18N
+        jMenuItem_TaoFileMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_TaoFileMoiActionPerformed(evt);
+            }
+        });
+        jMenu_File.add(jMenuItem_TaoFileMoi);
+
         jMenuItem_File_Xoa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
         jMenuItem_File_Xoa.setText(resourceMap.getString("jMenuItem_File_Xoa.text")); // NOI18N
         jMenuItem_File_Xoa.setName("jMenuItem_File_Xoa"); // NOI18N
@@ -1064,38 +1075,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         else
             bangPhai.quayVeThuMucCha();
     }//GEN-LAST:event_jMenuItem_Edit_BackActionPerformed
-    /**
-     * Tạo tên mặc định cho thư mục mới có dạng NewFolderx với x từ 0 đến 2^20
-     * @param str_DuongDanThuMucCha     Đường dẫn đến thư mục cha của thư mục cần tạo để xác định số
-     *                                  folder có tên dạng NewFolderx đang có trong thư mục cha
-     * @return                          tên được tạo
-     */
-    private String taoTenThuMucMoiMacDinh (String str_DuongDanThuMucCha){
-        String str_TenThuMucMoi = "NewFolder";
-        String str_DuongDanDayDuThuMucCanTao = str_DuongDanThuMucCha + "\\" + str_TenThuMucMoi;
-        File file = new File(str_DuongDanDayDuThuMucCanTao);
-        if (!file.exists() && !file.isDirectory()){
-            return str_DuongDanDayDuThuMucCanTao;
-        }
-        int i = 1;
-        for (; i < Math.pow(2, 20); i++){
-            file = new File(str_DuongDanDayDuThuMucCanTao + String.valueOf(i));
-            if (!file.exists() && !file.isDirectory()){
-                str_DuongDanDayDuThuMucCanTao += String.valueOf(i);
-                break;
-            }
-        }
-        return str_DuongDanDayDuThuMucCanTao;
-    }
-    /**
-     * Tạo một thư mục mới
-     * @param str_DuongDan  Đường dẫn đầy đủ (bao gồm tên) của thư mục cần tạo
-     */
-    private static void taoThuMucMoi (String str_DuongDan){
-        File file = new File(str_DuongDan);
-        if(!file.mkdirs())
-            JOptionPane.showMessageDialog(null, "Không thể tạo thư mục!");
-    }
+    
     private void jMenuItem_File_NewFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_NewFolderActionPerformed
         // TODO add your handling code here:
         /*
@@ -1113,11 +1093,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
         file.mkdir();
         */
         String str_TenThuMucMoi = 
-                JOptionPane.showInputDialog("Nhập tên thư mục mới:", taoTenThuMucMoiMacDinh(bangHienTai.getTenFile()));
+                JOptionPane.showInputDialog("Nhập tên thư mục mới:", BoQuanLyFile.taoTenThuMucMoiMacDinh(bangHienTai.getTenFile()));
         //File file = new File(str_TenThuMucMoi).
         //String str_DuongDanDayDuThuMucMoi = _bangHienTai.getTenFile() + "\\";
         //System.setProperty(str_TenThuMucMoi, str_TenThuMucMoi)
-        taoThuMucMoi(str_TenThuMucMoi);
+        BoQuanLyFile.taoThuMucMoi(str_TenThuMucMoi);
         capNhatCacBang(new File(str_TenThuMucMoi).getParentFile());
 }//GEN-LAST:event_jMenuItem_File_NewFolderActionPerformed
     /**
@@ -1478,6 +1458,12 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
         // TODO add your handling code here:
+        if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null && bangTrai.getTenFile() != null
+                && jComboBox_PhanChinh_BangTrai.getSelectedItem().toString().charAt(0) != bangTrai.getTenFile().charAt(0)){
+            //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
+            bangTrai.capNhatBangDuyetThuMuc(jComboBox_PhanChinh_BangTrai.getSelectedItem().toString(), jScrollPane_PhanChinh_BangTrai);
+            jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, bangTrai.getTenFile());
+        }
 }//GEN-LAST:event_jComboBox_PhanChinh_BangTraiActionPerformed
 
     private void jMenuItem_File_DiChuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_File_DiChuyenActionPerformed
@@ -1501,6 +1487,20 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem_File_DiChuyenActionPerformed
+
+    private void jMenuItem_TaoFileMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TaoFileMoiActionPerformed
+        // TODO add your handling code here:
+        String str_TenFileMoi =
+                JOptionPane.showInputDialog("Nhập tên file cần tạo:");
+        if (!str_TenFileMoi.contains("\\"))
+            str_TenFileMoi = bangHienTai.getTenFile() + str_TenFileMoi;
+        try {
+            BoQuanLyFile.taoFileMoi(str_TenFileMoi);
+            thucThiCommandLine("notepad " + str_TenFileMoi);
+        } catch (IOException ex) {
+            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}//GEN-LAST:event_jMenuItem_TaoFileMoiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1549,6 +1549,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JMenuItem jMenuItem_KetNoiFTP;
     private javax.swing.JMenuItem jMenuItem_KetNoiLan;
     private javax.swing.JMenuItem jMenuItem_NoiTapTin;
+    private javax.swing.JMenuItem jMenuItem_TaoFileMoi;
     private javax.swing.JMenuItem jMenuItem_Zip;
     private javax.swing.JMenuItem jMenuItem_unZip;
     private javax.swing.JMenu jMenu_Edit;
