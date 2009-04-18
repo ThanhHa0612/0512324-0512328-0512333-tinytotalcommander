@@ -111,28 +111,16 @@ public class CayDuyetFile {
         m_popup.add(m_action);
         m_popup.addSeparator();
 
-        Action a1 = new AbstractAction("Delete") {
-
-            @Override
+        Action a3 = new AbstractAction("Open") {
             public void actionPerformed(ActionEvent e) {
                 m_tree.repaint();
-                JOptionPane.showMessageDialog(null,
-                        "Delete option is not implemented",
-                        "Info", JOptionPane.INFORMATION_MESSAGE);
+                DefaultMutableTreeNode treenode = (DefaultMutableTreeNode) m_tree.getSelectionPath().getLastPathComponent();
+                IconData iconData = (IconData) treenode.getUserObject();
+                FileNode fileNode = (FileNode) iconData.getObject();
+                initEvent_ClickChuotVaoCayDuyetFile(fileNode.getFile().getPath());
             }
-        };
-        m_popup.add(a1);
-
-        Action a2 = new AbstractAction("Rename") {
-
-            public void actionPerformed(ActionEvent e) {
-                m_tree.repaint();
-                JOptionPane.showMessageDialog(null,
-                        "Rename option is not implemented",
-                        "Info", JOptionPane.INFORMATION_MESSAGE);
-            }
-        };
-        m_popup.add(a2);
+            };
+        m_popup.add(a3);
         m_tree.add(m_popup);
         m_tree.addMouseListener(new PopupTrigger());
 
@@ -376,7 +364,7 @@ public class CayDuyetFile {
             if (fnode != null) {
                 //  m_display.setText(fnode.getFile().
                 ///  getAbsolutePath());
-                initEvent_ClickChuotVaoCayDuyetFile(fnode.getFile().getAbsolutePath());
+                //initEvent_ClickChuotVaoCayDuyetFile(fnode.getFile().getAbsolutePath());
             }
         //  else
         //  m_display.setText("");

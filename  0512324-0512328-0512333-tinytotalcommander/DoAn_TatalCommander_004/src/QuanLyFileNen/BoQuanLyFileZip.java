@@ -4,6 +4,7 @@
  */
 package QuanLyFileNen;
 
+import QuanLyFile.BoQuanLyFile;
 import java.io.*;
 import java.text.DateFormat;
 import java.util.logging.Level;
@@ -71,11 +72,15 @@ public class BoQuanLyFileZip {
                 file.getParentFile().mkdirs();
             FileOutputStream fout = new FileOutputStream(directory + ze.getName());
             InputStream in = zf.getInputStream(ze);
-            for (int c = in.read(); c != -1; c = in.read()) {
-                fout.write(c);
+            byte[] buf = new byte[1024];
+            int c = 0;
+            while((c = in.read(buf, 0, 1024)) != -1){
+                fout.write(buf, 0, c);
+                in.skip(c);
             }
-            in.close();
-            fout.close();
+
+            //for (int c = in.read(); c != -1; c = in.read())
+              //  fout.write(c);
         }
     }
 
@@ -124,42 +129,30 @@ public class BoQuanLyFileZip {
       }
     }
   }
+   public static void appendFileToFileZip(String appendFile, String fileZip) throws FileNotFoundException, IOException, Exception{
+        String tempFolder = outPutTemp(fileZip);
+        BoQuanLyFile boQuanLyFile = new BoQuanLyFile();
+        File zip = new File(fileZip);
+        boQuanLyFile.copyDirectory(new File(appendFile), new File(tempFolder), true);
+        File tempFile = new File(new File(tempFolder).getParent() + "/" + zip.getName().substring(0, zip.getName().lastIndexOf("."))).getAbsoluteFile();
+        tempFile.deleteOnExit();
+        tempFile.renameTo(new File(zip.getName().substring(0, zip.getName().lastIndexOf("."))));
+        zip.deleteOnExit();
+        zipFolder(tempFile.getPath(), fileZip);
+  }
+   /**
+    * Giải nén ra một thư mục tạm. nhớ xóa khi kết thúc chương trình
+    * @param zipfile    file zip cần xem
+    * @return           đường dẫn của thư mục tạm
+    * @throws java.io.IOException
+    */
   public static String outPutTemp (String zipfile) throws IOException
   {
-      String tempfolder = "C:/";//System.getProperty("java.io.tmpdir");
+      String tempfolder = System.getProperty("java.io.tmpdir");
       String timenow = String.valueOf(new Date().getTime());
       tempfolder += timenow + "/";
       UnZip(zipfile, tempfolder);
       return tempfolder;
-  }
-   public static void appendFileToFileZip(String appendFile, String fileZip) throws FileNotFoundException{
-    try {
-            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(fileZip, true));
-            File appFile = new File(appendFile);
-            if(appFile.isFile())
-            {
-                 File folder = new File(appendFile);
-                    if (folder.isDirectory()) {
-                      addFolderToZip("", appendFile, out);
-                    } else {
-                      byte[] buf = new byte[1024];
-                      int len;
-                      FileInputStream in = new FileInputStream(appendFile);
-                      out.putNextEntry(new ZipEntry("Thanh1" + "/" + folder.getName()));
-                      while ((len = in.read(buf)) > 0) {
-                        out.write(buf, 0, len);
-                      }
-                      out.closeEntry();
-            }
-            }
-            if(appFile.isDirectory())
-                 addFolderToZip("Thanh/", appendFile, out);
-                 out.flush();
-                 out.close();
-            }
-        catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "eo le");
-        }
   }
 }
 
