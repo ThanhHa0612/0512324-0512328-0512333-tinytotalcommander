@@ -142,14 +142,14 @@ public class BangDuyetFile {
         bangHienThiThuMucHienHanh = (DroppableTable) evt.getComponent();
         int selectedRow = bangHienThiThuMucHienHanh.getSelectedRow();
         String str_TenFileDuocChon = getTenFile();
+        phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon, evt.getClickCount());
         if (!getTenFile().endsWith("\\")) {
             str_TenFileDuocChon += "\\";
         }
         if (evt.getButton() != 1 || evt.getClickCount() != 2) {
             return;
         }
-        phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
-        str_TenFileDuocChon += bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
+            str_TenFileDuocChon += bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
         if (bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString().equals("..")) {
             //Nếu là click đơn thì bỏ qua
             quayVeThuMucCha();
@@ -268,13 +268,13 @@ public class BangDuyetFile {
      * @param evt tham số cho sự kiện click chuột vào bảng (ở đây là tên của file đang được chọn)
      */
     // This private class is used to fire MyEvents
-    void phatSinhSuKien_ClickChuotVaoBangDuyetFile(String evt) {
+    void phatSinhSuKien_ClickChuotVaoBangDuyetFile(String evt, int iSoLanClick) {
         Object[] listeners = listenerList.getListenerList();
         // Each listener occupies two elements - the first is the listener class
         // and the second is the listener instance
         for (int i = 0; i < listeners.length; i += 2) {
             if (listeners[i] == EventListener_ClickChuotVaoBangDuyetFile.class) {
-                ((EventListener_ClickChuotVaoBangDuyetFile) listeners[i + 1]).Event_ClickChuotVaoBangDuyetFile_Occurred(evt);
+                ((EventListener_ClickChuotVaoBangDuyetFile) listeners[i + 1]).Event_ClickChuotVaoBangDuyetFile_Occurred(evt, iSoLanClick);
             }
         }
     }
@@ -423,7 +423,8 @@ public class BangDuyetFile {
         //JOptionPane.showMessageDialog(null, bangHienThiThuMucHienHanh.getRowCount());
         bangHienThiThuMucHienHanh.paintImmediately(bangHienThiThuMucHienHanh.getBounds());
         myScrollPane.setViewportView(bangHienThiThuMucHienHanh);
-        phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_FileName);
+        //System.setProperty("user.dir", getTenFile());
+        //phatSinhSuKien_ClickChuotVaoBangDuyetFile(getTenFile(), 2);
     }
 
     /**

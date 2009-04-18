@@ -51,7 +51,7 @@ public class CayDuyetFile {
     /**
      *  m_clickedPath luu nhung treepath da dc kick qua
      */
-    protected TreePath m_clickedPath;
+    private TreePath m_clickedPath;
 
     private DirSelectionListener dirSelectionListener;
     /**
@@ -98,13 +98,13 @@ public class CayDuyetFile {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (m_clickedPath == null) {
+                if (getM_clickedPath() == null) {
                     return;
                 }
-                if (m_tree.isExpanded(m_clickedPath)) {
-                    m_tree.collapsePath(m_clickedPath);
+                if (m_tree.isExpanded(getM_clickedPath())) {
+                    m_tree.collapsePath(getM_clickedPath());
                 } else {
-                    m_tree.expandPath(m_clickedPath);
+                    m_tree.expandPath(getM_clickedPath());
                 }
             }
         };
@@ -174,7 +174,7 @@ public class CayDuyetFile {
             String strDuongDanTiepTheo = strCacDuongDan[i];
 
             //Duyệt xem stt của đường dẫn tiếp theo trong thư mục cha
-            file = new File(strDuongDanHienTai);
+            file = new File(strDuongDanHienTai).getAbsoluteFile();
             int j = 0;
             for (File filecon : file.listFiles())
             {
@@ -196,7 +196,8 @@ public class CayDuyetFile {
         final DefaultMutableTreeNode finalNode = node;
         //cập nhật cây
         TreePath tf = new TreePath(m_model.getPathToRoot(finalNode));
-        m_tree.fireTreeExpanded(tf);
+        if (m_clickedPath != tf)
+            m_tree.fireTreeExpanded(tf);
 
         return m_tree.getSelectionRows()[0] * m_tree.getRowHeight();
     }
@@ -294,6 +295,13 @@ public class CayDuyetFile {
      */
     public void setDirSelectionListener(DirSelectionListener dirSelectionListener) {
         this.dirSelectionListener = dirSelectionListener;
+    }
+
+    /**
+     * @return the m_clickedPath
+     */
+    public TreePath getM_clickedPath() {
+        return m_clickedPath;
     }
 
     /**

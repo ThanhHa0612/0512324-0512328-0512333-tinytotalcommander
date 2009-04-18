@@ -3,6 +3,7 @@ package DuyetFile;
 
 
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.util.EventListener;
 
 /*
@@ -15,6 +16,6 @@ import java.util.EventListener;
  * @author Administrator
  */
 public interface EventListener_ClickChuotVaoBangDuyetFile extends EventListener {
-        public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon);
+        public void Event_ClickChuotVaoBangDuyetFile_Occurred(String evt, int iSoLanClick);
     }
 
