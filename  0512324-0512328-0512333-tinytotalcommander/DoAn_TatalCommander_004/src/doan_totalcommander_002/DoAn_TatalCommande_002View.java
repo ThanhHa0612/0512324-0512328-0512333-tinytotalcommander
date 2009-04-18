@@ -708,7 +708,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel1);
@@ -745,7 +745,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
