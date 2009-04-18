@@ -478,7 +478,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jComboBox_PhanChinh_BangTrai" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTabbedPane_PhanChinh_BangTrai" pref="310" max="32767" attributes="0"/>
+                              <Component id="jTabbedPane_PhanChinh_BangTrai" pref="312" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -553,7 +553,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jComboBox_PhanChinh_BangPhai" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTabbedPane_PhanChinh_BangPhai" pref="312" max="32767" attributes="0"/>
+                          <Component id="jTabbedPane_PhanChinh_BangPhai" pref="314" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
