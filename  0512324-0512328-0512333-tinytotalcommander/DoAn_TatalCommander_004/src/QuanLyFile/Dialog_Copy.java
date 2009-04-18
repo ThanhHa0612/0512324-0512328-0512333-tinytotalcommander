@@ -257,8 +257,8 @@ public class Dialog_Copy extends javax.swing.JDialog {
             //jLabel_DuongDanDangTim.setText("Số file tìm được: " + jTable_TimDuoc.getRowCount());
             //Thông báo thành công và xác nhận thoát
             jLabel_DangCopy.setText("Đã hoàn thành!");
-            if (JOptionPane.showConfirmDialog(null, "Copy file thành công! Bạn muốn thoát?"
-                , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            /*if (JOptionPane.showConfirmDialog(null, "Copy file thành công! Bạn muốn thoát?"
+                , "Xác nhận thoát", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)*/
                 dispose();
 
         }

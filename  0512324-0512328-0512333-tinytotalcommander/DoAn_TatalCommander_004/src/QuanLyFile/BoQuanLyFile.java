@@ -114,7 +114,48 @@ public class BoQuanLyFile extends JComponent{
           System.out.println(e.getMessage());
         }
      }
+/**
+     * Tạo tên mặc định cho thư mục mới có dạng NewFolderx với x từ 0 đến 2^20
+     * @param str_DuongDanThuMucCha     Đường dẫn đến thư mục cha của thư mục cần tạo để xác định số
+     *                                  folder có tên dạng NewFolderx đang có trong thư mục cha
+     * @return                          tên được tạo
+     */
+    public static String taoTenThuMucMoiMacDinh (String str_DuongDanThuMucCha){
+        String str_TenThuMucMoi = "NewFolder";
+        String str_DuongDanDayDuThuMucCanTao = str_DuongDanThuMucCha + "\\" + str_TenThuMucMoi;
+        File file = new File(str_DuongDanDayDuThuMucCanTao);
+        if (!file.exists() && !file.isDirectory()){
+            return str_DuongDanDayDuThuMucCanTao;
+        }
+        int i = 1;
+        for (; i < Math.pow(2, 20); i++){
+            file = new File(str_DuongDanDayDuThuMucCanTao + String.valueOf(i));
+            if (!file.exists() && !file.isDirectory()){
+                str_DuongDanDayDuThuMucCanTao += String.valueOf(i);
+                break;
+            }
+        }
+        return str_DuongDanDayDuThuMucCanTao;
+    }
+    /**
+     * Tạo một thư mục mới
+     * @param str_DuongDan  Đường dẫn đầy đủ (bao gồm tên) của thư mục cần tạo
+     */
+    public static void taoThuMucMoi (String str_DuongDan){
+        File file = new File(str_DuongDan);
+        if(!file.mkdirs())
+            JOptionPane.showMessageDialog(null, "Không thể tạo thư mục!");
+    }
 
+    /**
+     * Tạo một file mới
+     * @param str_DuongDan  Đường dẫn đầy đủ (bao gồm tên) của thư mục cần tạo
+     */
+    public static void taoFileMoi (String str_DuongDan) throws IOException{
+        File file = new File(str_DuongDan);
+        if(!file.createNewFile())
+            JOptionPane.showMessageDialog(null, "Không thể tạo file!");
+    }
      /**
      *
      * copy folder,file sang đường dẫn khác
@@ -232,6 +273,7 @@ public class BoQuanLyFile extends JComponent{
                 xoatatca = true;
            }
            if(n==2){
+               xoatatca = true;
                return;
            }
         }
@@ -280,7 +322,7 @@ public class BoQuanLyFile extends JComponent{
       if(result == false)// && JOptionPane.showConfirmDialog(null, "File bị trùng bạn có muốn chép đè lên ko") == 0)
       {
           copyDirectory(f1,f2,false);
-          f1.delete();
+          removeDirectory(f1, true);
       }
       return result;
     }

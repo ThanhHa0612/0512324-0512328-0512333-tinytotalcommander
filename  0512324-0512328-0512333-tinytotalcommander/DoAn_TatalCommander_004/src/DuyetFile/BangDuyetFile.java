@@ -145,10 +145,10 @@ public class BangDuyetFile {
         if (!getTenFile().endsWith("\\")) {
             str_TenFileDuocChon += "\\";
         }
-        phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
         if (evt.getButton() != 1 || evt.getClickCount() != 2) {
             return;
         }
+        phatSinhSuKien_ClickChuotVaoBangDuyetFile(str_TenFileDuocChon);
         str_TenFileDuocChon += bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString();
         if (bangHienThiThuMucHienHanh.getValueAt(selectedRow, 1).toString().equals("..")) {
             //Nếu là click đơn thì bỏ qua
@@ -321,9 +321,9 @@ public class BangDuyetFile {
         //http://www.java2s.com/Code/Java/Swing-JFC/ColumnSampleTableModel.htm
 
         int SoThuocTinh = 4;
-        myScrollPane.setToolTipText(tenThuMucHienHanh);
         File file = new File(getTenFile()).getAbsoluteFile();
         setTenFile(file.getPath());
+        myScrollPane.setToolTipText(file.getPath());
         File files[] = (new File(getTenFile())).listFiles();
         if (files == null) {
             //JOptionPane.showMessageDialog(null, "Không duyệt được thư mục " + _tenThuMucHienHanh);

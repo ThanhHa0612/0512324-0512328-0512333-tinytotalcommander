@@ -78,7 +78,7 @@ public class MyComp_OpenSaveFile extends javax.swing.JPanel {
     private void jButton_MoDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_MoDialogActionPerformed
         // TODO add your handling code here:
         int iLuaChonCuaNguoiDung;
-        iLuaChonCuaNguoiDung = getBTimFileLuu() ? getFileChooser().showSaveDialog(null) : getFileChooser().showSaveDialog(null);
+        iLuaChonCuaNguoiDung = getBTimFileLuu() ? getFileChooser().showSaveDialog(null) : getFileChooser().showOpenDialog(null);
         if (iLuaChonCuaNguoiDung == JFileChooser.APPROVE_OPTION){
             String strDuongDanFile = getFileChooser().getSelectedFile().getAbsolutePath();
             getJComboBox_DuongDanFile().setSelectedItem(strDuongDanFile);
