@@ -5,10 +5,14 @@
 package QuanLyFileNen;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.*;
 import javax.swing.JOptionPane;
 
 import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Chua cac ham de quan ly file zip: nen va giai nen file
@@ -89,6 +93,7 @@ public class BoQuanLyFileZip {
         zip.close();
   }
 
+
   static private void addFileToZip(String path, String srcFile, ZipOutputStream zip)
       throws Exception {
 
@@ -103,6 +108,7 @@ public class BoQuanLyFileZip {
       while ((len = in.read(buf)) > 0) {
         zip.write(buf, 0, len);
       }
+      zip.closeEntry();
     }
   }
 
@@ -118,8 +124,42 @@ public class BoQuanLyFileZip {
       }
     }
   }
-   public static void appendFileToFileZip(String appendFile, String fileZip){
-
+  public static String outPutTemp (String zipfile) throws IOException
+  {
+      String tempfolder = "C:/";//System.getProperty("java.io.tmpdir");
+      String timenow = String.valueOf(new Date().getTime());
+      tempfolder += timenow + "/";
+      UnZip(zipfile, tempfolder);
+      return tempfolder;
+  }
+   public static void appendFileToFileZip(String appendFile, String fileZip) throws FileNotFoundException{
+    try {
+            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(fileZip, true));
+            File appFile = new File(appendFile);
+            if(appFile.isFile())
+            {
+                 File folder = new File(appendFile);
+                    if (folder.isDirectory()) {
+                      addFolderToZip("", appendFile, out);
+                    } else {
+                      byte[] buf = new byte[1024];
+                      int len;
+                      FileInputStream in = new FileInputStream(appendFile);
+                      out.putNextEntry(new ZipEntry("Thanh1" + "/" + folder.getName()));
+                      while ((len = in.read(buf)) > 0) {
+                        out.write(buf, 0, len);
+                      }
+                      out.closeEntry();
+            }
+            }
+            if(appFile.isDirectory())
+                 addFolderToZip("Thanh/", appendFile, out);
+                 out.flush();
+                 out.close();
+            }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "eo le");
+        }
   }
 }
 
