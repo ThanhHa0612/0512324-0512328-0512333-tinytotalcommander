@@ -13,7 +13,7 @@ import java.util.EventListener;
  * @author Dang Thi Phuong Thao
  */
 public interface EventListener_ClickChuotVaoCayDuyetFile extends EventListener {
-    public void Event_ClickChuotVaoCayDuyetFile_Occurred( String str_fileduocchon);
+    public void Event_ClickChuotVaoCayDuyetFile_Occurred(String str_fileduocchon);
 
 
 }

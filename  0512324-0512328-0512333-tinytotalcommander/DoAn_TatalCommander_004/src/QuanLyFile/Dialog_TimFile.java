@@ -19,6 +19,7 @@ import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -367,8 +368,9 @@ public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener
             }
             int iDongDuocChon = jTable_TimDuoc.getSelectedRow();
             //Nếu loại file là folder thì phát sinh sự kiện để bảng duyệt file bắt với tham số là đường dẫn
+
             if (jTable_TimDuoc.getValueAt(iDongDuocChon, 1).equals("Folder")) {
-                phatSinhSuKien_ClickChuotVaoBangDuyetFile(jTable_TimDuoc.getValueAt(iDongDuocChon, 0).toString());
+                phatSinhSuKien_ClickChuotVaoBangDuyetFile(jTable_TimDuoc.getValueAt(iDongDuocChon, 0).toString(), 2);
             } else {//Nếu là file thì thử mở với chương trình mặc định
                 Desktop.getDesktop().open(new File(jTable_TimDuoc.getValueAt(iDongDuocChon, 2) + "\\" +
                         jTable_TimDuoc.getValueAt(iDongDuocChon, 0) + jTable_TimDuoc.getValueAt(iDongDuocChon, 1)));
@@ -495,15 +497,16 @@ public class Dialog_TimFile extends javax.swing.JFrame implements ActionListener
     /**
      * Phát sinh sử kiện click chuột vào bảng
      * @param evt tham số cho sự kiện click chuột vào bảng (ở đây là tên của file đang được chọn)
+     * @param iSoLanClick số lần click chuột
      */
     // This private class is used to fire MyEvents
-    void phatSinhSuKien_ClickChuotVaoBangDuyetFile(String evt) {
+    void phatSinhSuKien_ClickChuotVaoBangDuyetFile(String evt, int iSoLanClick) {
         Object[] listeners = listenerList.getListenerList();
         // Each listener occupies two elements - the first is the listener class
         // and the second is the listener instance
         for (int i = 0; i < listeners.length; i += 2) {
             if (listeners[i] == EventListener_ClickChuotVaoBangDuyetFile.class) {
-                ((EventListener_ClickChuotVaoBangDuyetFile) listeners[i + 1]).Event_ClickChuotVaoBangDuyetFile_Occurred(evt);
+                ((EventListener_ClickChuotVaoBangDuyetFile) listeners[i + 1]).Event_ClickChuotVaoBangDuyetFile_Occurred(evt, iSoLanClick);
             }
         }
     }

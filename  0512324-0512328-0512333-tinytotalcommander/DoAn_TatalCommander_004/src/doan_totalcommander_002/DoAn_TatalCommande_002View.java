@@ -61,6 +61,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
 //    private jEnum_CacBang _enum_BangHienTai;
     private BangDuyetFile bangHienTai;
     private CayDuyetFile cayDuyetFile;
+    private boolean bKhoiTaoXong = false;
 
     public DoAn_TatalCommande_002View(SingleFrameApplication app) {
         super(app);
@@ -110,17 +111,24 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         //Khi nguoi dung thay doi thu muc cua bang ben phai
         bangTrai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
-            public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
+            public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon, int iSoLanClick) {
                 //jLabel1.setText("Ban chon cua so trai");
                 //bangPhai.getTable().clearSelection();
 //                _enum_BangHienTai = jEnum_CacBang.BangTrai;
+                if (!bKhoiTaoXong)//nếu chưa khởi tạo xong thì return
+                    return;
                 bangHienTai = bangTrai;
+                
+                if (iSoLanClick == 1)
+                    return;
                 String str_PhanVung;
                 if (bangTrai.getTenFile().contains("\\"))
                     str_PhanVung = bangTrai.getTenFile().substring(0, "C:\\".length());
                 else
                     str_PhanVung = bangTrai.getTenFile() + "\\";
-                jComboBox_PhanChinh_BangTrai.setSelectedItem(str_PhanVung);
+
+                if (!bangTrai.getTenFile().substring(0,1).equalsIgnoreCase(str_PhanVung.substring(0, 1)))
+                    jComboBox_PhanChinh_BangTrai.setSelectedItem(str_PhanVung);
                 //System.setProperty("user.dir", _bangHienTai.getTenFile());
                 //JOptionPane.showMessageDialog(null, System.getProperty("user.dir"));
                 //Goi ham cap nhat cay
@@ -131,24 +139,27 @@ public class DoAn_TatalCommande_002View extends FrameView {
         
         //Khi nguoi dung thay doi thu muc cua bang ben phai
         bangPhai.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
-            public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
+            public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon, int iSoLanClick) {
                 //jLabel1.setText("Ban chon cua so phai");
                 //bangTrai.getTable().clearSelection();
                 //_enum_BangHienTai = jEnum_CacBang.BangPhai;
                 bangHienTai = bangPhai;
 
+                if (iSoLanClick == 1)
+                    return;
                 String str_PhanVung;
                 if (bangPhai.getTenFile().contains("\\"))
                     str_PhanVung = bangPhai.getTenFile().substring(0, "C:\\".length());
                 else
                     str_PhanVung = bangPhai.getTenFile() + "\\";
-                jComboBox_PhanChinh_BangPhai.setSelectedItem(str_PhanVung);
+                
+                if (!bangPhai.getTenFile().substring(0,1).equalsIgnoreCase(str_PhanVung.substring(0, 1)))
+                    jComboBox_PhanChinh_BangPhai.setSelectedItem(str_PhanVung);
 
                 //Goi ham cap nhat cay
+
                 int viTriThanhCuon = cayDuyetFile.capNhatCay(str_TenFileDuocChon);
                 jScrollPane_PhanChinh_Tree.getVerticalScrollBar().setValue(viTriThanhCuon);
-
-
             }
         });
 /*---------------------------------------------------------------------------------------*/
@@ -159,6 +170,10 @@ public class DoAn_TatalCommande_002View extends FrameView {
         cayDuyetFile.addEventListener_ClickChuotVaoCayDuyetFile(new EventListener_ClickChuotVaoCayDuyetFile() {
 
             public void Event_ClickChuotVaoCayDuyetFile_Occurred(String str_fileduocchon) {
+                if (!bKhoiTaoXong)//nếu chưa khởi tạo xong thì return
+                    return;
+               if ((bangHienTai.getTenFile().replace("\\\\", "\\")).equalsIgnoreCase(str_fileduocchon))
+                   return;
                if (bangHienTai == bangPhai){
                    bangPhai.capNhatBangDuyetThuMuc(str_fileduocchon, jScrollPane_PhanChinh_BangPhai);
                }
@@ -178,8 +193,9 @@ public class DoAn_TatalCommande_002View extends FrameView {
         //jTree1 = new JTree(root);
         //jScrollPane_PhanChinh_Tree.setViewportView(jTree1);
 /*---------------------------------------------------------------------------------------*/
-        bangTrai.capNhatBangDuyetThuMuc("C:", jScrollPane_PhanChinh_BangTrai);
-        bangPhai.capNhatBangDuyetThuMuc("D:", jScrollPane_PhanChinh_BangPhai);
+        //bangTrai.capNhatBangDuyetThuMuc("C:", jScrollPane_PhanChinh_BangTrai);
+        //String strThuMucHienHanh = System.getProperty("user.dir");
+        bangPhai.capNhatBangDuyetThuMuc("C:", jScrollPane_PhanChinh_BangPhai);
 
         Timer timer = new Timer(10 * 1000, new ActionListener() {
 
@@ -189,18 +205,19 @@ public class DoAn_TatalCommande_002View extends FrameView {
                             , jScrollPane_PhanChinh_BangPhai);
                     bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
                             , jScrollPane_PhanChinh_BangTrai);
-                    bangTrai.getTable().requestFocus();
+                    bangTrai.getTable().requestFocusInWindow();
                 }
                 if (bangHienTai == bangPhai){
                     bangTrai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangTrai.getToolTipText()
                             , jScrollPane_PhanChinh_BangTrai);
                     bangPhai.capNhatBangDuyetThuMuc(jScrollPane_PhanChinh_BangPhai.getToolTipText()
                             , jScrollPane_PhanChinh_BangPhai);
-                    bangPhai.getTable().requestFocus();
+                    bangPhai.getTable().requestFocusInWindow();
                 }
             }
         });
         timer.start();
+        bKhoiTaoXong = true;
 //
         //jTabbedPane1.addTab("C:", jTabbedPane1.getTabComponentAt(0));
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -1174,6 +1191,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jComboBox_PhanChinh_BangPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangPhaiActionPerformed
         // TODO add your handling code here:
+        if (!bKhoiTaoXong)//nếu chưa khởi tạo xong thì return
+            return;
         if (jComboBox_PhanChinh_BangPhai.getSelectedItem() != null && bangPhai.getTenFile() != null
                 && jComboBox_PhanChinh_BangPhai.getSelectedItem().toString().charAt(0) != bangPhai.getTenFile().charAt(0)){
             //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
@@ -1395,8 +1414,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
         Dialog_TimFile dialog = new Dialog_TimFile(null, true);
         dialog.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
-            public void Event_ClickChuotVaoBangDuyetFile_Occurred(String str_TenFileDuocChon) {
-                bangTrai.capNhatBangDuyetThuMuc(str_TenFileDuocChon, jScrollPane_PhanChinh_BangTrai);
+            public void Event_ClickChuotVaoBangDuyetFile_Occurred(String strTenFileDuocChon, int iSoLanClick) {
+                bangTrai.capNhatBangDuyetThuMuc(strTenFileDuocChon, jScrollPane_PhanChinh_BangTrai);
                 //jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, str_TenFileDuocChon);
             }
         });
@@ -1469,6 +1488,8 @@ public class DoAn_TatalCommande_002View extends FrameView {
 
     private void jComboBox_PhanChinh_BangTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_PhanChinh_BangTraiActionPerformed
         // TODO add your handling code here:
+        if (!bKhoiTaoXong)//nếu chưa khởi tạo xong thì return
+            return;
         if (jComboBox_PhanChinh_BangTrai.getSelectedItem() != null && bangTrai.getTenFile() != null
                 && jComboBox_PhanChinh_BangTrai.getSelectedItem().toString().charAt(0) != bangTrai.getTenFile().charAt(0)){
             //Nếu jCombox đã được khởi tạo và ổ đĩa được chọn khác ổ đỉa hiện tại
