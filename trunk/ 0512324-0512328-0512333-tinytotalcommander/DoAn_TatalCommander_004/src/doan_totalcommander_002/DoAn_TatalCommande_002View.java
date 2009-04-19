@@ -326,12 +326,13 @@ public class DoAn_TatalCommande_002View extends FrameView {
         mainPanel = new javax.swing.JPanel();
         jPanel_PhanDau = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        jButton_destop = new javax.swing.JButton();
+        jButton_myDocuments = new javax.swing.JButton();
+        jButton_find = new javax.swing.JButton();
+        jButton_newFile = new javax.swing.JButton();
+        jButton_zip = new javax.swing.JButton();
+        jButton_unzip = new javax.swing.JButton();
+        jButton_sosanhfile = new javax.swing.JButton();
         jPanel_PhanChan = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -339,13 +340,13 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        jButton_View = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jButton_Edit = new javax.swing.JButton();
+        jButton_NewFolder = new javax.swing.JButton();
+        jButton_Move = new javax.swing.JButton();
+        jButton_Copy = new javax.swing.JButton();
+        jButton_Delete = new javax.swing.JButton();
         jComboBox_ThucThiCommandLine = new javax.swing.JComboBox();
         jButton_ThucThiCommandLine = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
@@ -412,6 +413,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jButton13 = new javax.swing.JButton();
 
         mainPanel.setName("mainPanel"); // NOI18N
         mainPanel.setLayout(new java.awt.BorderLayout());
@@ -425,77 +427,83 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jToolBar1.setPreferredSize(new java.awt.Dimension(100, 38));
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(doan_totalcommander_002.DoAn_TatalCommande_002App.class).getContext().getResourceMap(DoAn_TatalCommande_002View.class);
-        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setAlignmentY(0.0F);
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.setPreferredSize(new java.awt.Dimension(35, 35));
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_destop.setIcon(resourceMap.getIcon("jButton_destop.icon")); // NOI18N
+        jButton_destop.setText(resourceMap.getString("jButton_destop.text")); // NOI18N
+        jButton_destop.setToolTipText(resourceMap.getString("jButton_destop.toolTipText")); // NOI18N
+        jButton_destop.setFocusable(false);
+        jButton_destop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_destop.setName("jButton_destop"); // NOI18N
+        jButton_destop.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_destop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_destopActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar1.add(jButton_destop);
 
-        jButton5.setIcon(resourceMap.getIcon("jButton5.icon")); // NOI18N
-        jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
-        jButton5.setAlignmentY(0.0F);
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setName("jButton5"); // NOI18N
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton5);
-
-        jButton10.setText(resourceMap.getString("jButton10.text")); // NOI18N
-        jButton10.setFocusable(false);
-        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton10.setName("jButton10"); // NOI18N
-        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton10MouseClicked(evt);
+        jButton_myDocuments.setIcon(resourceMap.getIcon("jButton_myDocuments.icon")); // NOI18N
+        jButton_myDocuments.setText(resourceMap.getString("jButton_myDocuments.text")); // NOI18N
+        jButton_myDocuments.setToolTipText(resourceMap.getString("jButton_myDocuments.toolTipText")); // NOI18N
+        jButton_myDocuments.setFocusable(false);
+        jButton_myDocuments.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_myDocuments.setName("jButton_myDocuments"); // NOI18N
+        jButton_myDocuments.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_myDocuments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_myDocumentsActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton10);
+        jToolBar1.add(jButton_myDocuments);
 
-        jButton11.setText(resourceMap.getString("jButtonMove.text")); // NOI18N
-        jButton11.setFocusable(false);
-        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton11.setName("jButtonMove"); // NOI18N
-        jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton11MouseClicked(evt);
+        jButton_find.setIcon(resourceMap.getIcon("jbutton_find.icon")); // NOI18N
+        jButton_find.setText(resourceMap.getString("jbutton_find.text")); // NOI18N
+        jButton_find.setToolTipText(resourceMap.getString("jbutton_find.toolTipText")); // NOI18N
+        jButton_find.setFocusable(false);
+        jButton_find.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_find.setName("jbutton_find"); // NOI18N
+        jButton_find.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton_find);
+
+        jButton_newFile.setIcon(resourceMap.getIcon("jButton_newFlie.icon")); // NOI18N
+        jButton_newFile.setText(resourceMap.getString("jButton_newFlie.text")); // NOI18N
+        jButton_newFile.setToolTipText(resourceMap.getString("jButton_newFlie.toolTipText")); // NOI18N
+        jButton_newFile.setFocusable(false);
+        jButton_newFile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_newFile.setName("jButton_newFlie"); // NOI18N
+        jButton_newFile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton_newFile);
+
+        jButton_zip.setIcon(resourceMap.getIcon("jButton_zipFile.icon")); // NOI18N
+        jButton_zip.setText(resourceMap.getString("jButton_zipFile.text")); // NOI18N
+        jButton_zip.setToolTipText(resourceMap.getString("jButton_zipFile.toolTipText")); // NOI18N
+        jButton_zip.setFocusable(false);
+        jButton_zip.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_zip.setName("jButton_zipFile"); // NOI18N
+        jButton_zip.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton_zip);
+
+        jButton_unzip.setIcon(resourceMap.getIcon("jButton_unZip.icon")); // NOI18N
+        jButton_unzip.setText(resourceMap.getString("jButton_unZip.text")); // NOI18N
+        jButton_unzip.setToolTipText(resourceMap.getString("jButton_unZip.toolTipText")); // NOI18N
+        jButton_unzip.setFocusable(false);
+        jButton_unzip.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_unzip.setName("jButton_unZip"); // NOI18N
+        jButton_unzip.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton_unzip);
+
+        jButton_sosanhfile.setIcon(resourceMap.getIcon("jButton_sosanhfile.icon")); // NOI18N
+        jButton_sosanhfile.setText(resourceMap.getString("jButton_sosanhfile.text")); // NOI18N
+        jButton_sosanhfile.setToolTipText(resourceMap.getString("jButton_sosanhfile.toolTipText")); // NOI18N
+        jButton_sosanhfile.setFocusable(false);
+        jButton_sosanhfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_sosanhfile.setName("jButton_sosanhfile"); // NOI18N
+        jButton_sosanhfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_sosanhfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_sosanhfileActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton11);
-
-        jButton12.setText(resourceMap.getString("jButton_ReName.text")); // NOI18N
-        jButton12.setFocusable(false);
-        jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton12.setName("jButton_ReName"); // NOI18N
-        jButton12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_renameMouseClicked(evt);
-            }
-        });
-        jToolBar1.add(jButton12);
-
-        jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
-        jButton13.setFocusable(false);
-        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton13.setName("jButton13"); // NOI18N
-        jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton13jButton_removeMouseClicked(evt);
-            }
-        });
-        jToolBar1.add(jButton13);
+        jToolBar1.add(jButton_sosanhfile);
 
         javax.swing.GroupLayout jPanel_PhanDauLayout = new javax.swing.GroupLayout(jPanel_PhanDau);
         jPanel_PhanDau.setLayout(jPanel_PhanDauLayout);
@@ -533,40 +541,70 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator7.setName("jSeparator7"); // NOI18N
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setMaximumSize(new java.awt.Dimension(1024, 23));
-        jButton2.setMinimumSize(new java.awt.Dimension(0, 23));
-        jButton2.setName("jButton2"); // NOI18N
+        jButton_View.setText(resourceMap.getString("jButton_f3view.text")); // NOI18N
+        jButton_View.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton_View.setMinimumSize(new java.awt.Dimension(0, 23));
+        jButton_View.setName("jButton_f3view"); // NOI18N
+        jButton_View.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ViewActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
+        jButton3.setText(resourceMap.getString("jButton_alf4Exit.text")); // NOI18N
         jButton3.setMaximumSize(new java.awt.Dimension(1024, 23));
         jButton3.setMinimumSize(new java.awt.Dimension(0, 23));
-        jButton3.setName("jButton3"); // NOI18N
+        jButton3.setName("jButton_alf4Exit"); // NOI18N
 
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setMaximumSize(new java.awt.Dimension(1024, 23));
-        jButton4.setMinimumSize(new java.awt.Dimension(0, 23));
-        jButton4.setName("jButton4"); // NOI18N
+        jButton_Edit.setText(resourceMap.getString("jButton_f4Edit.text")); // NOI18N
+        jButton_Edit.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton_Edit.setMinimumSize(new java.awt.Dimension(0, 23));
+        jButton_Edit.setName("jButton_f4Edit"); // NOI18N
+        jButton_Edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EditActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
-        jButton6.setMaximumSize(new java.awt.Dimension(1024, 23));
-        jButton6.setMinimumSize(new java.awt.Dimension(0, 23));
-        jButton6.setName("jButton6"); // NOI18N
+        jButton_NewFolder.setText(resourceMap.getString("jButton_f7NewFolder.text")); // NOI18N
+        jButton_NewFolder.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton_NewFolder.setMinimumSize(new java.awt.Dimension(0, 23));
+        jButton_NewFolder.setName("jButton_f7NewFolder"); // NOI18N
+        jButton_NewFolder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_NewFolderActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText(resourceMap.getString("jButton7.text")); // NOI18N
-        jButton7.setMaximumSize(new java.awt.Dimension(1024, 23));
-        jButton7.setMinimumSize(new java.awt.Dimension(0, 23));
-        jButton7.setName("jButton7"); // NOI18N
+        jButton_Move.setText(resourceMap.getString("jButton_f6Move.text")); // NOI18N
+        jButton_Move.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton_Move.setMinimumSize(new java.awt.Dimension(0, 23));
+        jButton_Move.setName("jButton_f6Move"); // NOI18N
+        jButton_Move.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_MoveActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText(resourceMap.getString("jButton8.text")); // NOI18N
-        jButton8.setMaximumSize(new java.awt.Dimension(1024, 23));
-        jButton8.setMinimumSize(new java.awt.Dimension(0, 23));
-        jButton8.setName("jButton8"); // NOI18N
+        jButton_Copy.setText(resourceMap.getString("jButton_f5Copy.text")); // NOI18N
+        jButton_Copy.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton_Copy.setMinimumSize(new java.awt.Dimension(0, 23));
+        jButton_Copy.setName("jButton_f5Copy"); // NOI18N
+        jButton_Copy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CopyActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText(resourceMap.getString("jButton9.text")); // NOI18N
-        jButton9.setMaximumSize(new java.awt.Dimension(1024, 23));
-        jButton9.setMinimumSize(new java.awt.Dimension(0, 23));
-        jButton9.setName("jButton9"); // NOI18N
+        jButton_Delete.setText(resourceMap.getString("jButton_f8Delete.text")); // NOI18N
+        jButton_Delete.setMaximumSize(new java.awt.Dimension(1024, 23));
+        jButton_Delete.setMinimumSize(new java.awt.Dimension(0, 23));
+        jButton_Delete.setName("jButton_f8Delete"); // NOI18N
+        jButton_Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_DeleteActionPerformed(evt);
+            }
+        });
 
         jComboBox_ThucThiCommandLine.setEditable(true);
         jComboBox_ThucThiCommandLine.setName("jComboBox_ThucThiCommandLine"); // NOI18N
@@ -595,11 +633,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                        .addComponent(jButton_View, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                        .addComponent(jButton_Edit, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                        .addComponent(jButton_Copy, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -617,11 +655,11 @@ public class DoAn_TatalCommande_002View extends FrameView {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox_ThucThiCommandLine, 0, 498, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addComponent(jButton_Move, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addComponent(jButton_NewFolder, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                        .addComponent(jButton_Delete, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
         );
@@ -641,12 +679,12 @@ public class DoAn_TatalCommande_002View extends FrameView {
                             .addComponent(jButton_ThucThiCommandLine))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_View, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_NewFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Move, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Copy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -711,7 +749,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jComboBox_PhanChinh_BangTrai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_PhanChinh_BangTrai, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel1);
@@ -748,7 +786,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jComboBox_PhanChinh_BangPhai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_PhanChinh_BangPhai, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -1085,26 +1123,30 @@ public class DoAn_TatalCommande_002View extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+            .addGroup(statusPanelLayout.createSequentialGroup()
+                .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                .addGap(207, 207, 207)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 762, Short.MAX_VALUE)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
-                .addContainerGap())
+                .addGap(160, 160, 160))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusMessageLabel)
-                    .addComponent(statusAnimationLabel)
-                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(statusAnimationLabel))
                 .addGap(3, 3, 3))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jMenuBar1.setName("jMenuBar1"); // NOI18N
@@ -1116,6 +1158,9 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenu3.setText(resourceMap.getString("jMenu3.text")); // NOI18N
         jMenu3.setName("jMenu3"); // NOI18N
         jMenuBar1.add(jMenu3);
+
+        jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
+        jButton13.setName("jButton13"); // NOI18N
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
@@ -1189,10 +1234,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
         dialog.getJTextField_Nguon().setText(str_CacDuongDan.get(0));
         dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem_File_XoaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        bangTrai.duyetCacThuMucDatBiet("My Documents", jTabbedPane_PhanChinh_BangTrai);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -1366,27 +1407,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
             Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem_File_SoSanhActionPerformed
-//copy click
-    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
-        
-    }//GEN-LAST:event_jButton10MouseClicked
-//rename click
-    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        
-    }//GEN-LAST:event_jButton11MouseClicked
-
-    private void jButton_renameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_renameMouseClicked
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            BoQuanLyFile.renamefile("F:\\a\\2.txt", "F:\\a\\5.txt");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DoAn_TatalCommande_002View.class.getName()).log(Level.SEVERE, null, ex);
-        }
-}//GEN-LAST:event_jButton_renameMouseClicked
-
+//copy click//rename click
     private void jMenuItem_CatTapTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CatTapTinActionPerformed
         // TODO add your handling code here:
         //Lấy file đầu tiên được chọn
@@ -1449,10 +1470,6 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
             dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem_File_TimKiemActionPerformed
-
-    private void jButton13jButton_removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13jButton_removeMouseClicked
-        // TODO add your handling code here:
-}//GEN-LAST:event_jButton13jButton_removeMouseClicked
 
     private void MacLAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MacLAFActionPerformed
         // TODO add your handling code here:
@@ -1674,6 +1691,49 @@ public class DoAn_TatalCommande_002View extends FrameView {
         }
     }//GEN-LAST:event_jMenuItem_File_DoiTenActionPerformed
 
+    private void jButton_ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ViewActionPerformed
+        // TODO add your handling code here:
+        jMenuItem_File_ViewZipActionPerformed(evt);
+}//GEN-LAST:event_jButton_ViewActionPerformed
+
+    private void jButton_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EditActionPerformed
+        // TODO add your handling code here:
+        jMenuItem_Edit_BackActionPerformed(evt);
+}//GEN-LAST:event_jButton_EditActionPerformed
+
+    private void jButton_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CopyActionPerformed
+        // TODO add your handling code here:
+        jMenuItem1ActionPerformed(evt);
+}//GEN-LAST:event_jButton_CopyActionPerformed
+
+    private void jButton_MoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_MoveActionPerformed
+        // TODO add your handling code here:
+        jMenuItem_File_DiChuyenActionPerformed(evt);
+    }//GEN-LAST:event_jButton_MoveActionPerformed
+
+    private void jButton_NewFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NewFolderActionPerformed
+        // TODO add your handling code here:
+        jMenuItem_File_NewFolderActionPerformed(evt);
+    }//GEN-LAST:event_jButton_NewFolderActionPerformed
+
+    private void jButton_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DeleteActionPerformed
+        // TODO add your handling code here:
+        jMenuItem_File_XoaActionPerformed(evt);
+    }//GEN-LAST:event_jButton_DeleteActionPerformed
+
+    private void jButton_destopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_destopActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jButton_destopActionPerformed
+
+    private void jButton_myDocumentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_myDocumentsActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jButton_myDocumentsActionPerformed
+
+    private void jButton_sosanhfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_sosanhfileActionPerformed
+        // TODO add your handling code here:
+        jMenuItem_File_SoSanhActionPerformed(evt);
+    }//GEN-LAST:event_jButton_sosanhfileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EaSynthLAF;
@@ -1682,20 +1742,22 @@ public class DoAn_TatalCommande_002View extends FrameView {
     private javax.swing.JMenuItem MacLAF;
     private javax.swing.JMenuItem SquarenessLAF;
     private javax.swing.JMenuItem TinyLAF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButton_Copy;
+    private javax.swing.JButton jButton_Delete;
+    private javax.swing.JButton jButton_Edit;
+    private javax.swing.JButton jButton_Move;
+    private javax.swing.JButton jButton_NewFolder;
     private javax.swing.JButton jButton_ThucThiCommandLine;
+    private javax.swing.JButton jButton_View;
+    private javax.swing.JButton jButton_destop;
+    private javax.swing.JButton jButton_find;
+    private javax.swing.JButton jButton_myDocuments;
+    private javax.swing.JButton jButton_newFile;
+    private javax.swing.JButton jButton_sosanhfile;
+    private javax.swing.JButton jButton_unzip;
+    private javax.swing.JButton jButton_zip;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_Brief;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_Thumbnail;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_TreeView;
