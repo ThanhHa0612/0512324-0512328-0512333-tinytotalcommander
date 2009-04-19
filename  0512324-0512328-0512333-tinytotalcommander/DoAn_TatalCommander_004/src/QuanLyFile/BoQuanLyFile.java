@@ -255,14 +255,14 @@ public class BoQuanLyFile extends JComponent{
      public void removeDirectory(File srcPath,boolean xoatatca)
                                throws IOException{
       JOptionPane overwritePrompt = new JOptionPane();
-        Object[] options = {"Có","Xoá tất cả","Không"};
+        Object[] options = {"Yes","Yes to all","No"};
 
 
         if(xoatatca==false)
         {
             int n = JOptionPane.showOptionDialog(overwritePrompt,
-                                    "Bạn Thật sự muốn xóa?",
-                                    "Xóa tất cả các File?",
+                                    "Do you realy want to delete?",
+                                    "Delete all Files?",
                                     JOptionPane.YES_NO_CANCEL_OPTION,
                                     JOptionPane.WARNING_MESSAGE,
                                     null,
