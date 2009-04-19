@@ -138,12 +138,9 @@ public class BoQuanLyFileZip {
         BoQuanLyFile boQuanLyFile = new BoQuanLyFile();
         File folder = new File(tempFolder).getCanonicalFile();
         File zip = new File(fileZip);
-        boQuanLyFile.copyDirectory(new File(appendFile), folder, true);
-        File tempFile = new File(folder.getParent() + "/" + zip.getName().substring(0, zip.getName().lastIndexOf("."))).getCanonicalFile();
-        tempFile.deleteOnExit();
-        folder.renameTo(tempFile);
-        zip.deleteOnExit();
-        zipFolder(tempFile.getPath(), fileZip);
+        boQuanLyFile.copyDirectory(new File(appendFile), new File(tempFolder + "/" + new File(appendFile).getName()), true);
+        
+        zipFolder(folder.getPath(), fileZip);
   }
    /**
     * Giải nén ra một thư mục tạm. nhớ xóa khi kết thúc chương trình
@@ -154,8 +151,9 @@ public class BoQuanLyFileZip {
   public static String outPutTemp (String zipfile) throws IOException
   {
       String tempfolder = System.getProperty("java.io.tmpdir");
-      String timenow = String.valueOf(new Date().getTime());
+      String timenow = String.valueOf(new File (zipfile).getName());
       tempfolder += timenow + "/";
+      new File(tempfolder).deleteOnExit();
       UnZip(zipfile, tempfolder);
       return tempfolder;
   }

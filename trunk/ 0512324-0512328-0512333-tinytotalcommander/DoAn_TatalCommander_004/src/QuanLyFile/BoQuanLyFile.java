@@ -196,7 +196,7 @@ public class BoQuanLyFile extends JComponent{
                }
 
             }
-            dstPath.mkdir();
+            dstPath.mkdirs();
             String files[] = srcPath.list();
             //de quy
             for(int i = 0; i < files.length; i++){
