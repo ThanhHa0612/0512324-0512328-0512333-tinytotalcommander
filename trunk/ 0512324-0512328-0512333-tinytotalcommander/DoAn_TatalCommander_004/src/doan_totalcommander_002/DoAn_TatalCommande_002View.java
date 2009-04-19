@@ -1444,7 +1444,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         dialog.themEventListener_ClickChuotVaoBangDuyetFile(new EventListener_ClickChuotVaoBangDuyetFile() {
             public void Event_ClickChuotVaoBangDuyetFile_Occurred(String strTenFileDuocChon, int iSoLanClick) {
                 bangTrai.capNhatBangDuyetThuMuc(strTenFileDuocChon, jScrollPane_PhanChinh_BangTrai);
-                //jTabbedPane_PhanChinh_BangTrai.setTitleAt(0, str_TenFileDuocChon);
+                //JOptionPane.showMessageDialog(null, js);
             }
         });
             dialog.setVisible(true);
