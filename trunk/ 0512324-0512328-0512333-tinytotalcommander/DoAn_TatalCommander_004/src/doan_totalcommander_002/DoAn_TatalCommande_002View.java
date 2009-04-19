@@ -877,6 +877,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         jMenu_File.add(jMenuItem_File_DoiTen);
 
+        jMenuItem_File_DiChuyen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         jMenuItem_File_DiChuyen.setText(resourceMap.getString("jMenuItem_File_DiChuyen.text")); // NOI18N
         jMenuItem_File_DiChuyen.setName("jMenuItem_File_DiChuyen"); // NOI18N
         jMenuItem_File_DiChuyen.addActionListener(new java.awt.event.ActionListener() {
@@ -889,6 +890,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jSeparator9.setName("jSeparator9"); // NOI18N
         jMenu_File.add(jSeparator9);
 
+        jMenuItem_File_TimKiem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem_File_TimKiem.setText(resourceMap.getString("jMenuItem_File_TimKiem.text")); // NOI18N
         jMenuItem_File_TimKiem.setName("jMenuItem_File_TimKiem"); // NOI18N
         jMenuItem_File_TimKiem.addActionListener(new java.awt.event.ActionListener() {
@@ -901,6 +903,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jSeparator4.setName("jSeparator4"); // NOI18N
         jMenu_File.add(jSeparator4);
 
+        jMenuItem_Zip.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem_Zip.setText(resourceMap.getString("jMenuItem_Zip.text")); // NOI18N
         jMenuItem_Zip.setName("jMenuItem_Zip"); // NOI18N
         jMenuItem_Zip.addActionListener(new java.awt.event.ActionListener() {
@@ -910,6 +913,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         jMenu_File.add(jMenuItem_Zip);
 
+        jMenuItem_File_AppendZip.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem_File_AppendZip.setText(resourceMap.getString("jMenuItem_File_AppendZip.text")); // NOI18N
         jMenuItem_File_AppendZip.setName("jMenuItem_File_AppendZip"); // NOI18N
         jMenuItem_File_AppendZip.addActionListener(new java.awt.event.ActionListener() {
@@ -928,6 +932,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         });
         jMenu_File.add(jMenuItem_File_ViewZip);
 
+        jMenuItem_unZip.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem_unZip.setText(resourceMap.getString("jMenuItem_unZip.text")); // NOI18N
         jMenuItem_unZip.setName("jMenuItem_unZip"); // NOI18N
         jMenuItem_unZip.addActionListener(new java.awt.event.ActionListener() {
@@ -999,7 +1004,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
         jMenu_View_Tree.setText(resourceMap.getString("jMenu_View_Tree.text")); // NOI18N
         jMenu_View_Tree.setName("jMenu_View_Tree"); // NOI18N
 
-        jCheckBoxMenuItem_TreeView.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.ALT_MASK));
+        jCheckBoxMenuItem_TreeView.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, java.awt.event.InputEvent.CTRL_MASK));
         jCheckBoxMenuItem_TreeView.setSelected(true);
         jCheckBoxMenuItem_TreeView.setText(resourceMap.getString("jCheckBoxMenuItem_TreeView.text")); // NOI18N
         jCheckBoxMenuItem_TreeView.setName("jCheckBoxMenuItem_TreeView"); // NOI18N
@@ -1144,7 +1149,7 @@ public class DoAn_TatalCommande_002View extends FrameView {
                     .addComponent(statusAnimationLabel))
                 .addGap(3, 3, 3))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
