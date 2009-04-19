@@ -136,7 +136,7 @@ public class BoQuanLyFileZip {
    public static void appendFileToFileZip(String appendFile, String fileZip) throws FileNotFoundException, IOException, Exception{
         String tempFolder = outPutTemp(fileZip);
         BoQuanLyFile boQuanLyFile = new BoQuanLyFile();
-        File folder = new File(tempFolder);
+        File folder = new File(tempFolder).getCanonicalFile();
         File zip = new File(fileZip);
         boQuanLyFile.copyDirectory(new File(appendFile), folder, true);
         File tempFile = new File(folder.getParent() + "/" + zip.getName().substring(0, zip.getName().lastIndexOf("."))).getCanonicalFile();
