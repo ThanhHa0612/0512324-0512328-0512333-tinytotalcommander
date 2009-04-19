@@ -60,7 +60,13 @@ public class BoQuanLyFileZip {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-
+/**
+ * //http://www.java2s.com/Code/Java/File-Input-Output/unzip.htm
+ * giai nen file, folder
+ * @param filezip file zip can giai ne
+ * @param directory thu muc chua file giai nen
+ * @throws java.io.IOException
+ */
     public static  void UnZip(String filezip, String directory) throws IOException {
         ZipFile zf = new ZipFile(filezip);
         Enumeration e = zf.entries();
@@ -84,8 +90,14 @@ public class BoQuanLyFileZip {
         }
     }
 
-
-     //http://www.java2s.com/Code/Java/File-Input-Output/UseJavacodetozipafolder.htm
+/**
+ * //http://www.java2s.com/Code/Java/File-Input-Output/UseJavacodetozipafolder.htm
+ * nen folder
+ * @param srcFolder: folder can nen
+ * @param destZipFile: duong dan va ten  file zip
+ * @throws java.lang.Exception
+ */
+     
      public static void zipFolder(String srcFolder, String destZipFile) throws Exception {
         ZipOutputStream zip = null;
         FileOutputStream fileWriter = null;
@@ -101,7 +113,13 @@ public class BoQuanLyFileZip {
         zip.flush();
         zip.close();
   }
-
+/**
+ * dua file vao file zip,dc su dung boi ham zipFolder
+ * @param path: duong dan cua file can them
+ * @param srcFile: file dua vao
+ * @param zip: file zip
+ * @throws java.lang.Exception
+ */
 
   static private void addFileToZip(String path, String srcFile, ZipOutputStream zip)
       throws Exception {
@@ -120,7 +138,13 @@ public class BoQuanLyFileZip {
       zip.closeEntry();
     }
   }
-
+/**
+ * dua folder vao file zip, dc su dung boi ham zipFolder
+ * @param path: duong dan cua folder can them
+ * @param srcFile: folder dua vao
+ * @param zip: file zip
+ * @throws java.lang.Exception
+ */
   static private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip)
       throws Exception {
     File folder = new File(srcFolder);
@@ -133,6 +157,14 @@ public class BoQuanLyFileZip {
       }
     }
   }
+  /**
+   * Them file vao file zip
+   * @param appendFile: file can them vao
+   * @param fileZip: file zip
+   * @throws java.io.FileNotFoundException
+   * @throws java.io.IOException
+   * @throws java.lang.Exception
+   */
    public static void appendFileToFileZip(String appendFile, String fileZip) throws FileNotFoundException, IOException, Exception{
         String tempFolder = outPutTemp(fileZip);
         BoQuanLyFile boQuanLyFile = new BoQuanLyFile();
