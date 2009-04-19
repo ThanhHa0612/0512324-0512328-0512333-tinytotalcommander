@@ -746,6 +746,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_DiChuyen">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F6"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_DiChuyen.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem_File_DiChuyen" noResource="true"/>
               </Properties>
@@ -760,6 +763,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_TimKiem">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Alt+F7"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_TimKiem.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem_File_TimKiem" noResource="true"/>
               </Properties>
@@ -774,6 +780,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Zip">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Alt+F5"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem_Zip.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem_Zip" noResource="true"/>
               </Properties>
@@ -783,6 +792,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_File_AppendZip">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Alt+F5"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem_File_AppendZip.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem_File_AppendZip" noResource="true"/>
               </Properties>
@@ -801,6 +813,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_unZip">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Alt+F9"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem_unZip.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem_unZip" noResource="true"/>
               </Properties>
@@ -899,7 +914,7 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem_TreeView">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Alt+7"/>
+                  <KeyStroke key="Ctrl+F8"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" resourceKey="jCheckBoxMenuItem_TreeView.text"/>
@@ -1071,7 +1086,7 @@
                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
