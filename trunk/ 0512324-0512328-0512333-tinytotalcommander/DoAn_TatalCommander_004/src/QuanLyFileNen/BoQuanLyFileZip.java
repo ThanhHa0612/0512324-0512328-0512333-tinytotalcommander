@@ -93,7 +93,11 @@ public class BoQuanLyFileZip {
         fileWriter = new FileOutputStream(destZipFile);
         zip = new ZipOutputStream(fileWriter);
 
-        addFolderToZip("", srcFolder, zip);
+        if (new File(srcFolder).isFile())
+            addFileToZip("", srcFolder, zip);
+        else
+            addFolderToZip("", srcFolder, zip);
+        
         zip.flush();
         zip.close();
   }
@@ -132,11 +136,12 @@ public class BoQuanLyFileZip {
    public static void appendFileToFileZip(String appendFile, String fileZip) throws FileNotFoundException, IOException, Exception{
         String tempFolder = outPutTemp(fileZip);
         BoQuanLyFile boQuanLyFile = new BoQuanLyFile();
+        File folder = new File(tempFolder);
         File zip = new File(fileZip);
-        boQuanLyFile.copyDirectory(new File(appendFile), new File(tempFolder), true);
-        File tempFile = new File(new File(tempFolder).getParent() + "/" + zip.getName().substring(0, zip.getName().lastIndexOf("."))).getAbsoluteFile();
+        boQuanLyFile.copyDirectory(new File(appendFile), folder, true);
+        File tempFile = new File(folder.getParent() + "/" + zip.getName().substring(0, zip.getName().lastIndexOf("."))).getCanonicalFile();
         tempFile.deleteOnExit();
-        tempFile.renameTo(new File(zip.getName().substring(0, zip.getName().lastIndexOf("."))));
+        folder.renameTo(tempFile);
         zip.deleteOnExit();
         zipFolder(tempFile.getPath(), fileZip);
   }
