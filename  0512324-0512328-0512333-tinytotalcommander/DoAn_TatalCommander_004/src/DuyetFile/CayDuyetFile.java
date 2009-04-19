@@ -500,7 +500,7 @@ class FileNode {
     public final ImageIcon ICON_FOLDER =
             new ImageIcon(this.getClass().getResource(".\\resources\\Tree_folder.png"));
     public final ImageIcon ICON_EXPANDEDFOLDER =
-            new ImageIcon(".\\resources\\Tree_expandedfolder.png");
+            new ImageIcon(this.getClass().getResource(".\\resources\\Tree_expandedfolder.png"));
     protected File m_file;
 
     public FileNode(File file) {
